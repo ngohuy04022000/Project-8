@@ -81,7 +81,6 @@ C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\bin\Debug\PdfiumViewer.xml
 C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\bin\Debug\nl\PdfiumViewer.resources.dll
 C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\bin\Debug\Interop.AcroPDFLib.dll
 C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\bin\Debug\AxInterop.AcroPDFLib.dll
-C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\obj\Debug\KindleTeam8.csprojAssemblyReference.cache
 C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\obj\Debug\Interop.AcroPDFLib.dll
 C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\obj\Debug\AxInterop.AcroPDFLib.dll
 C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\obj\Debug\KindleTeam8.csproj.ResolveComReference.cache
