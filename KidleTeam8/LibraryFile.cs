@@ -137,6 +137,14 @@ namespace KidleTeam8
             ReadPDF = new ReadPDF(lvwSearch.SelectedItems[0].SubItems[1].Text + "/"
             + lvwSearch.SelectedItems[0].SubItems[0].Text);
             ReadPDF.Show();
+
+            
+            //txtTenTapTin.Text = ThongTinTruyXuat.Name;
+            //txtThoiGianTao.Text = ThongTinTruyXuat.CreationTime.ToLongTimeString();
+            //txtTruyXuatLanCuoi.Text = ThongTinTruyXuat.LastWriteTime.ToLongDateString();
+            //txtChinhSua.Text = ThongTinTruyXuat.LastAccessTime.ToLongDateString();
+            //txtKichThuocTapTin.Text = ThongTinTruyXuat.Length.ToString() + " bytes";
+
         }
         private void ClosePDF_Click(object sender, EventArgs e)
         {
