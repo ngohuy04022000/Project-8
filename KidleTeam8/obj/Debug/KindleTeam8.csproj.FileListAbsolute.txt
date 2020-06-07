@@ -93,3 +93,5 @@ C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\obj\Debug\KindleTeam8.csproj.Co
 C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\obj\Debug\KindleTeam8.csproj.CopyComplete
 C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\obj\Debug\KindleTeam8.exe
 C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\obj\Debug\KindleTeam8.pdb
+C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\obj\Debug\KindleTeam8.csprojAssemblyReference.cache
+C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\obj\Debug\KindleTeam8.frmMDI.resources

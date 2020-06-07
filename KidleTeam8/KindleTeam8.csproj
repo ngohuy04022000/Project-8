@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmMDI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMDI.Designer.cs">
+      <DependentUpon>frmMDI.cs</DependentUpon>
+    </Compile>
     <Compile Include="LibraryFile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     <Compile Include="ReadPDF.Designer.cs">
       <DependentUpon>ReadPDF.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmMDI.resx">
+      <DependentUpon>frmMDI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LibraryFile.resx">
       <DependentUpon>LibraryFile.cs</DependentUpon>
     </EmbeddedResource>

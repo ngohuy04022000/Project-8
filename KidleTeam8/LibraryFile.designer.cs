@@ -43,14 +43,10 @@
             this.pbrSearch = new System.Windows.Forms.ProgressBar();
             this.lblPercent = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ClosePDF = new System.Windows.Forms.ToolStripMenuItem();
             this.adbPDF = new AxAcroPDFLib.AxAcroPDF();
             cName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             cPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             cSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.adbPDF)).BeginInit();
             this.SuspendLayout();
             // 
@@ -165,42 +161,15 @@
             this.lblStatus.TabIndex = 9;
             this.lblStatus.Text = "Trạng thái";
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(1200, 35);
-            this.menuStrip1.TabIndex = 11;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ClosePDF});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // ClosePDF
-            // 
-            this.ClosePDF.Name = "ClosePDF";
-            this.ClosePDF.Size = new System.Drawing.Size(194, 34);
-            this.ClosePDF.Text = "Close PDF";
-            this.ClosePDF.Click += new System.EventHandler(this.ClosePDF_Click);
-            // 
             // adbPDF
             // 
             this.adbPDF.Dock = System.Windows.Forms.DockStyle.Fill;
             this.adbPDF.Enabled = true;
-            this.adbPDF.Location = new System.Drawing.Point(0, 35);
+            this.adbPDF.Location = new System.Drawing.Point(0, 0);
             this.adbPDF.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.adbPDF.Name = "adbPDF";
             this.adbPDF.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("adbPDF.OcxState")));
-            this.adbPDF.Size = new System.Drawing.Size(1200, 657);
+            this.adbPDF.Size = new System.Drawing.Size(1200, 692);
             this.adbPDF.TabIndex = 10;
             this.adbPDF.Visible = false;
             // 
@@ -220,13 +189,9 @@
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnFind);
             this.Controls.Add(this.adbPDF);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "LibraryFile";
             this.Text = "Đọc file PDF";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.adbPDF)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -247,9 +212,6 @@
         private System.Windows.Forms.Label lblPercent;
         private System.Windows.Forms.Label lblStatus;
         private AxAcroPDFLib.AxAcroPDF adbPDF;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ClosePDF;
     }
 }
 

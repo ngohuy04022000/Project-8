@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KindleTeam8;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -38,6 +39,19 @@ namespace KidleTeam8
             {
                 throw new FileNotFoundException("Không tìm thấy tập tin cần thiết: " + path);
             }
+        }
+
+        private void thôngTinToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileInfo info = new FileInfo(s);
+            MessageBox.Show("Tên tệp: " +info.Name+ Environment.NewLine+ "Thời gian tạo: "+info.CreationTime.ToLongTimeString()+Environment.NewLine +
+                "Truy cập lần cuối: " + info.LastWriteTime.ToLongDateString() + Environment.NewLine + "Chỉnh sửa lần cuối: " + info.LastAccessTime.ToLongDateString()+
+                Environment.NewLine + "Kích thước: " + info.Length.ToString() + " bytes"  , "Details", MessageBoxButtons.OK);
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
