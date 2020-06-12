@@ -31,7 +31,6 @@
             System.Windows.Forms.ColumnHeader cName;
             System.Windows.Forms.ColumnHeader cPath;
             System.Windows.Forms.ColumnHeader cSize;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LibraryFile));
             this.btnFind = new System.Windows.Forms.Button();
             this.fbdSearchFile = new System.Windows.Forms.FolderBrowserDialog();
             this.bgwFound = new System.ComponentModel.BackgroundWorker();
@@ -43,11 +42,13 @@
             this.pbrSearch = new System.Windows.Forms.ProgressBar();
             this.lblPercent = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.adbPDF = new AxAcroPDFLib.AxAcroPDF();
+            this.sctLibrary = new System.Windows.Forms.SplitContainer();
             cName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             cPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             cSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            ((System.ComponentModel.ISupportInitialize)(this.adbPDF)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sctLibrary)).BeginInit();
+            this.sctLibrary.Panel2.SuspendLayout();
+            this.sctLibrary.SuspendLayout();
             this.SuspendLayout();
             // 
             // cName
@@ -115,11 +116,12 @@
             cName,
             cPath,
             cSize});
+            this.lvwSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvwSearch.GridLines = true;
             this.lvwSearch.HideSelection = false;
-            this.lvwSearch.Location = new System.Drawing.Point(-2, 186);
+            this.lvwSearch.Location = new System.Drawing.Point(0, 0);
             this.lvwSearch.Name = "lvwSearch";
-            this.lvwSearch.Size = new System.Drawing.Size(801, 262);
+            this.lvwSearch.Size = new System.Drawing.Size(800, 246);
             this.lvwSearch.TabIndex = 6;
             this.lvwSearch.UseCompatibleStateImageBehavior = false;
             this.lvwSearch.View = System.Windows.Forms.View.Details;
@@ -145,23 +147,26 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.Location = new System.Drawing.Point(29, 163);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(80, 20);
+            this.lblStatus.Size = new System.Drawing.Size(55, 13);
             this.lblStatus.TabIndex = 9;
             this.lblStatus.Text = "Trạng thái";
             // 
-            // adbPDF
+            // sctLibrary
             // 
-            this.adbPDF.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.adbPDF.Enabled = true;
-            this.adbPDF.Location = new System.Drawing.Point(0, 0);
-            this.adbPDF.Name = "adbPDF";
-            this.adbPDF.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("adbPDF.OcxState")));
-            this.adbPDF.Size = new System.Drawing.Size(800, 450);
-            this.adbPDF.TabIndex = 10;
-            this.adbPDF.Visible = false;
+            this.sctLibrary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sctLibrary.Location = new System.Drawing.Point(0, 0);
+            this.sctLibrary.Name = "sctLibrary";
+            this.sctLibrary.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // sctLibrary.Panel2
+            // 
+            this.sctLibrary.Panel2.Controls.Add(this.lvwSearch);
+            this.sctLibrary.Size = new System.Drawing.Size(800, 450);
+            this.sctLibrary.SplitterDistance = 200;
+            this.sctLibrary.TabIndex = 10;
             // 
             // LibraryFile
             // 
@@ -172,16 +177,17 @@
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.lblPercent);
             this.Controls.Add(this.pbrSearch);
-            this.Controls.Add(this.lvwSearch);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.lblSearch);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnFind);
-            this.Controls.Add(this.adbPDF);
+            this.Controls.Add(this.sctLibrary);
             this.Name = "LibraryFile";
             this.Text = "Đọc file PDF";
-            ((System.ComponentModel.ISupportInitialize)(this.adbPDF)).EndInit();
+            this.sctLibrary.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.sctLibrary)).EndInit();
+            this.sctLibrary.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,7 +206,7 @@
         private System.Windows.Forms.ProgressBar pbrSearch;
         private System.Windows.Forms.Label lblPercent;
         private System.Windows.Forms.Label lblStatus;
-        private AxAcroPDFLib.AxAcroPDF adbPDF;
+        private System.Windows.Forms.SplitContainer sctLibrary;
     }
 }
 

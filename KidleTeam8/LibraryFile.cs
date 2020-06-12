@@ -138,10 +138,5 @@ namespace KidleTeam8
             + lvwSearch.SelectedItems[0].SubItems[0].Text);
             ReadPDF.Show();
         }
-        
-        private void ClosePDF_Click(object sender, EventArgs e)
-        {
-            adbPDF.Visible = false;
-        }
     }
 }

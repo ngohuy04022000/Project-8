@@ -41,15 +41,15 @@ namespace KidleTeam8
             }
         }
 
-        private void thôngTinToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DetailsPDF_Click(object sender, EventArgs e)
         {
             FileInfo info = new FileInfo(s);
-            MessageBox.Show("Tên tệp: " +info.Name+ Environment.NewLine+ "Thời gian tạo: "+info.CreationTime.ToLongTimeString()+Environment.NewLine +
-                "Truy cập lần cuối: " + info.LastWriteTime.ToLongDateString() + Environment.NewLine + "Chỉnh sửa lần cuối: " + info.LastAccessTime.ToLongDateString()+
-                Environment.NewLine + "Kích thước: " + info.Length.ToString() + " bytes"  , "Details", MessageBoxButtons.OK);
+            MessageBox.Show("Tên tệp: " + info.Name + Environment.NewLine + "Thời gian tạo: " + info.CreationTime.ToLongTimeString() + Environment.NewLine +
+                "Truy cập lần cuối: " + info.LastWriteTime.ToLongDateString() + Environment.NewLine + "Chỉnh sửa lần cuối: " + info.LastAccessTime.ToLongDateString() +
+                Environment.NewLine + "Kích thước: " + (Convert.ToInt32(info.Length / 1024f)).ToString() + " KB", "Details", MessageBoxButtons.OK);
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExitPDF_Click(object sender, EventArgs e)
         {
             this.Close();
         }
