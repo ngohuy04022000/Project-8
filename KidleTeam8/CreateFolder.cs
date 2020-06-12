@@ -25,13 +25,14 @@ namespace KidleTeam8
 
         private void btnAddFolder_Click(object sender, EventArgs e)
         {
-            if(txtNameFolder.Text != "")
+            if(txtNameFolder.Text != "" && !(this.lstFolder.Items.Contains(txtNameFolder.Text)))
             {
                 lstFolder.Items.Add(txtNameFolder.Text);
             }
             else
             {
-                MessageBox.Show("Nhập tên thư mục");
+                MessageBox.Show("Nhập tên thư mục không hợp lệ","Lỗi", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
             txtNameFolder.Clear();
@@ -40,6 +41,7 @@ namespace KidleTeam8
         private void lstFolder_DoubleClick(object sender, EventArgs e)
         {
             txtNameFolder.Text = lstFolder.SelectedItem.ToString();
+            lstFileName.Items.Clear();
             try
             {
                 int index = this.listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
@@ -72,6 +74,7 @@ namespace KidleTeam8
             // Tạo folder
             FolderFile folderFile = new FolderFile();
             folderFile.namefolder = txtNameFolder.Text;
+            folderFile.filename = new List<string>();
             folderFile.filename = listfilename;
             listfolder.Add(folderFile);
             lstFileName.Items.Clear();
