@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +36,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp, Version=5.5.13.1, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>packages\iTextSharp.5.5.13.1\lib\itextsharp.dll</HintPath>
     </Reference>
@@ -53,41 +62,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="File.cs" />
-    <Compile Include="FolderFile.cs" />
-    <Compile Include="frmMDI.cs">
+    <Compile Include="Controllers\DBTestController.cs" />
+    <Compile Include="Models\DBFolderContext.cs" />
+    <Compile Include="Models\Files.cs" />
+    <Compile Include="Models\Folder.cs" />
+    <Compile Include="Views\frmMDI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMDI.Designer.cs">
+    <Compile Include="Views\frmMDI.Designer.cs">
       <DependentUpon>frmMDI.cs</DependentUpon>
     </Compile>
-    <Compile Include="LibraryFile.cs">
+    <Compile Include="Views\LibraryFile.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LibraryFile.designer.cs">
+    <Compile Include="Views\LibraryFile.designer.cs">
       <DependentUpon>LibraryFile.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreateFolder.cs">
+    <Compile Include="Views\CreateFolder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreateFolder.Designer.cs">
+    <Compile Include="Views\CreateFolder.Designer.cs">
       <DependentUpon>CreateFolder.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReadPDF.cs">
+    <Compile Include="Views\ReadPDF.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReadPDF.Designer.cs">
+    <Compile Include="Views\ReadPDF.Designer.cs">
       <DependentUpon>ReadPDF.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="frmMDI.resx">
+    <EmbeddedResource Include="Views\frmMDI.resx">
       <DependentUpon>frmMDI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LibraryFile.resx">
+    <EmbeddedResource Include="Views\LibraryFile.resx">
       <DependentUpon>LibraryFile.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreateFolder.resx">
+    <EmbeddedResource Include="Views\CreateFolder.resx">
       <DependentUpon>CreateFolder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -100,7 +111,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ReadPDF.resx">
+    <EmbeddedResource Include="Views\ReadPDF.resx">
       <DependentUpon>ReadPDF.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -136,5 +147,14 @@
       <Isolated>False</Isolated>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>

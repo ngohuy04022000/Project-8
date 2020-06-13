@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KindleTeam8.Views;
 
-namespace KidleTeam8
+namespace KindleTeam8
 {
     static class Program
     {
