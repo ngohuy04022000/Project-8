@@ -34,14 +34,15 @@
             this.mNewFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mFind = new System.Windows.Forms.ToolStripMenuItem();
+            this.mCreateFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmViews = new System.Windows.Forms.ToolStripMenuItem();
             this.tabMain = new System.Windows.Forms.TabControl();
-            this.mCreateFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMDI.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnsMDI
             // 
+            this.mnsMDI.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.mnsMDI.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.mnsMDI.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmFile,
@@ -49,8 +50,8 @@
             this.tsmViews});
             this.mnsMDI.Location = new System.Drawing.Point(0, 0);
             this.mnsMDI.Name = "mnsMDI";
-            this.mnsMDI.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.mnsMDI.Size = new System.Drawing.Size(632, 24);
+            this.mnsMDI.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
+            this.mnsMDI.Size = new System.Drawing.Size(948, 33);
             this.mnsMDI.TabIndex = 1;
             this.mnsMDI.Text = "mnsMDI";
             // 
@@ -60,19 +61,19 @@
             this.mNewFile,
             this.mNewFolder});
             this.tsmFile.Name = "tsmFile";
-            this.tsmFile.Size = new System.Drawing.Size(37, 22);
+            this.tsmFile.Size = new System.Drawing.Size(54, 29);
             this.tsmFile.Text = "File";
             // 
             // mNewFile
             // 
             this.mNewFile.Name = "mNewFile";
-            this.mNewFile.Size = new System.Drawing.Size(180, 22);
+            this.mNewFile.Size = new System.Drawing.Size(204, 34);
             this.mNewFile.Text = "New File";
             // 
             // mNewFolder
             // 
             this.mNewFolder.Name = "mNewFolder";
-            this.mNewFolder.Size = new System.Drawing.Size(180, 22);
+            this.mNewFolder.Size = new System.Drawing.Size(204, 34);
             this.mNewFolder.Text = "New Folder";
             // 
             // tsmEdit
@@ -81,48 +82,49 @@
             this.mFind,
             this.mCreateFolder});
             this.tsmEdit.Name = "tsmEdit";
-            this.tsmEdit.Size = new System.Drawing.Size(39, 22);
+            this.tsmEdit.Size = new System.Drawing.Size(58, 29);
             this.tsmEdit.Text = "Edit";
             // 
             // mFind
             // 
             this.mFind.Name = "mFind";
-            this.mFind.Size = new System.Drawing.Size(180, 22);
+            this.mFind.Size = new System.Drawing.Size(270, 34);
             this.mFind.Text = "Find";
             this.mFind.Click += new System.EventHandler(this.mFind_Click);
+            // 
+            // mCreateFolder
+            // 
+            this.mCreateFolder.Name = "mCreateFolder";
+            this.mCreateFolder.Size = new System.Drawing.Size(270, 34);
+            this.mCreateFolder.Text = "Create Folder";
+            this.mCreateFolder.Click += new System.EventHandler(this.mCreateFolder_Click);
             // 
             // tsmViews
             // 
             this.tsmViews.Name = "tsmViews";
-            this.tsmViews.Size = new System.Drawing.Size(49, 22);
+            this.tsmViews.Size = new System.Drawing.Size(73, 29);
             this.tsmViews.Text = "Views";
             // 
             // tabMain
             // 
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabMain.Location = new System.Drawing.Point(0, 24);
-            this.tabMain.Margin = new System.Windows.Forms.Padding(2);
+            this.tabMain.Location = new System.Drawing.Point(0, 33);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(632, 24);
+            this.tabMain.Size = new System.Drawing.Size(948, 37);
             this.tabMain.TabIndex = 2;
-            // 
-            // mCreateFolder
-            // 
-            this.mCreateFolder.Name = "mCreateFolder";
-            this.mCreateFolder.Size = new System.Drawing.Size(180, 22);
-            this.mCreateFolder.Text = "Create Folder";
-            this.mCreateFolder.Click += new System.EventHandler(this.mCreateFolder_Click);
+            this.tabMain.SelectedIndexChanged += new System.EventHandler(this.tabMain_SelectedIndexChanged);
             // 
             // frmMDI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 453);
+            this.ClientSize = new System.Drawing.Size(948, 697);
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.mnsMDI);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mnsMDI;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmMDI";
             this.Text = "frmMDI";
             this.MdiChildActivate += new System.EventHandler(this.frmMDI_MdiChildActivate);

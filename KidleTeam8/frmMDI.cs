@@ -69,5 +69,13 @@ namespace KindleTeam8
                 createFolder.Select();
             }
         }
+
+        private void tabMain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabMain.SelectedTab!=null && tabMain.SelectedTab.Tag != null)
+            {
+                (this.tabMain.SelectedTab.Tag as Form).Select();
+            }
+        }
     }
 }

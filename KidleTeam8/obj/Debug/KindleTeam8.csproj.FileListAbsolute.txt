@@ -85,7 +85,6 @@ C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\obj\Debug\Interop.AcroPDFLib.dl
 C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\obj\Debug\AxInterop.AcroPDFLib.dll
 C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\obj\Debug\KindleTeam8.csproj.ResolveComReference.cache
 C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\obj\Debug\KidleTeam8.LibraryFile.resources
-C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\obj\Debug\KidleTeam8.MainForm.resources
 C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\obj\Debug\KindleTeam8.Properties.Resources.resources
 C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\obj\Debug\KidleTeam8.ReadPDF.resources
 C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\obj\Debug\KindleTeam8.csproj.GenerateResource.cache
@@ -166,3 +165,4 @@ C:\Users\as\Documents\Project-8\KidleTeam8\obj\Debug\KindleTeam8.csproj.CopyComp
 C:\Users\as\Documents\Project-8\KidleTeam8\obj\Debug\KindleTeam8.exe
 C:\Users\as\Documents\Project-8\KidleTeam8\obj\Debug\KindleTeam8.pdb
 C:\Users\as\Documents\Project-8\KidleTeam8\obj\Debug\KidleTeam8.CreateFolder.resources
+C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\obj\Debug\KidleTeam8.CreateFolder.resources
