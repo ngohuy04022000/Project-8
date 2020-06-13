@@ -64,28 +64,25 @@ namespace KidleTeam8
         }
         private void btnAddFile_Click(object sender, EventArgs e)
         {
-            string filename = "";
-            OpenFileDialog ChooseFile = new OpenFileDialog();
-            ChooseFile.Filter = "PDF|*.pdf";
-            if(ChooseFile.ShowDialog()==DialogResult.OK)
-            //if (fbdChooseFile.ShowDialog() == DialogResult.OK)
+            if (txtNameFolder.Text == "")
             {
-                filename = ChooseFile.FileName;
-                AddFileItem(ChooseFile.FileName);
+                return;
             }
-            int index = this.listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
-            listfolder[index].filename.Add(filename);
+            else
+            {
+                string filename = "";
+                OpenFileDialog ChooseFile = new OpenFileDialog();
+                ChooseFile.Filter = "PDF|*.pdf";
+                if (ChooseFile.ShowDialog() == DialogResult.OK)
+                //if (fbdChooseFile.ShowDialog() == DialogResult.OK)
+                {
+                    filename = ChooseFile.FileName;
+                    AddFileItem(ChooseFile.FileName);
+                }
+                int index = this.listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
+                listfolder[index].filename.Add(filename);
+            }
         }
-        //private void btnCreateFolder_Click(object sender, EventArgs e)
-        //{
-        //    // Tạo folder
-        //    FolderFile folderFile = new FolderFile();
-        //    folderFile.namefolder = txtNameFolder.Text;
-        //    folderFile.filename = listfilename;
-        //    listfolder.Add(folderFile);
-        //    lstFileName.Items.Clear();
-        //    //listfilename.Clear();
-        //}
         public void AddFileItem(string filename)
         {
             FileInfo iffile = new FileInfo(filename);

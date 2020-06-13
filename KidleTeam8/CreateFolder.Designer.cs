@@ -32,7 +32,6 @@
             System.Windows.Forms.ColumnHeader cPath;
             System.Windows.Forms.ColumnHeader cSize;
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.btnCreateFolder = new System.Windows.Forms.Button();
             this.btnAddFile = new System.Windows.Forms.Button();
             this.lstFolder = new System.Windows.Forms.ListBox();
             this.txtNameFolder = new System.Windows.Forms.TextBox();
@@ -71,7 +70,6 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.btnCreateFolder);
             this.splitContainer1.Panel1.Controls.Add(this.btnAddFile);
             this.splitContainer1.Panel1.Controls.Add(this.lstFolder);
             this.splitContainer1.Panel1.Controls.Add(this.txtNameFolder);
@@ -83,16 +81,6 @@
             this.splitContainer1.Size = new System.Drawing.Size(673, 335);
             this.splitContainer1.SplitterDistance = 150;
             this.splitContainer1.TabIndex = 0;
-            // 
-            // btnCreateFolder
-            // 
-            this.btnCreateFolder.Enabled = false;
-            this.btnCreateFolder.Location = new System.Drawing.Point(13, 196);
-            this.btnCreateFolder.Name = "btnCreateFolder";
-            this.btnCreateFolder.Size = new System.Drawing.Size(75, 23);
-            this.btnCreateFolder.TabIndex = 4;
-            this.btnCreateFolder.Text = "Tạo Folder";
-            this.btnCreateFolder.UseVisualStyleBackColor = true;
             // 
             // btnAddFile
             // 
@@ -174,7 +162,6 @@
         private System.Windows.Forms.ListView lstFileName;
         private System.Windows.Forms.Button btnAddFile;
         private System.Windows.Forms.FolderBrowserDialog fbdChooseFile;
-        private System.Windows.Forms.Button btnCreateFolder;
     }
 }
 
