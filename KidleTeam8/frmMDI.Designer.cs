@@ -36,6 +36,7 @@
             this.mFind = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmViews = new System.Windows.Forms.ToolStripMenuItem();
             this.tabMain = new System.Windows.Forms.TabControl();
+            this.mCreateFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsMDI.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,7 +78,8 @@
             // tsmEdit
             // 
             this.tsmEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mFind});
+            this.mFind,
+            this.mCreateFolder});
             this.tsmEdit.Name = "tsmEdit";
             this.tsmEdit.Size = new System.Drawing.Size(39, 22);
             this.tsmEdit.Text = "Edit";
@@ -99,11 +101,18 @@
             // 
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabMain.Location = new System.Drawing.Point(0, 24);
-            this.tabMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabMain.Margin = new System.Windows.Forms.Padding(2);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
             this.tabMain.Size = new System.Drawing.Size(632, 24);
             this.tabMain.TabIndex = 2;
+            // 
+            // mCreateFolder
+            // 
+            this.mCreateFolder.Name = "mCreateFolder";
+            this.mCreateFolder.Size = new System.Drawing.Size(180, 22);
+            this.mCreateFolder.Text = "Create Folder";
+            this.mCreateFolder.Click += new System.EventHandler(this.mCreateFolder_Click);
             // 
             // frmMDI
             // 
@@ -132,6 +141,7 @@
         private System.Windows.Forms.ToolStripMenuItem mFind;
         private System.Windows.Forms.ToolStripMenuItem tsmViews;
         private System.Windows.Forms.TabControl tabMain;
+        private System.Windows.Forms.ToolStripMenuItem mCreateFolder;
     }
 }
 

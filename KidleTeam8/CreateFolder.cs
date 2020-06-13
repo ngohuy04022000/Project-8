@@ -12,15 +12,18 @@ using System.Windows.Forms;
 
 namespace KidleTeam8
 {
-    public partial class MainForm : Form
+    public partial class CreateFolder : Form
     {
         private List<FolderFile> listfolder;
         private List<string> listfilename;
-        public MainForm()
+        ReadPDF ReadPDF;
+        public CreateFolder()
         {
             InitializeComponent();
             listfolder = new List<FolderFile>();
             listfilename = new List<string>();
+            string link = "";
+            ReadPDF = new ReadPDF(link);
         }
 
         private void btnAddFolder_Click(object sender, EventArgs e)
@@ -97,6 +100,12 @@ namespace KidleTeam8
                     lstFileName.EndUpdate();
                 }
             }));
+        }
+        private void lstFileName_DoubleClick(object sender, EventArgs e)
+        {
+            ReadPDF = new ReadPDF(lstFileName.SelectedItems[0].SubItems[1].Text + "/"
+                        + lstFileName.SelectedItems[0].SubItems[0].Text);
+            ReadPDF.Show();
         }
     }
 }

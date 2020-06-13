@@ -1,6 +1,6 @@
 ﻿namespace KidleTeam8
 {
-    partial class MainForm
+    partial class CreateFolder
     {
         /// <summary>
         /// Required designer variable.
@@ -32,13 +32,13 @@
             System.Windows.Forms.ColumnHeader cPath;
             System.Windows.Forms.ColumnHeader cSize;
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnCreateFolder = new System.Windows.Forms.Button();
             this.btnAddFile = new System.Windows.Forms.Button();
             this.lstFolder = new System.Windows.Forms.ListBox();
             this.txtNameFolder = new System.Windows.Forms.TextBox();
             this.btnAddFolder = new System.Windows.Forms.Button();
             this.lstFileName = new System.Windows.Forms.ListView();
             this.fbdChooseFile = new System.Windows.Forms.FolderBrowserDialog();
-            this.btnCreateFolder = new System.Windows.Forms.Button();
             cName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             cPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             cSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -83,6 +83,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(673, 335);
             this.splitContainer1.SplitterDistance = 150;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // btnCreateFolder
+            // 
+            this.btnCreateFolder.Location = new System.Drawing.Point(13, 196);
+            this.btnCreateFolder.Name = "btnCreateFolder";
+            this.btnCreateFolder.Size = new System.Drawing.Size(75, 23);
+            this.btnCreateFolder.TabIndex = 4;
+            this.btnCreateFolder.Text = "Tạo Folder";
+            this.btnCreateFolder.UseVisualStyleBackColor = true;
+            this.btnCreateFolder.Click += new System.EventHandler(this.btnCreateFolder_Click);
             // 
             // btnAddFile
             // 
@@ -136,16 +146,7 @@
             this.lstFileName.TabIndex = 7;
             this.lstFileName.UseCompatibleStateImageBehavior = false;
             this.lstFileName.View = System.Windows.Forms.View.Details;
-            // 
-            // btnCreateFolder
-            // 
-            this.btnCreateFolder.Location = new System.Drawing.Point(13, 196);
-            this.btnCreateFolder.Name = "btnCreateFolder";
-            this.btnCreateFolder.Size = new System.Drawing.Size(75, 23);
-            this.btnCreateFolder.TabIndex = 4;
-            this.btnCreateFolder.Text = "Tạo Folder";
-            this.btnCreateFolder.UseVisualStyleBackColor = true;
-            this.btnCreateFolder.Click += new System.EventHandler(this.btnCreateFolder_Click);
+            this.lstFileName.DoubleClick += new System.EventHandler(this.lstFileName_DoubleClick);
             // 
             // MainForm
             // 

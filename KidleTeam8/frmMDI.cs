@@ -14,12 +14,11 @@ namespace KindleTeam8
     public partial class frmMDI : Form
     {
         LibraryFile libraryFile;
+        CreateFolder createFolder;
         public frmMDI()
         {
             InitializeComponent();
         }
-
- 
         private void mFind_Click(object sender, EventArgs e)
         {
             if (this.libraryFile is null || libraryFile.IsDisposed)
@@ -55,6 +54,20 @@ namespace KindleTeam8
         private void ActiveMdiChild_FormClosed(object sender, FormClosedEventArgs e)
         {
             ((sender as Form).Tag as TabPage).Dispose();
+        }
+
+        private void mCreateFolder_Click(object sender, EventArgs e)
+        {
+            if (this.createFolder is null || createFolder.IsDisposed)
+            {
+                createFolder = new CreateFolder();
+                createFolder.MdiParent = this;
+                createFolder.Show();
+            }
+            else
+            {
+                createFolder.Select();
+            }
         }
     }
 }
