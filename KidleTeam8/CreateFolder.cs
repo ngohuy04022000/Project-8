@@ -16,6 +16,7 @@ namespace KidleTeam8
     {
         private List<FolderFile> listfolder;
         //private List<string> listfilename;
+        //private 
         ReadPDF ReadPDF;
         public CreateFolder()
         {

@@ -2,6 +2,7 @@
 //Nguyễn Quang Hùng - 18133016
 //Ngô Trí Huy - 18133015
 //Võ Thị Thanh Ngân - 18133033
+using KindleTeam8;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +20,8 @@ namespace KidleTeam8
     {
         private BackgroundWorker backgroundWorker;
         ReadPDF ReadPDF;
-        public LibraryFile()
+        FolderFile library;
+        public LibraryFile(FolderFile Library)
         {
             InitializeComponent();
             backgroundWorker = new BackgroundWorker();
@@ -29,6 +31,9 @@ namespace KidleTeam8
             backgroundWorker.DoWork += BackgroundWorker_DoWork;
             backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
             backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
+            library = new FolderFile();
+            library.namefolder = "LibraryFile";
+            library.filename = new List<string>();
         }
         #region Xử lý phần tìm file với đuôi .pdf
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -66,6 +71,7 @@ namespace KidleTeam8
 
         public void AddToListView(string file)
         {
+            library.filename.Add(file);
             FileInfo fileif = new FileInfo(file);
             lvwSearch.Invoke((Action)(() =>
             {

@@ -15,15 +15,19 @@ namespace KindleTeam8
     {
         LibraryFile libraryFile;
         CreateFolder createFolder;
+        FolderFile Library;
         public frmMDI()
         {
             InitializeComponent();
+            Library = new FolderFile();
+            Library.namefolder = "LibraryFile";
+            Library.filename = new List<string>();
         }
         private void mFind_Click(object sender, EventArgs e)
         {
             if (this.libraryFile is null || libraryFile.IsDisposed)
             {
-                libraryFile = new LibraryFile();
+                libraryFile = new LibraryFile(Library);
                 libraryFile.MdiParent = this;
                 libraryFile.Show();
             }
