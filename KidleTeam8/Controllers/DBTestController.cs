@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace KindleTeam8.Controllers
 {
@@ -13,6 +12,12 @@ namespace KindleTeam8.Controllers
     {
         public static void initializeDB()
         {
+            using (var _conntext = new DBFolderContext())
+            {
+                var folder = new Folder() { namefolder = "Team8" };
+                _conntext.tbFolders.Add(folder);
+                _conntext.SaveChanges();
+            }
             MessageBox.Show("Finish");
         }
     }

@@ -13,10 +13,10 @@ namespace KindleTeam8.Models
     {
         [Key]
         public string namefolder { get; set; }
-        public ICollection<Files> filename { get; set; }
+        public virtual ICollection<Files> filename { get; set; }
         public override string ToString()
         {
-            return namefolder;
+            return this.namefolder;
         }
     }
 }
