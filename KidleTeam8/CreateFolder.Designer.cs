@@ -93,7 +93,6 @@
             this.btnCreateFolder.TabIndex = 4;
             this.btnCreateFolder.Text = "Tạo Folder";
             this.btnCreateFolder.UseVisualStyleBackColor = true;
-            //this.btnCreateFolder.Click += new System.EventHandler(this.btnCreateFolder_Click);
             // 
             // btnAddFile
             // 
@@ -156,7 +155,7 @@
             this.ClientSize = new System.Drawing.Size(673, 335);
             this.Controls.Add(this.splitContainer1);
             this.Name = "CreateFolder";
-            this.Text = "Màn Hình Chính";
+            this.Text = "Tạo Thư Mục";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
