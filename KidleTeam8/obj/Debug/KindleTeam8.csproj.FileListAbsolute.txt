@@ -166,3 +166,4 @@ C:\Users\as\Documents\Project-8\KidleTeam8\obj\Debug\KindleTeam8.exe
 C:\Users\as\Documents\Project-8\KidleTeam8\obj\Debug\KindleTeam8.pdb
 C:\Users\as\Documents\Project-8\KidleTeam8\obj\Debug\KidleTeam8.CreateFolder.resources
 C:\Users\ADMIN\Source\Repos\Project-8\KidleTeam8\obj\Debug\KidleTeam8.CreateFolder.resources
+C:\Users\as\Documents\Project-8\KidleTeam8\obj\Debug\KindleTeam8.csprojAssemblyReference.cache

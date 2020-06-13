@@ -86,13 +86,14 @@
             // 
             // btnCreateFolder
             // 
+            this.btnCreateFolder.Enabled = false;
             this.btnCreateFolder.Location = new System.Drawing.Point(13, 196);
             this.btnCreateFolder.Name = "btnCreateFolder";
             this.btnCreateFolder.Size = new System.Drawing.Size(75, 23);
             this.btnCreateFolder.TabIndex = 4;
             this.btnCreateFolder.Text = "Tạo Folder";
             this.btnCreateFolder.UseVisualStyleBackColor = true;
-            this.btnCreateFolder.Click += new System.EventHandler(this.btnCreateFolder_Click);
+            //this.btnCreateFolder.Click += new System.EventHandler(this.btnCreateFolder_Click);
             // 
             // btnAddFile
             // 
@@ -148,13 +149,13 @@
             this.lstFileName.View = System.Windows.Forms.View.Details;
             this.lstFileName.DoubleClick += new System.EventHandler(this.lstFileName_DoubleClick);
             // 
-            // MainForm
+            // CreateFolder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(673, 335);
             this.Controls.Add(this.splitContainer1);
-            this.Name = "MainForm";
+            this.Name = "CreateFolder";
             this.Text = "Màn Hình Chính";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();

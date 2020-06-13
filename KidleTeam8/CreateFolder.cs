@@ -15,22 +15,26 @@ namespace KidleTeam8
     public partial class CreateFolder : Form
     {
         private List<FolderFile> listfolder;
-        private List<string> listfilename;
+        //private List<string> listfilename;
         ReadPDF ReadPDF;
         public CreateFolder()
         {
             InitializeComponent();
             listfolder = new List<FolderFile>();
-            listfilename = new List<string>();
+            //List<string> listfilename = new List<string>();
             string link = "";
             ReadPDF = new ReadPDF(link);
         }
 
         private void btnAddFolder_Click(object sender, EventArgs e)
         {
-            if(txtNameFolder.Text != "" && !(this.lstFolder.Items.Contains(txtNameFolder.Text)))
+            if (txtNameFolder.Text != "" && this.listfolder.Where(x=> x.namefolder == txtNameFolder.Text).Count()<1)
             {
                 lstFolder.Items.Add(txtNameFolder.Text);
+                FolderFile folder = new FolderFile();
+                folder.namefolder = txtNameFolder.Text;
+                folder.filename = new List<string>();
+                listfolder.Add(folder);
             }
             else
             {
@@ -44,16 +48,16 @@ namespace KidleTeam8
         private void lstFolder_DoubleClick(object sender, EventArgs e)
         {
             txtNameFolder.Text = lstFolder.SelectedItem.ToString();
-            lstFileName.Items.Clear();
-            try
+            int index = this.listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
+            if (listfolder[index].filename != null)
             {
-                int index = this.listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
+                lstFileName.Items.Clear();
                 foreach (string name in listfolder[index].filename)
                 {
                     AddFileItem(name);
                 }
             }
-            catch
+            else
             {
                 return;
             }
@@ -69,18 +73,19 @@ namespace KidleTeam8
                 filename = ChooseFile.FileName;
                 AddFileItem(ChooseFile.FileName);
             }
-            listfilename.Add(filename);
+            int index = this.listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
+            listfolder[index].filename.Add(filename);
         }
-        private void btnCreateFolder_Click(object sender, EventArgs e)
-        {
-            // Tạo folder
-            FolderFile folderFile = new FolderFile();
-            folderFile.namefolder = txtNameFolder.Text;
-            folderFile.filename = listfilename;
-            listfolder.Add(folderFile);
-            lstFileName.Items.Clear();
-            //listfilename.Clear();
-        }
+        //private void btnCreateFolder_Click(object sender, EventArgs e)
+        //{
+        //    // Tạo folder
+        //    FolderFile folderFile = new FolderFile();
+        //    folderFile.namefolder = txtNameFolder.Text;
+        //    folderFile.filename = listfilename;
+        //    listfolder.Add(folderFile);
+        //    lstFileName.Items.Clear();
+        //    //listfilename.Clear();
+        //}
         public void AddFileItem(string filename)
         {
             FileInfo iffile = new FileInfo(filename);
