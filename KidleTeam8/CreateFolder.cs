@@ -58,7 +58,6 @@ namespace KidleTeam8
                 return;
             }
         }
-
         private void btnAddFile_Click(object sender, EventArgs e)
         {
             string filename = "";
@@ -77,12 +76,10 @@ namespace KidleTeam8
             // Tạo folder
             FolderFile folderFile = new FolderFile();
             folderFile.namefolder = txtNameFolder.Text;
-            folderFile.filename = new List<string>();
             folderFile.filename = listfilename;
             listfolder.Add(folderFile);
             lstFileName.Items.Clear();
             //listfilename.Clear();
-
         }
         public void AddFileItem(string filename)
         {
