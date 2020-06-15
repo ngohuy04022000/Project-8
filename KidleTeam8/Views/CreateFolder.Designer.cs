@@ -32,13 +32,13 @@
             System.Windows.Forms.ColumnHeader cPath;
             System.Windows.Forms.ColumnHeader cSize;
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnAddFile = new System.Windows.Forms.Button();
             this.lstFolder = new System.Windows.Forms.ListBox();
             this.txtNameFolder = new System.Windows.Forms.TextBox();
             this.btnAddFolder = new System.Windows.Forms.Button();
             this.lstFileName = new System.Windows.Forms.ListView();
             this.fbdChooseFile = new System.Windows.Forms.FolderBrowserDialog();
-            this.button1 = new System.Windows.Forms.Button();
             cName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             cPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             cSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -67,7 +67,6 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -81,17 +80,26 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.lstFileName);
-            this.splitContainer1.Size = new System.Drawing.Size(1010, 515);
-            this.splitContainer1.SplitterDistance = 225;
-            this.splitContainer1.SplitterWidth = 6;
+            this.splitContainer1.Size = new System.Drawing.Size(673, 335);
+            this.splitContainer1.SplitterDistance = 149;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(13, 209);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(63, 25);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnAddFile
             // 
-            this.btnAddFile.Location = new System.Drawing.Point(20, 255);
-            this.btnAddFile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAddFile.Location = new System.Drawing.Point(13, 166);
             this.btnAddFile.Name = "btnAddFile";
-            this.btnAddFile.Size = new System.Drawing.Size(112, 35);
+            this.btnAddFile.Size = new System.Drawing.Size(75, 23);
             this.btnAddFile.TabIndex = 3;
             this.btnAddFile.Text = "Add File";
             this.btnAddFile.UseVisualStyleBackColor = true;
@@ -100,28 +108,24 @@
             // lstFolder
             // 
             this.lstFolder.FormattingEnabled = true;
-            this.lstFolder.ItemHeight = 20;
-            this.lstFolder.Location = new System.Drawing.Point(18, 85);
-            this.lstFolder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.lstFolder.Location = new System.Drawing.Point(12, 55);
             this.lstFolder.Name = "lstFolder";
-            this.lstFolder.Size = new System.Drawing.Size(178, 144);
+            this.lstFolder.Size = new System.Drawing.Size(120, 95);
             this.lstFolder.TabIndex = 2;
             this.lstFolder.DoubleClick += new System.EventHandler(this.lstFolder_DoubleClick);
             // 
             // txtNameFolder
             // 
-            this.txtNameFolder.Location = new System.Drawing.Point(18, 22);
-            this.txtNameFolder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtNameFolder.Location = new System.Drawing.Point(12, 14);
             this.txtNameFolder.Name = "txtNameFolder";
-            this.txtNameFolder.Size = new System.Drawing.Size(132, 26);
+            this.txtNameFolder.Size = new System.Drawing.Size(89, 20);
             this.txtNameFolder.TabIndex = 1;
             // 
             // btnAddFolder
             // 
-            this.btnAddFolder.Location = new System.Drawing.Point(147, 22);
-            this.btnAddFolder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAddFolder.Location = new System.Drawing.Point(98, 14);
             this.btnAddFolder.Name = "btnAddFolder";
-            this.btnAddFolder.Size = new System.Drawing.Size(72, 31);
+            this.btnAddFolder.Size = new System.Drawing.Size(48, 20);
             this.btnAddFolder.TabIndex = 0;
             this.btnAddFolder.Text = "Add";
             this.btnAddFolder.UseVisualStyleBackColor = true;
@@ -138,31 +142,19 @@
             this.lstFileName.GridLines = true;
             this.lstFileName.HideSelection = false;
             this.lstFileName.Location = new System.Drawing.Point(0, 0);
-            this.lstFileName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lstFileName.Name = "lstFileName";
-            this.lstFileName.Size = new System.Drawing.Size(779, 515);
+            this.lstFileName.Size = new System.Drawing.Size(520, 335);
             this.lstFileName.TabIndex = 7;
             this.lstFileName.UseCompatibleStateImageBehavior = false;
             this.lstFileName.View = System.Windows.Forms.View.Details;
             this.lstFileName.DoubleClick += new System.EventHandler(this.lstFileName_DoubleClick);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(20, 321);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 38);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // CreateFolder
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1010, 515);
+            this.ClientSize = new System.Drawing.Size(673, 335);
             this.Controls.Add(this.splitContainer1);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "CreateFolder";
             this.Text = "Tạo Thư Mục";
             this.splitContainer1.Panel1.ResumeLayout(false);

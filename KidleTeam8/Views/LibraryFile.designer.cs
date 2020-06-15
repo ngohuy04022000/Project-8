@@ -47,6 +47,7 @@
             cPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             cSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.sctLibrary)).BeginInit();
+            this.sctLibrary.Panel1.SuspendLayout();
             this.sctLibrary.Panel2.SuspendLayout();
             this.sctLibrary.SuspendLayout();
             this.SuspendLayout();
@@ -68,7 +69,7 @@
             // 
             // btnFind
             // 
-            this.btnFind.Location = new System.Drawing.Point(392, 38);
+            this.btnFind.Location = new System.Drawing.Point(392, 9);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(75, 23);
             this.btnFind.TabIndex = 1;
@@ -78,16 +79,16 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(111, 39);
+            this.txtSearch.Enabled = false;
+            this.txtSearch.Location = new System.Drawing.Point(111, 12);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(237, 20);
             this.txtSearch.TabIndex = 2;
-            this.txtSearch.Click += new System.EventHandler(this.txtSearch_Click);
             // 
             // lblSearch
             // 
             this.lblSearch.AutoSize = true;
-            this.lblSearch.Location = new System.Drawing.Point(30, 42);
+            this.lblSearch.Location = new System.Drawing.Point(30, 19);
             this.lblSearch.Name = "lblSearch";
             this.lblSearch.Size = new System.Drawing.Size(60, 13);
             this.lblSearch.TabIndex = 3;
@@ -96,7 +97,7 @@
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(30, 98);
+            this.lblName.Location = new System.Drawing.Point(30, 54);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(42, 13);
             this.lblName.TabIndex = 4;
@@ -104,7 +105,7 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(111, 96);
+            this.txtName.Location = new System.Drawing.Point(111, 47);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(237, 20);
             this.txtName.TabIndex = 5;
@@ -121,7 +122,7 @@
             this.lvwSearch.HideSelection = false;
             this.lvwSearch.Location = new System.Drawing.Point(0, 0);
             this.lvwSearch.Name = "lvwSearch";
-            this.lvwSearch.Size = new System.Drawing.Size(800, 246);
+            this.lvwSearch.Size = new System.Drawing.Size(800, 291);
             this.lvwSearch.TabIndex = 6;
             this.lvwSearch.UseCompatibleStateImageBehavior = false;
             this.lvwSearch.View = System.Windows.Forms.View.Details;
@@ -129,7 +130,7 @@
             // 
             // pbrSearch
             // 
-            this.pbrSearch.Location = new System.Drawing.Point(33, 133);
+            this.pbrSearch.Location = new System.Drawing.Point(32, 82);
             this.pbrSearch.Name = "pbrSearch";
             this.pbrSearch.Size = new System.Drawing.Size(334, 23);
             this.pbrSearch.TabIndex = 7;
@@ -138,7 +139,7 @@
             // 
             this.lblPercent.AutoSize = true;
             this.lblPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPercent.Location = new System.Drawing.Point(373, 134);
+            this.lblPercent.Location = new System.Drawing.Point(372, 109);
             this.lblPercent.Name = "lblPercent";
             this.lblPercent.Size = new System.Drawing.Size(36, 20);
             this.lblPercent.TabIndex = 8;
@@ -148,7 +149,7 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(29, 163);
+            this.lblStatus.Location = new System.Drawing.Point(29, 116);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(55, 13);
             this.lblStatus.TabIndex = 9;
@@ -161,11 +162,22 @@
             this.sctLibrary.Name = "sctLibrary";
             this.sctLibrary.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
+            // sctLibrary.Panel1
+            // 
+            this.sctLibrary.Panel1.Controls.Add(this.lblSearch);
+            this.sctLibrary.Panel1.Controls.Add(this.lblPercent);
+            this.sctLibrary.Panel1.Controls.Add(this.lblStatus);
+            this.sctLibrary.Panel1.Controls.Add(this.txtName);
+            this.sctLibrary.Panel1.Controls.Add(this.lblName);
+            this.sctLibrary.Panel1.Controls.Add(this.pbrSearch);
+            this.sctLibrary.Panel1.Controls.Add(this.txtSearch);
+            this.sctLibrary.Panel1.Controls.Add(this.btnFind);
+            // 
             // sctLibrary.Panel2
             // 
             this.sctLibrary.Panel2.Controls.Add(this.lvwSearch);
             this.sctLibrary.Size = new System.Drawing.Size(800, 450);
-            this.sctLibrary.SplitterDistance = 200;
+            this.sctLibrary.SplitterDistance = 155;
             this.sctLibrary.TabIndex = 10;
             // 
             // LibraryFile
@@ -174,22 +186,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lblStatus);
-            this.Controls.Add(this.lblPercent);
-            this.Controls.Add(this.pbrSearch);
-            this.Controls.Add(this.txtName);
-            this.Controls.Add(this.lblName);
-            this.Controls.Add(this.lblSearch);
-            this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.btnFind);
             this.Controls.Add(this.sctLibrary);
             this.Name = "LibraryFile";
             this.Text = "Đọc file PDF";
+            this.sctLibrary.Panel1.ResumeLayout(false);
+            this.sctLibrary.Panel1.PerformLayout();
             this.sctLibrary.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sctLibrary)).EndInit();
             this.sctLibrary.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

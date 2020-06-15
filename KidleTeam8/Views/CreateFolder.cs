@@ -17,17 +17,18 @@ namespace KindleTeam8.Views
     {
         private List<Folder> listfolder;
         //private List<string> listfilename;
-        //private 
         ReadPDF ReadPDF;
-        public CreateFolder()
+        public CreateFolder(Folder folder)
         {
             InitializeComponent();
             listfolder = new List<Folder>();
             //List<string> listfilename = new List<string>();
-            string link = "";
-            ReadPDF = new ReadPDF(link);
+            Files file = new Files();
+            ReadPDF = new ReadPDF(file);
+            listfolder.Add(folder);
+            lstFolder.Items.Add("Library");
         }
-
+        // Thêm tên Folder
         private void btnAddFolder_Click(object sender, EventArgs e)
         {
             if (txtNameFolder.Text != "" && this.listfolder.Where(x=> x.namefolder == txtNameFolder.Text).Count()<1)
@@ -46,7 +47,7 @@ namespace KindleTeam8.Views
             }
             txtNameFolder.Clear();
         }
-
+        //Chọn thư mục
         private void lstFolder_DoubleClick(object sender, EventArgs e)
         {
             txtNameFolder.Text = lstFolder.SelectedItem.ToString();
@@ -64,6 +65,7 @@ namespace KindleTeam8.Views
                 return;
             }
         }
+        //Thêm File
         private void btnAddFile_Click(object sender, EventArgs e)
         {
             if (txtNameFolder.Text == "")
@@ -104,13 +106,17 @@ namespace KindleTeam8.Views
                 }
             }));
         }
+        //Mở File
         private void lstFileName_DoubleClick(object sender, EventArgs e)
         {
-            ReadPDF = new ReadPDF(lstFileName.SelectedItems[0].SubItems[1].Text + "/"
-                        + lstFileName.SelectedItems[0].SubItems[0].Text);
+            int indexfolder = this.listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
+            List<Files> files = new List<Files>();
+            files = listfolder[indexfolder].Returnlist();
+            int index = files.FindIndex(x => x.namefile == lstFileName.SelectedItems[0].SubItems[1].Text + "\\"
+            + lstFileName.SelectedItems[0].SubItems[0].Text);
+            ReadPDF = new ReadPDF(files[index]);
             ReadPDF.Show();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             DBTestController.initializeDB();

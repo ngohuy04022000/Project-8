@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
 
 namespace KindleTeam8.Models
 {
@@ -18,5 +19,15 @@ namespace KindleTeam8.Models
         {
             return this.namefolder;
         }
+        public List<Files> files { get; set; }
+        public List<Files> Returnlist()
+        {
+            List<Files> file = new List<Files>();
+            foreach(Files f in this.filename)
+            {
+                file.Add(f);
+            }
+            return file;
+        }    
     }
 }

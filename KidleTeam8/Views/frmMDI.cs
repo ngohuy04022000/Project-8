@@ -21,7 +21,7 @@ namespace KindleTeam8.Views
         {
             InitializeComponent();
             Library = new Folder();
-            Library.namefolder = "LibraryFile";
+            Library.namefolder = "Library";
             Library.filename = new List<Files>();
         }
         private void mFind_Click(object sender, EventArgs e)
@@ -65,7 +65,7 @@ namespace KindleTeam8.Views
         {
             if (this.createFolder is null || createFolder.IsDisposed)
             {
-                createFolder = new CreateFolder();
+                createFolder = new CreateFolder(Library);
                 createFolder.MdiParent = this;
                 createFolder.Show();
             }

@@ -33,8 +33,9 @@ namespace KindleTeam8.Views
             backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
             backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
             library = new Folder();
-            library.namefolder = "LibraryFile";
+            library.namefolder = "Library";
             library.filename = new List<Files>();
+            library = Library;
         }
         #region Xử lý phần tìm file với đuôi .pdf
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -114,37 +115,36 @@ namespace KindleTeam8.Views
             }
             catch
             {
-
+                return;
             }
         }
         private void btnFind_Click(object sender, EventArgs e)
         {
-            if(backgroundWorker.IsBusy)
+            if(backgroundWorker.IsBusy || txtSearch.Text == null)
             {
                 backgroundWorker.CancelAsync();
             }
             else
             {
+                if (fbdSearchFile.ShowDialog() == DialogResult.OK)
+                {
+                    txtSearch.Text = fbdSearchFile.SelectedPath;
+                }
                 pbrSearch.Value = pbrSearch.Minimum;
                 btnFind.Text = "Dừng tìm";
                 lvwSearch.Items.Clear();
                 backgroundWorker.RunWorkerAsync();
             }
         }
-
-        private void txtSearch_Click(object sender, EventArgs e)
-        {
-            if (fbdSearchFile.ShowDialog() == DialogResult.OK)
-            {
-                txtSearch.Text = fbdSearchFile.SelectedPath;
-            }
-        }
         #endregion
 
         private void lvwSearch_DoubleClick(object sender, EventArgs e)
         {
-            ReadPDF = new ReadPDF(lvwSearch.SelectedItems[0].SubItems[1].Text + "/"
+            List<Files> files = new List<Files>();
+            files = library.Returnlist();
+            int index = files.FindIndex(x => x.namefile == lvwSearch.SelectedItems[0].SubItems[1].Text + "\\"
             + lvwSearch.SelectedItems[0].SubItems[0].Text);
+            ReadPDF = new ReadPDF(files[index]);
             ReadPDF.Show();
         }
     }

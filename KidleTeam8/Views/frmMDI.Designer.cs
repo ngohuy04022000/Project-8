@@ -66,13 +66,13 @@
             // mNewFile
             // 
             this.mNewFile.Name = "mNewFile";
-            this.mNewFile.Size = new System.Drawing.Size(134, 22);
+            this.mNewFile.Size = new System.Drawing.Size(180, 22);
             this.mNewFile.Text = "New File";
             // 
             // mNewFolder
             // 
             this.mNewFolder.Name = "mNewFolder";
-            this.mNewFolder.Size = new System.Drawing.Size(134, 22);
+            this.mNewFolder.Size = new System.Drawing.Size(180, 22);
             this.mNewFolder.Text = "New Folder";
             // 
             // tsmEdit
@@ -87,14 +87,14 @@
             // mFind
             // 
             this.mFind.Name = "mFind";
-            this.mFind.Size = new System.Drawing.Size(144, 22);
+            this.mFind.Size = new System.Drawing.Size(180, 22);
             this.mFind.Text = "Find";
             this.mFind.Click += new System.EventHandler(this.mFind_Click);
             // 
             // mCreateFolder
             // 
             this.mCreateFolder.Name = "mCreateFolder";
-            this.mCreateFolder.Size = new System.Drawing.Size(144, 22);
+            this.mCreateFolder.Size = new System.Drawing.Size(180, 22);
             this.mCreateFolder.Text = "Create Folder";
             this.mCreateFolder.Click += new System.EventHandler(this.mCreateFolder_Click);
             // 
@@ -108,7 +108,7 @@
             // 
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabMain.Location = new System.Drawing.Point(0, 24);
-            this.tabMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabMain.Margin = new System.Windows.Forms.Padding(2);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
             this.tabMain.Size = new System.Drawing.Size(632, 24);
