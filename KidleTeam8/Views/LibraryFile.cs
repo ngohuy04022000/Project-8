@@ -20,9 +20,9 @@ namespace KindleTeam8.Views
     public partial class LibraryFile : Form
     {
         private BackgroundWorker backgroundWorker;
-        ReadPDF ReadPDF;
-        Folder library;
-        public LibraryFile(Folder Library)
+        private ReadPDF ReadPDF;
+        private Folder folders;
+        public LibraryFile(Folder folder)
         {
             InitializeComponent();
             backgroundWorker = new BackgroundWorker();
@@ -32,10 +32,25 @@ namespace KindleTeam8.Views
             backgroundWorker.DoWork += BackgroundWorker_DoWork;
             backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
             backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
-            library = new Folder();
-            library.namefolder = "Library";
-            library.filename = new List<Files>();
-            library = Library;
+            Files files = new Files();
+            ReadPDF = new ReadPDF(files);
+            folders = new Folder();
+            folders.namefolder = "Library";
+            folders.filename = new List<Files>();
+            folders = folder;
+            //foreach (Folder f in folders)
+            //{
+            //    cmbFolderName.Items.Add(f.namefolder);
+            //}
+            //if (cmbFolderName.Items != null)
+            //{
+            //    cmbFolderName.Text = cmbFolderName.Items[0].ToString();
+            //}
+            //else
+            //{
+            //    cmbFolderName.Text = "Library";
+            //    cmbFolderName.Items.Add("Library");
+            //}    
         }
         #region Xử lý phần tìm file với đuôi .pdf
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -75,7 +90,8 @@ namespace KindleTeam8.Views
         {
             Files filename = new Files();
             filename.namefile = file;
-            library.filename.Add(filename);
+            //int index = folders.FindIndex(x => x.namefolder == cmbFolderName.Text);
+            folders.filename.Add(filename);
             FileInfo fileif = new FileInfo(file);
             lvwSearch.Invoke((Action)(() =>
             {
@@ -120,6 +136,13 @@ namespace KindleTeam8.Views
         }
         private void btnFind_Click(object sender, EventArgs e)
         {
+            //if(folders.Where(x=>x.namefolder == cmbFolderName.Text).Count()<1)
+            //{
+            //    Folder f = new Folder();
+            //    f.namefolder = cmbFolderName.Text;
+            //    f.filename = new List<Files>();
+            //    folders.Add(f);
+            //}    
             if(backgroundWorker.IsBusy || txtSearch.Text == null)
             {
                 backgroundWorker.CancelAsync();
@@ -141,7 +164,8 @@ namespace KindleTeam8.Views
         private void lvwSearch_DoubleClick(object sender, EventArgs e)
         {
             List<Files> files = new List<Files>();
-            files = library.Returnlist();
+            //int indexfd = folders.FindIndex(x => x.namefolder == cmbFolderName.Text);
+            files = folders.filename.ToList<Files>();
             int index = files.FindIndex(x => x.namefile == lvwSearch.SelectedItems[0].SubItems[1].Text + "\\"
             + lvwSearch.SelectedItems[0].SubItems[0].Text);
             ReadPDF = new ReadPDF(files[index]);

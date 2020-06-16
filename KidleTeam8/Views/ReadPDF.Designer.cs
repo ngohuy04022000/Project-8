@@ -146,7 +146,8 @@
             this.Controls.Add(this.mnsReadPDF);
             this.MainMenuStrip = this.mnsReadPDF;
             this.Name = "ReadPDF";
-            this.Text = "ReadPDF";
+            this.Text = "Read";
+            this.Load += new System.EventHandler(this.ReadPDF_Load);
             this.mnsReadPDF.ResumeLayout(false);
             this.mnsReadPDF.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AdobeReadPDF)).EndInit();

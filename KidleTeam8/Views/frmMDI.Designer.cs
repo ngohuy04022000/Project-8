@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.mnsMDI = new System.Windows.Forms.MenuStrip();
-            this.tsmFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.mNewFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.mNewFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mFind = new System.Windows.Forms.ToolStripMenuItem();
             this.mCreateFolder = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,7 +41,6 @@
             // 
             this.mnsMDI.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.mnsMDI.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmFile,
             this.tsmEdit,
             this.tsmViews});
             this.mnsMDI.Location = new System.Drawing.Point(0, 0);
@@ -53,27 +49,6 @@
             this.mnsMDI.Size = new System.Drawing.Size(632, 24);
             this.mnsMDI.TabIndex = 1;
             this.mnsMDI.Text = "mnsMDI";
-            // 
-            // tsmFile
-            // 
-            this.tsmFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mNewFile,
-            this.mNewFolder});
-            this.tsmFile.Name = "tsmFile";
-            this.tsmFile.Size = new System.Drawing.Size(37, 22);
-            this.tsmFile.Text = "File";
-            // 
-            // mNewFile
-            // 
-            this.mNewFile.Name = "mNewFile";
-            this.mNewFile.Size = new System.Drawing.Size(180, 22);
-            this.mNewFile.Text = "New File";
-            // 
-            // mNewFolder
-            // 
-            this.mNewFolder.Name = "mNewFolder";
-            this.mNewFolder.Size = new System.Drawing.Size(180, 22);
-            this.mNewFolder.Text = "New Folder";
             // 
             // tsmEdit
             // 
@@ -88,14 +63,14 @@
             // 
             this.mFind.Name = "mFind";
             this.mFind.Size = new System.Drawing.Size(180, 22);
-            this.mFind.Text = "Find";
+            this.mFind.Text = "Find Folder";
             this.mFind.Click += new System.EventHandler(this.mFind_Click);
             // 
             // mCreateFolder
             // 
             this.mCreateFolder.Name = "mCreateFolder";
             this.mCreateFolder.Size = new System.Drawing.Size(180, 22);
-            this.mCreateFolder.Text = "Create Folder";
+            this.mCreateFolder.Text = "Create List";
             this.mCreateFolder.Click += new System.EventHandler(this.mCreateFolder_Click);
             // 
             // tsmViews
@@ -103,6 +78,7 @@
             this.tsmViews.Name = "tsmViews";
             this.tsmViews.Size = new System.Drawing.Size(49, 22);
             this.tsmViews.Text = "Views";
+            this.tsmViews.Click += new System.EventHandler(this.tsmViews_Click);
             // 
             // tabMain
             // 
@@ -135,9 +111,6 @@
         }
         #endregion
         private System.Windows.Forms.MenuStrip mnsMDI;
-        private System.Windows.Forms.ToolStripMenuItem tsmFile;
-        private System.Windows.Forms.ToolStripMenuItem mNewFile;
-        private System.Windows.Forms.ToolStripMenuItem mNewFolder;
         private System.Windows.Forms.ToolStripMenuItem tsmEdit;
         private System.Windows.Forms.ToolStripMenuItem mFind;
         private System.Windows.Forms.ToolStripMenuItem tsmViews;

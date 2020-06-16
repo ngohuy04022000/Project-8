@@ -14,15 +14,18 @@ namespace KindleTeam8.Views
 {
     public partial class frmMDI : Form
     {
-        LibraryFile libraryFile;
-        CreateFolder createFolder;
-        Folder Library;
+        private LibraryFile libraryFile;
+        private CreateFolder createFolder;
+        private List<Folder> folders;
+        private Folder Library;
         public frmMDI()
         {
             InitializeComponent();
             Library = new Folder();
             Library.namefolder = "Library";
             Library.filename = new List<Files>();
+            folders = new List<Folder>();
+            folders.Add(Library);
         }
         private void mFind_Click(object sender, EventArgs e)
         {
@@ -65,7 +68,7 @@ namespace KindleTeam8.Views
         {
             if (this.createFolder is null || createFolder.IsDisposed)
             {
-                createFolder = new CreateFolder(Library);
+                createFolder = new CreateFolder(folders);
                 createFolder.MdiParent = this;
                 createFolder.Show();
             }
@@ -81,6 +84,11 @@ namespace KindleTeam8.Views
             {
                 (this.tabMain.SelectedTab.Tag as Form).Select();
             }
+        }
+
+        private void tsmViews_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

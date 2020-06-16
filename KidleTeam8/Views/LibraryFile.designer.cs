@@ -43,6 +43,8 @@
             this.lblPercent = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.sctLibrary = new System.Windows.Forms.SplitContainer();
+            this.cmbFolderName = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             cName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             cPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             cSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -132,14 +134,14 @@
             // 
             this.pbrSearch.Location = new System.Drawing.Point(32, 82);
             this.pbrSearch.Name = "pbrSearch";
-            this.pbrSearch.Size = new System.Drawing.Size(334, 23);
+            this.pbrSearch.Size = new System.Drawing.Size(334, 20);
             this.pbrSearch.TabIndex = 7;
             // 
             // lblPercent
             // 
             this.lblPercent.AutoSize = true;
             this.lblPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPercent.Location = new System.Drawing.Point(372, 109);
+            this.lblPercent.Location = new System.Drawing.Point(372, 82);
             this.lblPercent.Name = "lblPercent";
             this.lblPercent.Size = new System.Drawing.Size(36, 20);
             this.lblPercent.TabIndex = 8;
@@ -164,6 +166,8 @@
             // 
             // sctLibrary.Panel1
             // 
+            this.sctLibrary.Panel1.Controls.Add(this.cmbFolderName);
+            this.sctLibrary.Panel1.Controls.Add(this.label1);
             this.sctLibrary.Panel1.Controls.Add(this.lblSearch);
             this.sctLibrary.Panel1.Controls.Add(this.lblPercent);
             this.sctLibrary.Panel1.Controls.Add(this.lblStatus);
@@ -180,6 +184,23 @@
             this.sctLibrary.SplitterDistance = 155;
             this.sctLibrary.TabIndex = 10;
             // 
+            // cmbFolderName
+            // 
+            this.cmbFolderName.FormattingEnabled = true;
+            this.cmbFolderName.Location = new System.Drawing.Point(469, 45);
+            this.cmbFolderName.Name = "cmbFolderName";
+            this.cmbFolderName.Size = new System.Drawing.Size(121, 21);
+            this.cmbFolderName.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(389, 53);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Tên List";
+            // 
             // LibraryFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -188,7 +209,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.sctLibrary);
             this.Name = "LibraryFile";
-            this.Text = "Đọc file PDF";
+            this.Text = "Tìm trong máy";
             this.sctLibrary.Panel1.ResumeLayout(false);
             this.sctLibrary.Panel1.PerformLayout();
             this.sctLibrary.Panel2.ResumeLayout(false);
@@ -212,6 +233,8 @@
         private System.Windows.Forms.Label lblPercent;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.SplitContainer sctLibrary;
+        private System.Windows.Forms.ComboBox cmbFolderName;
+        private System.Windows.Forms.Label label1;
     }
 }
 

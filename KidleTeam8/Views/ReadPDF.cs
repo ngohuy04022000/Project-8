@@ -47,6 +47,7 @@ namespace KindleTeam8.Views
         private void mFixNote_Click(object sender, EventArgs e)
         {
             txtNote.Enabled = true;
+            txtNote.Focus();
         }
         private void txtNote_TextChanged(object sender, EventArgs e)
         {
@@ -78,6 +79,16 @@ namespace KindleTeam8.Views
                 {
                     AdobeReadPDF.src = Files.path;
                 }    
+            }    
+        }
+        //Đọc File
+        private void ReadPDF_Load(object sender, EventArgs e)
+        {
+            DialogResult xacnhan = MessageBox.Show("Bạn có muốn mở file được chọn không",
+                "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(xacnhan == DialogResult.Yes)
+            {
+                AdobeReadPDF.src = Files.namefile;
             }    
         }
     }

@@ -18,15 +18,18 @@ namespace KindleTeam8.Views
         private List<Folder> listfolder;
         //private List<string> listfilename;
         ReadPDF ReadPDF;
-        public CreateFolder(Folder folder)
+        public CreateFolder(List<Folder> folder)
         {
             InitializeComponent();
             listfolder = new List<Folder>();
             //List<string> listfilename = new List<string>();
             Files file = new Files();
             ReadPDF = new ReadPDF(file);
-            listfolder.Add(folder);
-            lstFolder.Items.Add("Library");
+            listfolder = folder;
+            foreach(Folder f in listfolder)
+            {
+                lstFolder.Items.Add(f.namefolder);
+            }
         }
         // Thêm tên Folder
         private void btnAddFolder_Click(object sender, EventArgs e)
@@ -111,7 +114,7 @@ namespace KindleTeam8.Views
         {
             int indexfolder = this.listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
             List<Files> files = new List<Files>();
-            files = listfolder[indexfolder].Returnlist();
+            files = listfolder[indexfolder].filename.ToList<Files>();
             int index = files.FindIndex(x => x.namefile == lstFileName.SelectedItems[0].SubItems[1].Text + "\\"
             + lstFileName.SelectedItems[0].SubItems[0].Text);
             ReadPDF = new ReadPDF(files[index]);
@@ -120,6 +123,11 @@ namespace KindleTeam8.Views
         private void button1_Click(object sender, EventArgs e)
         {
             DBTestController.initializeDB();
+        }
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            int index = listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
+            listfolder.RemoveAt(index);
         }
     }
 }
