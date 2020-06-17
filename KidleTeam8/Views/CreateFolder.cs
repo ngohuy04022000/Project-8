@@ -75,7 +75,6 @@ namespace KindleTeam8.Views
                 OpenFileDialog ChooseFile = new OpenFileDialog();
                 ChooseFile.Filter = "PDF|*.pdf";
                 if (ChooseFile.ShowDialog() == DialogResult.OK)
-                //if (fbdChooseFile.ShowDialog() == DialogResult.OK)
                 {
                     filename = ChooseFile.FileName;
                 }
@@ -124,7 +123,7 @@ namespace KindleTeam8.Views
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            DBTestController.initializeDB();
+            
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -138,9 +137,6 @@ namespace KindleTeam8.Views
             BindingSource source = new BindingSource();
             source.DataSource = FolderController.getListFolder();
             this.lstFolder.DataSource = source;
-
-            //int index = listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
-            //listfolder.RemoveAt(index);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -178,8 +174,6 @@ namespace KindleTeam8.Views
                 }
                 return;
             }
-
-
         }
     }
 }

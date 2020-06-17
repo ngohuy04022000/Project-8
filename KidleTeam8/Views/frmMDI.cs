@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KindleTeam8.Models;
+using KindleTeam8.Controllers;
 
 namespace KindleTeam8.Views
 {
@@ -26,19 +27,6 @@ namespace KindleTeam8.Views
             Library.filename = new List<Files>();
             folders = new List<Folder>();
             folders.Add(Library);
-        }
-        private void mFind_Click(object sender, EventArgs e)
-        {
-            if (this.libraryFile is null || libraryFile.IsDisposed)
-            {
-                libraryFile = new LibraryFile(Library);
-                libraryFile.MdiParent = this;
-                libraryFile.Show();
-            }
-            else
-            {
-                libraryFile.Select();
-            }
         }
 
         private void frmMDI_MdiChildActivate(object sender, EventArgs e)
@@ -64,6 +52,28 @@ namespace KindleTeam8.Views
             ((sender as Form).Tag as TabPage).Dispose();
         }
 
+        private void tabMain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabMain.SelectedTab!=null && tabMain.SelectedTab.Tag != null)
+            {
+                (this.tabMain.SelectedTab.Tag as Form).Select();
+            }
+        }
+        //Lập trình cho phần ToolStripMenu
+        private void mFind_Click(object sender, EventArgs e)
+        {
+            if (this.libraryFile is null || libraryFile.IsDisposed)
+            {
+                libraryFile = new LibraryFile(Library);
+                libraryFile.MdiParent = this;
+                libraryFile.Show();
+            }
+            else
+            {
+                libraryFile.Select();
+            }
+        }
+
         private void mCreateFolder_Click(object sender, EventArgs e)
         {
             if (this.createFolder is null || createFolder.IsDisposed)
@@ -77,18 +87,22 @@ namespace KindleTeam8.Views
                 createFolder.Select();
             }
         }
-
-        private void tabMain_SelectedIndexChanged(object sender, EventArgs e)
+        //Hiện hướng dẫn sử dụng
+        private void mViews_Click(object sender, EventArgs e)
         {
-            if (tabMain.SelectedTab!=null && tabMain.SelectedTab.Tag != null)
-            {
-                (this.tabMain.SelectedTab.Tag as Form).Select();
-            }
+
         }
-
-        private void tsmViews_Click(object sender, EventArgs e)
+        //Tạo database
+        private void mCreateDB_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                DBTestController.initializeDB();
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }
