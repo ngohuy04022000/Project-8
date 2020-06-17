@@ -34,7 +34,6 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btnRename = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnAddFile = new System.Windows.Forms.Button();
             this.lstFolder = new System.Windows.Forms.ListBox();
             this.txtNameFolder = new System.Windows.Forms.TextBox();
@@ -75,7 +74,6 @@
             // 
             this.splitContainer1.Panel1.Controls.Add(this.btnRename);
             this.splitContainer1.Panel1.Controls.Add(this.btnDelete);
-            this.splitContainer1.Panel1.Controls.Add(this.button1);
             this.splitContainer1.Panel1.Controls.Add(this.btnAddFile);
             this.splitContainer1.Panel1.Controls.Add(this.lstFolder);
             this.splitContainer1.Panel1.Controls.Add(this.txtNameFolder);
@@ -91,7 +89,7 @@
             // btnRename
             // 
             this.btnRename.Location = new System.Drawing.Point(13, 226);
-            this.btnRename.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRename.Margin = new System.Windows.Forms.Padding(2);
             this.btnRename.Name = "btnRename";
             this.btnRename.Size = new System.Drawing.Size(119, 27);
             this.btnRename.TabIndex = 1;
@@ -108,17 +106,6 @@
             this.btnDelete.Text = "Delete List";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(11, 258);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(63, 25);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnAddFile
             // 
@@ -200,7 +187,6 @@
         private System.Windows.Forms.ListView lstFileName;
         private System.Windows.Forms.Button btnAddFile;
         private System.Windows.Forms.FolderBrowserDialog fbdChooseFile;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnRename;
     }

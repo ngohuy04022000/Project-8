@@ -121,10 +121,7 @@ namespace KindleTeam8.Views
             ReadPDF = new ReadPDF(files[index], listfolder[indexfolder]);
             ReadPDF.Show();
         }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-        }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (this.lstFolder.SelectedItems.Count <= 0)
