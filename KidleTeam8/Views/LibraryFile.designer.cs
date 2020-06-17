@@ -191,6 +191,7 @@
             this.cmbFolderName.Name = "cmbFolderName";
             this.cmbFolderName.Size = new System.Drawing.Size(121, 21);
             this.cmbFolderName.TabIndex = 11;
+            this.cmbFolderName.Visible = false;
             // 
             // label1
             // 
@@ -200,6 +201,7 @@
             this.label1.Size = new System.Drawing.Size(45, 13);
             this.label1.TabIndex = 10;
             this.label1.Text = "Tên List";
+            this.label1.Visible = false;
             // 
             // LibraryFile
             // 

@@ -74,18 +74,24 @@ namespace KindleTeam8.Views
 
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            string[] dirs = Directory.GetDirectories(txtSearch.Text);
-            float length = dirs.Length;
-            pbrSearch.Invoke((Action)(() => pbrSearch.Maximum = dirs.Length));
-            ScanDirectory(txtSearch.Text, txtName.Text);
-            for(int i =0; i< dirs.Length;i++)
+            try
             {
-                backgroundWorker.ReportProgress((int)(i / length * 100));
-                ScanDirectory(dirs[i], txtName.Text);
+                string[] dirs = Directory.GetDirectories(txtSearch.Text);
+                float length = dirs.Length;
+                pbrSearch.Invoke((Action)(() => pbrSearch.Maximum = dirs.Length));
+                ScanDirectory(txtSearch.Text, txtName.Text);
+                for (int i = 0; i < dirs.Length; i++)
+                {
+                    backgroundWorker.ReportProgress((int)(i / length * 100));
+                    ScanDirectory(dirs[i], txtName.Text);
+                }
+                backgroundWorker.ReportProgress(100);
             }
-            backgroundWorker.ReportProgress(100);
+            catch
+            {
+                return;
+            }
         }
-
         public void AddToListView(string file)
         {
             Files filename = new Files();
