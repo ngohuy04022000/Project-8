@@ -10,13 +10,14 @@ namespace KindleTeam8.Controllers
 {
     public class FolderController
     {
-        public static bool AddFolder(Folder f)
+        //Thêm 1 folder vào database
+        public static bool AddFolder(Folder folder)
         {
             try
             {
                 using (var _context = new DBFolderContext())
                 {
-                    _context.tbFolders.Add(f);
+                    _context.tbFolders.Add(folder);
                     _context.SaveChanges();
                     return true;
                 }
@@ -27,7 +28,8 @@ namespace KindleTeam8.Controllers
             }
 
         }
-        //hiển thị list folder khi mở lại form
+
+        //Hiển thị list folder khi mở lại form
         public static List<Folder> getListFolder()
         {
             using (var _context = new DBFolderContext())
@@ -38,7 +40,7 @@ namespace KindleTeam8.Controllers
 
             }
         }
-
+        //Lấy folder trong database dựa vào tên
         public static Folder getFolder(string namefolder)
         {
             using (var _context = new DBFolderContext())
@@ -55,30 +57,31 @@ namespace KindleTeam8.Controllers
 
             }
         }
-
-        public static bool UpdateFolder(Folder f)
+        //Thay đổi tên của folder trong database
+        public static bool UpdateFolder(Folder folder)
         {
             using (var _context = new DBFolderContext())
             {
-                _context.tbFolders.AddOrUpdate(f);
+                _context.tbFolders.AddOrUpdate(folder);
                 _context.SaveChanges();
                 return true;
             }
         }
-        public static bool DeleteFolder(Folder f)
+        //Xóa 1 folder trong database
+        public static bool DeleteFolder(Folder folder)
         {
             using (var _context = new DBFolderContext())
             {
                 var dbfolder = (from u in _context.tbFolders
-                                where u.namefolder == f.namefolder
+                                where u.namefolder == folder.namefolder
                                 select u).SingleOrDefault();
-                foreach (var t in dbfolder.filename)
+                foreach (var file in dbfolder.filename)
                 {
-                    foreach (var u in t.folder)
+                    foreach (var u in file.folder)
                     {
-                        if (u.namefolder == f.namefolder)
+                        if (u.namefolder == folder.namefolder)
                         {
-                            t.folder.Remove(u);
+                            file.folder.Remove(u);
                             break;
                         }
                     }
