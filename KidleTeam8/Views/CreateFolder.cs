@@ -53,29 +53,14 @@ namespace KindleTeam8.Views
                     MessageBoxIcon.Error);
                 return;
             }
-            txtNameFolder.Clear();
-        }
-        //Chọn thư mục
-        private void lstFolder_DoubleClick(object sender, EventArgs e)
-        {
-            if (lstFolder.SelectedItem != null)
+            // thêm folder vào database
+            Folder f = new Folder();
+            f.namefolder = this.txtNameFolder.Text.Trim();
+            if (FolderController.AddFolder(f) == false)
             {
-                txtNameFolder.Text = lstFolder.SelectedItem.ToString();
-                int index = this.listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
-                if (listfolder[index].filename != null)
-                {
-                    lstFileName.Items.Clear();
-                    foreach (Files name in listfolder[index].filename)
-                    {
-                        AddFileItem(name.namefile);
-                    }
-                }
-                else
-                {
-                    return;
-                }
-                return;
+                MessageBox.Show("folder error");
             }
+            txtNameFolder.Clear();
         }
         //Thêm File
         private void btnAddFile_Click(object sender, EventArgs e)
@@ -143,8 +128,58 @@ namespace KindleTeam8.Views
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            int index = listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
-            listfolder.RemoveAt(index);
+            if (this.lstFolder.SelectedItems.Count <= 0)
+            {
+                return;
+            }
+
+            Folder f = FolderController.getFolder(lstFolder.Items[lstFolder.SelectedIndex].ToString());
+            FolderController.DeleteFolder(f);
+            BindingSource source = new BindingSource();
+            source.DataSource = FolderController.getListFolder();
+            this.lstFolder.DataSource = source;
+
+            //int index = listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
+            //listfolder.RemoveAt(index);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // cập nhật lại folder đang chọn vào database
+
+            //!! VẤN ĐỀ: định đổi tên folder mà lại tạo ra folder mới
+            Folder f = new Folder();
+            f.namefolder = txtNameFolder.Text.Trim();
+            FolderController.UpdateFolder(f);
+            //lstFolder.Items[lstFolder.SelectedIndex] = txtNameFolder.Text.Trim();
+            //hiển thị lại listfolder
+            BindingSource source = new BindingSource();
+            source.DataSource = FolderController.getListFolder();
+            this.lstFolder.DataSource = source;
+        }
+
+        private void lstFolder_Click(object sender, EventArgs e)
+        {
+            if (lstFolder.SelectedItem != null)
+            {
+                txtNameFolder.Text = lstFolder.SelectedItem.ToString();
+                int index = this.listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
+                if (listfolder[index].filename != null)
+                {
+                    lstFileName.Items.Clear();
+                    foreach (Files name in listfolder[index].filename)
+                    {
+                        AddFileItem(name.namefile);
+                    }
+                }
+                else
+                {
+                    return;
+                }
+                return;
+            }
+
+
         }
     }
 }

@@ -14,7 +14,7 @@ namespace KindleTeam8.Controllers
         {
             using (var _conntext = new DBFolderContext())
             {
-                var folder = new Folder() { namefolder = "Team8" };
+                var folder = new Folder() { namefolder = "Library" };
                 _conntext.tbFolders.Add(folder);
                 _conntext.SaveChanges();
             }
