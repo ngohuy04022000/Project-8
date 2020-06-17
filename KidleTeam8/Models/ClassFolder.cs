@@ -10,11 +10,11 @@ using System.Windows.Forms.VisualStyles;
 namespace KindleTeam8.Models
 {
     [Table("Folder")]
-    public class Folder
+    public class ClassFolder
     {
         [Key]
         public string namefolder { get; set; }
-        public virtual ICollection<Files> filename { get; set; }
+        public virtual ICollection<ClassFile> listfile { get; set; }
         public override string ToString()
         {
             return this.namefolder;

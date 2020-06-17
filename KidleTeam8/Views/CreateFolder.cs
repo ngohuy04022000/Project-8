@@ -15,19 +15,19 @@ namespace KindleTeam8.Views
 {
     public partial class CreateFolder : Form
     {
-        private List<Folder> listfolder;
+        private List<ClassFolder> listfolder;
         //private List<string> listfilename;
         ReadPDF ReadPDF;
-        public CreateFolder(List<Folder> folder)
+        public CreateFolder(List<ClassFolder> folder)
         {
             InitializeComponent();
-            listfolder = new List<Folder>();
+            listfolder = new List<ClassFolder>();
             //List<string> listfilename = new List<string>();
-            Files file = new Files();
-            Folder fol = new Folder();
+            ClassFile file = new ClassFile();
+            ClassFolder fol = new ClassFolder();
             ReadPDF = new ReadPDF(file, fol);
             listfolder = folder;
-            foreach(Folder f in listfolder)
+            foreach(ClassFolder f in listfolder)
             {
                 lstFolder.Items.Add(f.namefolder);
             }
@@ -36,15 +36,31 @@ namespace KindleTeam8.Views
                 txtNameFolder.Text = listfolder[0].namefolder;
             }    
         }
+        //Hiển thị folder lên từ database cho ListBox lstFolder(Hùng)
+        private void display()
+        {
+            List<ClassFolder> lstfolders = FolderController.getListFolder();
+            foreach(ClassFolder folder in lstfolders)
+            {
+                foreach(ClassFile file in folder.listfile)
+                {
+                    ListViewItem row = new ListViewItem(file.namefile);
+                    row.SubItems.Add(file.path);
+                    row.SubItems.Add(file.size);
+                    
+                }
+                this.lstFolder.Items.Add(folder);
+            }
+        }
         // Thêm tên Folder
         private void btnAddFolder_Click(object sender, EventArgs e)
         {
             if (txtNameFolder.Text != "" && this.listfolder.Where(x=> x.namefolder == txtNameFolder.Text).Count()<1)
             {
                 lstFolder.Items.Add(txtNameFolder.Text);
-                Folder folder = new Folder();
+                ClassFolder folder = new ClassFolder();
                 folder.namefolder = txtNameFolder.Text;
-                folder.filename = new List<Files>();
+                folder.listfile = new List<ClassFile>();
                 listfolder.Add(folder);
             }
             else
@@ -54,7 +70,7 @@ namespace KindleTeam8.Views
                 return;
             }
             // thêm folder vào database
-            Folder f = new Folder();
+            ClassFolder f = new ClassFolder();
             f.namefolder = this.txtNameFolder.Text.Trim();
             if (FolderController.AddFolder(f) == false)
             {
@@ -79,13 +95,13 @@ namespace KindleTeam8.Views
                     filename = ChooseFile.FileName;
                 }
                 int index = this.listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
-                if (listfolder[index].filename.ToList<Files>().Where(
+                if (listfolder[index].listfile.ToList<ClassFile>().Where(
                     x => x.namefile == filename).Count() < 1)
                 {
                     AddFileItem(ChooseFile.FileName);
-                    Files file = new Files();
+                    ClassFile file = new ClassFile();
                     file.namefile = filename;
-                    listfolder[index].filename.Add(file);
+                    listfolder[index].listfile.Add(file);
                 }
                 else
                 {
@@ -114,8 +130,8 @@ namespace KindleTeam8.Views
         private void lstFileName_DoubleClick(object sender, EventArgs e)
         {
             int indexfolder = this.listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
-            List<Files> files = new List<Files>();
-            files = listfolder[indexfolder].filename.ToList<Files>();
+            List<ClassFile> files = new List<ClassFile>();
+            files = listfolder[indexfolder].listfile.ToList<ClassFile>();
             int index = files.FindIndex(x => x.namefile == lstFileName.SelectedItems[0].SubItems[1].Text + "\\"
             + lstFileName.SelectedItems[0].SubItems[0].Text);
             ReadPDF = new ReadPDF(files[index], listfolder[indexfolder]);
@@ -129,7 +145,7 @@ namespace KindleTeam8.Views
                 return;
             }
 
-            Folder f = FolderController.getFolder(lstFolder.Items[lstFolder.SelectedIndex].ToString());
+            ClassFolder f = FolderController.getFolder(lstFolder.Items[lstFolder.SelectedIndex].ToString());
             FolderController.DeleteFolder(f);
             BindingSource source = new BindingSource();
             source.DataSource = FolderController.getListFolder();
@@ -141,7 +157,7 @@ namespace KindleTeam8.Views
             // cập nhật lại folder đang chọn vào database
 
             //!! VẤN ĐỀ: định đổi tên folder mà lại tạo ra folder mới
-            Folder f = new Folder();
+            ClassFolder f = new ClassFolder();
             f.namefolder = txtNameFolder.Text.Trim();
             FolderController.UpdateFolder(f);
             //lstFolder.Items[lstFolder.SelectedIndex] = txtNameFolder.Text.Trim();
@@ -157,10 +173,10 @@ namespace KindleTeam8.Views
             {
                 txtNameFolder.Text = lstFolder.SelectedItem.ToString();
                 int index = this.listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
-                if (listfolder[index].filename != null)
+                if (listfolder[index].listfile != null)
                 {
                     lstFileName.Items.Clear();
-                    foreach (Files name in listfolder[index].filename)
+                    foreach (ClassFile name in listfolder[index].listfile)
                     {
                         AddFileItem(name.namefile);
                     }

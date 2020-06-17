@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 namespace KindleTeam8.Models
 {
     [Table("Files")]
-    public class Files
+    public class ClassFile
     {
         [Key]
         public string namefile { get; set; }
         public string path { get; set; }
+        public string size { get; set; }
         public string note { get; set; }
-        public virtual ICollection<Folder> folder { get; set; }
+        public virtual ICollection<ClassFolder> folder { get; set; }
         public override string ToString()
         {
             return this.namefile;

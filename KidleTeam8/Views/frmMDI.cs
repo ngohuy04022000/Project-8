@@ -17,15 +17,15 @@ namespace KindleTeam8.Views
     {
         private LibraryFile libraryFile;
         private CreateFolder createFolder;
-        private List<Folder> folders;
-        private Folder Library;
+        private List<ClassFolder> folders;
+        private ClassFolder Library;
         public frmMDI()
         {
             InitializeComponent();
-            Library = new Folder();
+            Library = new ClassFolder();
             Library.namefolder = "Library";
-            Library.filename = new List<Files>();
-            folders = new List<Folder>();
+            Library.listfile = new List<ClassFile>();
+            folders = new List<ClassFolder>();
             folders.Add(Library);
         }
 

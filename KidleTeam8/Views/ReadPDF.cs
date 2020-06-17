@@ -17,12 +17,12 @@ namespace KindleTeam8.Views
     public partial class ReadPDF : Form
     {
         //private string s;
-        private Files Files;
-        private Folder folder;
-        public ReadPDF(Files files, Folder folders)
+        private ClassFile Files;
+        private ClassFolder folder;
+        public ReadPDF(ClassFile files, ClassFolder folders)
         {
             InitializeComponent();
-            folder = new Folder();
+            folder = new ClassFolder();
             folder = folders;
             this.Files = files;
             AdobeReadPDF.src = Files.namefile;
@@ -85,9 +85,9 @@ namespace KindleTeam8.Views
                       MessageBoxButtons.OKCancel);
                 if(xacnhan == DialogResult.OK)
                 {
-                    int index = folder.filename.ToList<Files>().FindIndex(
+                    int index = folder.listfile.ToList<ClassFile>().FindIndex(
                         x => x.namefile == Files.path);
-                    Files = folder.filename.ToList<Files>()[index];
+                    Files = folder.listfile.ToList<ClassFile>()[index];
                     AdobeReadPDF.src = Files.namefile;
                 }    
             }    

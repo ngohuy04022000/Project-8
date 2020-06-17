@@ -21,8 +21,8 @@ namespace KindleTeam8.Views
     {
         private BackgroundWorker backgroundWorker;
         private ReadPDF ReadPDF;
-        private Folder folders;
-        public LibraryFile(Folder folder)
+        private ClassFolder folders;
+        public LibraryFile(ClassFolder folder)
         {
             InitializeComponent();
             backgroundWorker = new BackgroundWorker();
@@ -32,10 +32,10 @@ namespace KindleTeam8.Views
             backgroundWorker.DoWork += BackgroundWorker_DoWork;
             backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
             backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
-            Files files = new Files();
-            folders = new Folder();
+            ClassFile files = new ClassFile();
+            folders = new ClassFolder();
             folders.namefolder = "Library";
-            folders.filename = new List<Files>();
+            folders.listfile = new List<ClassFile>();
             folders = folder;
             ReadPDF = new ReadPDF(files, folders);
             //foreach (Folder f in folders)
@@ -94,10 +94,10 @@ namespace KindleTeam8.Views
         }
         public void AddToListView(string file)
         {
-            Files filename = new Files();
+            ClassFile filename = new ClassFile();
             filename.namefile = file;
             //int index = folders.FindIndex(x => x.namefolder == cmbFolderName.Text);
-            folders.filename.Add(filename);
+            folders.listfile.Add(filename);
             FileInfo fileif = new FileInfo(file);
             lvwSearch.Invoke((Action)(() =>
             {
@@ -169,9 +169,9 @@ namespace KindleTeam8.Views
 
         private void lvwSearch_DoubleClick(object sender, EventArgs e)
         {
-            List<Files> files = new List<Files>();
+            List<ClassFile> files = new List<ClassFile>();
             //int indexfd = folders.FindIndex(x => x.namefolder == cmbFolderName.Text);
-            files = folders.filename.ToList<Files>();
+            files = folders.listfile.ToList<ClassFile>();
             int index = files.FindIndex(x => x.namefile == lvwSearch.SelectedItems[0].SubItems[1].Text + "\\"
             + lvwSearch.SelectedItems[0].SubItems[0].Text);
             ReadPDF = new ReadPDF(files[index], folders);
