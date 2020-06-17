@@ -53,14 +53,21 @@ namespace KindleTeam8.Views
         //Chọn thư mục
         private void lstFolder_DoubleClick(object sender, EventArgs e)
         {
-            txtNameFolder.Text = lstFolder.SelectedItem.ToString();
-            int index = this.listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
-            if (listfolder[index].filename != null)
+            if (lstFolder.SelectedItem != null)
             {
-                lstFileName.Items.Clear();
-                foreach (Files name in listfolder[index].filename)
+                txtNameFolder.Text = lstFolder.SelectedItem.ToString();
+                int index = this.listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
+                if (listfolder[index].filename != null)
                 {
-                    AddFileItem(name.namefile);
+                    lstFileName.Items.Clear();
+                    foreach (Files name in listfolder[index].filename)
+                    {
+                        AddFileItem(name.namefile);
+                    }
+                }
+                else
+                {
+                    return;
                 }
             }
             else
