@@ -18,11 +18,18 @@ namespace KindleTeam8.Views
     {
         //private string s;
         private Files Files;
-        public ReadPDF(Files files)
+        private Folder folder;
+        public ReadPDF(Files files, Folder folders)
         {
             InitializeComponent();
+            folder = new Folder();
+            folder = folders;
             this.Files = files;
             AdobeReadPDF.src = Files.namefile;
+            if(Files.note != null)
+            {
+                txtNote.Text = "Note:" + Files.note;
+            }    
         }
         private void DetailsPDF_Click(object sender, EventArgs e)
         {
@@ -67,7 +74,8 @@ namespace KindleTeam8.Views
                     if (ChooseFile.ShowDialog() == DialogResult.OK)
                     {
                         Files.path = ChooseFile.FileName;
-                    }    
+                        AdobeReadPDF.src = Files.path;
+                    }
                 }    
             }
             else

@@ -30,6 +30,10 @@ namespace KindleTeam8.Views
             {
                 lstFolder.Items.Add(f.namefolder);
             }
+            if(txtNameFolder.Text == "")
+            {
+                txtNameFolder.Text = listfolder[0].namefolder;
+            }    
         }
         // Thêm tên Folder
         private void btnAddFolder_Click(object sender, EventArgs e)
@@ -53,7 +57,6 @@ namespace KindleTeam8.Views
         //Chọn thư mục
         private void lstFolder_DoubleClick(object sender, EventArgs e)
         {
-<<<<<<< Updated upstream
             if (lstFolder.SelectedItem != null)
             {
                 txtNameFolder.Text = lstFolder.SelectedItem.ToString();
@@ -69,20 +72,7 @@ namespace KindleTeam8.Views
                 else
                 {
                     return;
-=======
-            txtNameFolder.Text = lstFolder.SelectedItem.ToString();
-            int index = this.listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
-            if (listfolder[index].filename != null)
-            {
-                lstFileName.Items.Clear();
-                foreach (Files name in listfolder[index].filename)
-                {
-                    AddFileItem(name.namefile);
->>>>>>> Stashed changes
                 }
-            }
-            else
-            {
                 return;
             }
         }

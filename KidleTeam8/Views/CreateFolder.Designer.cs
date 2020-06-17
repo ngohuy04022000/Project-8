@@ -32,6 +32,7 @@
             System.Windows.Forms.ColumnHeader cPath;
             System.Windows.Forms.ColumnHeader cSize;
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnAddFile = new System.Windows.Forms.Button();
             this.lstFolder = new System.Windows.Forms.ListBox();
@@ -39,7 +40,6 @@
             this.btnAddFolder = new System.Windows.Forms.Button();
             this.lstFileName = new System.Windows.Forms.ListView();
             this.fbdChooseFile = new System.Windows.Forms.FolderBrowserDialog();
-            this.btnDelete = new System.Windows.Forms.Button();
             cName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             cPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             cSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -85,6 +85,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(673, 335);
             this.splitContainer1.SplitterDistance = 149;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(13, 196);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 5;
+            this.btnDelete.Text = "Delete List";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // button1
             // 
@@ -150,16 +160,6 @@
             this.lstFileName.UseCompatibleStateImageBehavior = false;
             this.lstFileName.View = System.Windows.Forms.View.Details;
             this.lstFileName.DoubleClick += new System.EventHandler(this.lstFileName_DoubleClick);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(13, 196);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 5;
-            this.btnDelete.Text = "Delete List";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // CreateFolder
             // 
