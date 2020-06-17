@@ -85,7 +85,10 @@ namespace KindleTeam8.Views
                       MessageBoxButtons.OKCancel);
                 if(xacnhan == DialogResult.OK)
                 {
-                    AdobeReadPDF.src = Files.path;
+                    int index = folder.filename.ToList<Files>().FindIndex(
+                        x => x.namefile == Files.path);
+                    Files = folder.filename.ToList<Files>()[index];
+                    AdobeReadPDF.src = Files.namefile;
                 }    
             }    
         }

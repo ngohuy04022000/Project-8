@@ -33,11 +33,11 @@ namespace KindleTeam8.Views
             backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
             backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
             Files files = new Files();
-            ReadPDF = new ReadPDF(files);
             folders = new Folder();
             folders.namefolder = "Library";
             folders.filename = new List<Files>();
             folders = folder;
+            ReadPDF = new ReadPDF(files, folders);
             //foreach (Folder f in folders)
             //{
             //    cmbFolderName.Items.Add(f.namefolder);
@@ -168,7 +168,7 @@ namespace KindleTeam8.Views
             files = folders.filename.ToList<Files>();
             int index = files.FindIndex(x => x.namefile == lvwSearch.SelectedItems[0].SubItems[1].Text + "\\"
             + lvwSearch.SelectedItems[0].SubItems[0].Text);
-            ReadPDF = new ReadPDF(files[index]);
+            ReadPDF = new ReadPDF(files[index], folders);
             ReadPDF.Show();
         }
     }

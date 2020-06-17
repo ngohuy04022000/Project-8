@@ -24,7 +24,8 @@ namespace KindleTeam8.Views
             listfolder = new List<Folder>();
             //List<string> listfilename = new List<string>();
             Files file = new Files();
-            ReadPDF = new ReadPDF(file);
+            Folder fol = new Folder();
+            ReadPDF = new ReadPDF(file, fol);
             listfolder = folder;
             foreach(Folder f in listfolder)
             {
@@ -92,12 +93,20 @@ namespace KindleTeam8.Views
                 //if (fbdChooseFile.ShowDialog() == DialogResult.OK)
                 {
                     filename = ChooseFile.FileName;
-                    AddFileItem(ChooseFile.FileName);
                 }
                 int index = this.listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
-                Files file = new Files();
-                file.namefile = filename;
-                listfolder[index].filename.Add(file);
+                if (listfolder[index].filename.ToList<Files>().Where(
+                    x => x.namefile == filename).Count() < 1)
+                {
+                    AddFileItem(ChooseFile.FileName);
+                    Files file = new Files();
+                    file.namefile = filename;
+                    listfolder[index].filename.Add(file);
+                }
+                else
+                {
+                    MessageBox.Show("Đã có File này trong danh sách", "Thông Báo");
+                }    
             }
         }
         public void AddFileItem(string filename)
@@ -125,7 +134,7 @@ namespace KindleTeam8.Views
             files = listfolder[indexfolder].filename.ToList<Files>();
             int index = files.FindIndex(x => x.namefile == lstFileName.SelectedItems[0].SubItems[1].Text + "\\"
             + lstFileName.SelectedItems[0].SubItems[0].Text);
-            ReadPDF = new ReadPDF(files[index]);
+            ReadPDF = new ReadPDF(files[index], listfolder[indexfolder]);
             ReadPDF.Show();
         }
         private void button1_Click(object sender, EventArgs e)
