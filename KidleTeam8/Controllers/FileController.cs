@@ -10,7 +10,7 @@ namespace KindleTeam8.Controllers
     public class FileController
     {
         //Thêm file vào database
-        public static bool AddFile(Files file)
+        public static bool AddFile(ClassFile file)
         {
             try
             {
@@ -27,7 +27,7 @@ namespace KindleTeam8.Controllers
             }
         }
         //Lấy file từ tên của nó
-        public static Files getFile(string filename)
+        public static ClassFile getFile(string filename)
         {
             using (var _context = new DBFolderContext())
             {
@@ -41,12 +41,23 @@ namespace KindleTeam8.Controllers
             }
         }
         //Lấy toàn bộ file từ database hiện lên bảng
-        public static List<Files> getListFiles()
+        public static List<ClassFile> getListFiles()
         {
             using (var _context = new DBFolderContext())
             {
-                var file = (from f in _context.tbFiles
-                              select f).ToList();
+                var file = (from f in _context.tbFiles.AsEnumerable()
+                            select new
+                            {
+                                filename = f.namefile,
+                                path = f.path,
+                                size = f.size
+                            })
+                              .Select(x => new ClassFile
+                              {
+                                  namefile = x.filename,
+                                  path = x.path,
+                                  size = x.size
+                              }).ToList();
                 return file;
             }
         }

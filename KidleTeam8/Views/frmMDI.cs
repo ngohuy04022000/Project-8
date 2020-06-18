@@ -17,16 +17,16 @@ namespace KindleTeam8.Views
     {
         private LibraryFile libraryFile;
         private CreateFolder createFolder;
-        private List<Folder> folders;
-        private Folder Library;
+        //private List<ClassFolder> folders;
+        private ClassFolder Library;
         public frmMDI()
         {
             InitializeComponent();
-            Library = new Folder();
-            Library.namefolder = "Library";
-            Library.filename = new List<Files>();
-            folders = new List<Folder>();
-            folders.Add(Library);
+            //Library = new ClassFolder();
+            //Library.namefolder = "Library";
+            //Library.listfile = new List<ClassFile>();
+            //folders = new List<ClassFolder>();
+            //folders.Add(Library);
         }
 
         private void frmMDI_MdiChildActivate(object sender, EventArgs e)
@@ -78,7 +78,7 @@ namespace KindleTeam8.Views
         {
             if (this.createFolder is null || createFolder.IsDisposed)
             {
-                createFolder = new CreateFolder(folders);
+                createFolder = new CreateFolder();
                 createFolder.MdiParent = this;
                 createFolder.Show();
             }

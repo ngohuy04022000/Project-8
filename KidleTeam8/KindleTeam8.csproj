@@ -66,8 +66,8 @@
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\FolderController.cs" />
     <Compile Include="Models\DBFolderContext.cs" />
-    <Compile Include="Models\Files.cs" />
-    <Compile Include="Models\Folder.cs" />
+    <Compile Include="Models\ClassFile.cs" />
+    <Compile Include="Models\ClassFolder.cs" />
     <Compile Include="Views\frmMDI.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -13,7 +13,7 @@ namespace KindleTeam8.Models
         {
 
         }
-        public DbSet<Files> tbFiles { get; set; }
-        public DbSet<Folder> tbFolders { get; set; }
+        public DbSet<ClassFile> tbFiles { get; set; }
+        public DbSet<ClassFolder> tbFolders { get; set; }
     }
 }
