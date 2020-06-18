@@ -15,53 +15,54 @@ namespace KindleTeam8.Views
 {
     public partial class CreateFolder : Form
     {
-        private List<ClassFolder> listfolder;
         //private List<string> listfilename;
         ReadPDF ReadPDF;
-        public CreateFolder(List<ClassFolder> folder)
+        public CreateFolder()
         {
             InitializeComponent();
-            listfolder = new List<ClassFolder>();
+            display();
+            //FolderController.getListFolder() = new List<ClassFolder>();
             //List<string> listfilename = new List<string>();
-            ClassFile file = new ClassFile();
-            ClassFolder fol = new ClassFolder();
-            ReadPDF = new ReadPDF(file, fol);
-            listfolder = folder;
-            foreach(ClassFolder f in listfolder)
-            {
-                lstFolder.Items.Add(f.namefolder);
-            }
-            if(txtNameFolder.Text == "")
-            {
-                txtNameFolder.Text = listfolder[0].namefolder;
-            }    
+            //ClassFile file = new ClassFile();
+            //ClassFolder fol = new ClassFolder();
+            //ReadPDF = new ReadPDF(file, fol);
+            //FolderController.getListFolder() = folder;
+            //foreach(ClassFolder f in FolderController.getListFolder())
+            //{
+            //    lstFolder.Items.Add(f.namefolder);
+            //}
+            //if(txtNameFolder.Text == "")
+            //{
+            //    txtNameFolder.Text = FolderController.getListFolder()[0].namefolder;
+            //}    
         }
         //Hiển thị folder lên từ database cho ListBox lstFolder(Hùng)
         private void display()
         {
             List<ClassFolder> lstfolders = FolderController.getListFolder();
-            foreach(ClassFolder folder in lstfolders)
+            foreach (ClassFolder folder in lstfolders)
             {
-                foreach(ClassFile file in folder.listfile)
-                {
-                    ListViewItem row = new ListViewItem(file.namefile);
-                    row.SubItems.Add(file.path);
-                    row.SubItems.Add(file.size);
+                //foreach(ClassFile file in folder.listfile)
+                //{
+                //    ListViewItem row = new ListViewItem(file.namefile);
+                //    row.SubItems.Add(file.path);
+                //    row.SubItems.Add(file.size);
                     
-                }
+                //}
                 this.lstFolder.Items.Add(folder);
             }
         }
         // Thêm tên Folder
         private void btnAddFolder_Click(object sender, EventArgs e)
         {
-            if (txtNameFolder.Text != "" && this.listfolder.Where(x=> x.namefolder == txtNameFolder.Text).Count()<1)
-            {
-                lstFolder.Items.Add(txtNameFolder.Text);
+            if (txtNameFolder.Text != "" && FolderController.getListFolder().Where(x=> x.namefolder == txtNameFolder.Text).Count()<1)
+            {                
                 ClassFolder folder = new ClassFolder();
                 folder.namefolder = txtNameFolder.Text;
-                folder.listfile = new List<ClassFile>();
-                listfolder.Add(folder);
+                //folder.listfile = new List<ClassFile>();
+                FolderController.AddFolder(folder);
+                //lstFolder.Items.Add(txtNameFolder.Text);
+                //FolderController.getListFolder().Add(folder);
             }
             else
             {
@@ -70,12 +71,12 @@ namespace KindleTeam8.Views
                 return;
             }
             // thêm folder vào database
-            ClassFolder f = new ClassFolder();
-            f.namefolder = this.txtNameFolder.Text.Trim();
-            if (FolderController.AddFolder(f) == false)
-            {
-                MessageBox.Show("folder error");
-            }
+            //ClassFolder f = new ClassFolder();
+            //f.namefolder = this.txtNameFolder.Text.Trim();
+            //if (FolderController.AddFolder(f) == false)
+            //{
+            //    MessageBox.Show("folder error");
+            //}
             txtNameFolder.Clear();
         }
         //Thêm File
@@ -94,19 +95,31 @@ namespace KindleTeam8.Views
                 {
                     filename = ChooseFile.FileName;
                 }
-                int index = this.listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
-                if (listfolder[index].listfile.ToList<ClassFile>().Where(
-                    x => x.namefile == filename).Count() < 1)
+
+                int index = FolderController.getListFolder().FindIndex(x => x.namefolder == txtNameFolder.Text);
+                if(FolderController.getListFolder()[index].listfile !=null)
+                {
+                    if (FolderController.getListFolder()[index].listfile.ToList<ClassFile>().Where(
+                        x => x.namefile == filename).Count() < 1)
+                    {
+                        AddFileItem(ChooseFile.FileName);
+                        ClassFile file = new ClassFile();
+                        file.namefile = filename;
+                        FolderController.AddFile(FolderController.getListFolder()[index], file);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Đã có File này trong danh sách", "Thông Báo");
+                    }
+                }
+                else
                 {
                     AddFileItem(ChooseFile.FileName);
                     ClassFile file = new ClassFile();
                     file.namefile = filename;
-                    listfolder[index].listfile.Add(file);
+                    FolderController.AddFile(FolderController.getListFolder()[index], file);
                 }
-                else
-                {
-                    MessageBox.Show("Đã có File này trong danh sách", "Thông Báo");
-                }    
+                
             }
         }
         public void AddFileItem(string filename)
@@ -129,12 +142,12 @@ namespace KindleTeam8.Views
         //Mở File
         private void lstFileName_DoubleClick(object sender, EventArgs e)
         {
-            int indexfolder = this.listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
+            int indexfolder = FolderController.getListFolder().FindIndex(x => x.namefolder == txtNameFolder.Text);
             List<ClassFile> files = new List<ClassFile>();
-            files = listfolder[indexfolder].listfile.ToList<ClassFile>();
+            files = FolderController.getListFolder()[indexfolder].listfile.ToList<ClassFile>();
             int index = files.FindIndex(x => x.namefile == lstFileName.SelectedItems[0].SubItems[1].Text + "\\"
             + lstFileName.SelectedItems[0].SubItems[0].Text);
-            ReadPDF = new ReadPDF(files[index], listfolder[indexfolder]);
+            ReadPDF = new ReadPDF(files[index], FolderController.getListFolder()[indexfolder]);
             ReadPDF.Show();
         }
 
@@ -161,7 +174,7 @@ namespace KindleTeam8.Views
             f.namefolder = txtNameFolder.Text.Trim();
             FolderController.UpdateFolder(f);
             //lstFolder.Items[lstFolder.SelectedIndex] = txtNameFolder.Text.Trim();
-            //hiển thị lại listfolder
+            //hiển thị lại FolderController.getListFolder()
             BindingSource source = new BindingSource();
             source.DataSource = FolderController.getListFolder();
             this.lstFolder.DataSource = source;
@@ -172,11 +185,11 @@ namespace KindleTeam8.Views
             if (lstFolder.SelectedItem != null)
             {
                 txtNameFolder.Text = lstFolder.SelectedItem.ToString();
-                int index = this.listfolder.FindIndex(x => x.namefolder == txtNameFolder.Text);
-                if (listfolder[index].listfile != null)
+                int index = FolderController.getListFolder().FindIndex(x => x.namefolder == txtNameFolder.Text);
+                if (FolderController.getListFolder()[index].listfile != null)
                 {
                     lstFileName.Items.Clear();
-                    foreach (ClassFile name in listfolder[index].listfile)
+                    foreach (ClassFile name in FolderController.getListFolder()[index].listfile)
                     {
                         AddFileItem(name.namefile);
                     }

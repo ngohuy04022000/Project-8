@@ -17,6 +17,11 @@ namespace KindleTeam8.Models
         public string size { get; set; }
         public string note { get; set; }
         public virtual ICollection<ClassFolder> folder { get; set; }
+
+        public ClassFile()
+        {
+            folder = new HashSet<ClassFolder>();
+        }
         public override string ToString()
         {
             return this.namefile;

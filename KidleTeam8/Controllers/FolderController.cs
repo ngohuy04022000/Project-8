@@ -17,13 +17,13 @@ namespace KindleTeam8.Controllers
             {
                 using (var _context = new DBFolderContext())
                 {
-                    foreach(var file in folder.listfile)
-                    {
-                        var filedb = (from f in _context.tbFiles
-                                      where f.namefile == file.namefile
-                                      select f).Single();
-                        filedb.folder.Add(folder);
-                    }
+                    //foreach(var file in folder.listfile)
+                    //{
+                    //    var filedb = (from f in _context.tbFiles
+                    //                  where f.namefile == file.namefile
+                    //                  select f).Single();
+                    //    filedb.folder.Add(folder);
+                    //}
                     _context.tbFolders.Add(folder);
                     _context.SaveChanges();
                     return true;
@@ -33,7 +33,27 @@ namespace KindleTeam8.Controllers
             {
                 return false;
             }
+        }
 
+        public static bool AddFile(ClassFolder folder, ClassFile file)
+        {
+            try
+            {
+                using (var _context = new DBFolderContext())
+                {
+                    _context.tbFiles.AddOrUpdate(file);
+                    var filedb = (from f in _context.tbFiles
+                                  where f.namefile == file.namefile
+                                  select f).SingleOrDefault();
+                    filedb.folder.Add(folder);
+                    _context.SaveChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         //Hiển thị list folder khi mở lại form(Hùng)
