@@ -13,46 +13,12 @@ namespace KindleTeam8.Controllers
         //Thêm 1 folder vào database(Hùng)
         public static bool AddFolder(ClassFolder folder)
         {
-            try
-            {
-                using (var _context = new DBFolderContext())
-                {
-                    //foreach(var file in folder.listfile)
-                    //{
-                    //    var filedb = (from f in _context.tbFiles
-                    //                  where f.namefile == file.namefile
-                    //                  select f).Single();
-                    //    filedb.folder.Add(folder);
-                    //}
-                    _context.tbFolders.Add(folder);
-                    _context.SaveChanges();
-                    return true;
-                }
-            }
-            catch
-            {
-                return false;
-            }
-        }
 
-        public static bool AddFile(ClassFolder folder, ClassFile file)
-        {
-            try
+            using (var _context = new DBFolderContext())
             {
-                using (var _context = new DBFolderContext())
-                {
-                    _context.tbFiles.AddOrUpdate(file);
-                    var filedb = (from f in _context.tbFiles
-                                  where f.namefile == file.namefile
-                                  select f).SingleOrDefault();
-                    filedb.folder.Add(folder);
-                    _context.SaveChanges();
-                    return true;
-                }
-            }
-            catch
-            {
-                return false;
+                _context.tbFolders.Add(folder);
+                _context.SaveChanges();
+                return true;
             }
         }
 
@@ -123,6 +89,19 @@ namespace KindleTeam8.Controllers
                     }
                 }
                 _context.tbFolders.Remove(dbfolder);
+                _context.SaveChanges();
+                return true;
+            }
+        }
+        //Thêm file vào folder trong database
+        public static bool AddFile(ClassFolder folder, ClassFile file)
+        {
+            using (var _context = new DBFolderContext())
+            {
+                folder.listfile.Add(file);
+                file.folder.Add(folder);
+                _context.tbFolders.AddOrUpdate(folder);
+                _context.tbFiles.AddOrUpdate(file);
                 _context.SaveChanges();
                 return true;
             }

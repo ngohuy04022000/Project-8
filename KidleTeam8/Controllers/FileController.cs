@@ -1,6 +1,7 @@
 ﻿using KindleTeam8.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace KindleTeam8.Controllers
         //Thêm file vào database
         public static bool AddFile(ClassFile file)
         {
-            try
+            //try
             {
                 using (var _context = new DBFolderContext())
                 {
@@ -21,10 +22,10 @@ namespace KindleTeam8.Controllers
                     return true;
                 }
             }
-            catch
-            {
-                return false;
-            }
+            //catch
+            //{
+            //    return false;
+            //}
         }
         //Lấy file từ tên của nó
         public static ClassFile getFile(string filename)

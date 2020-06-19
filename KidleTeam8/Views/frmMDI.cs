@@ -18,7 +18,6 @@ namespace KindleTeam8.Views
         private LibraryFile libraryFile;
         private CreateFolder createFolder;
         //private List<ClassFolder> folders;
-        private ClassFolder Library;
         public frmMDI()
         {
             InitializeComponent();
@@ -64,7 +63,7 @@ namespace KindleTeam8.Views
         {
             if (this.libraryFile is null || libraryFile.IsDisposed)
             {
-                libraryFile = new LibraryFile(Library);
+                libraryFile = new LibraryFile();
                 libraryFile.MdiParent = this;
                 libraryFile.Show();
             }

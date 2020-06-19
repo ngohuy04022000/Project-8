@@ -22,7 +22,7 @@ namespace KindleTeam8.Views
         private BackgroundWorker backgroundWorker;
         private ReadPDF ReadPDF;
         private ClassFolder folders;
-        public LibraryFile(ClassFolder folder)
+        public LibraryFile()
         {
             InitializeComponent();
             backgroundWorker = new BackgroundWorker();
@@ -32,12 +32,12 @@ namespace KindleTeam8.Views
             backgroundWorker.DoWork += BackgroundWorker_DoWork;
             backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
             backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
-            ClassFile files = new ClassFile();
-            folders = new ClassFolder();
-            folders.namefolder = "Library";
-            folders.listfile = new List<ClassFile>();
-            folders = folder;
-            ReadPDF = new ReadPDF(files, folders);
+            //ClassFile files = new ClassFile();
+            //folders = new ClassFolder();
+            //folders.namefolder = "Library";
+            //folders.listfile = new List<ClassFile>();
+            //folders = folder;
+            //ReadPDF = new ReadPDF(files, folders);
             //foreach (Folder f in folders)
             //{
             //    cmbFolderName.Items.Add(f.namefolder);
