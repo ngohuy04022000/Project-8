@@ -89,7 +89,7 @@ namespace KindleTeam8.Views
         //Hiện hướng dẫn sử dụng
         private void mViews_Click(object sender, EventArgs e)
         {
-
+            //DBTestController.initializeDB();
         }
         //Tạo database
         private void mCreateDB_Click(object sender, EventArgs e)

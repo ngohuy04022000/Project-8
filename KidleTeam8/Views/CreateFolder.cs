@@ -15,27 +15,32 @@ namespace KindleTeam8.Views
 {
     public partial class CreateFolder : Form
     {
+        private List<ClassFolder> listfolder;
         //private List<string> listfilename;
         ReadPDF ReadPDF;
         public CreateFolder()
         {
             InitializeComponent();
+            //BindingSource source = new BindingSource();
+            //source.DataSource = FolderController.getListFolder();
+            //this.lstFolder.DataSource = source;
+            listfolder = new List<ClassFolder>();
+            listfolder = FolderController.GetAllFolder();
             displayFolder();
-            BindingSource source = new BindingSource();
-            source.DataSource = FolderController.getListFolder();
-            this.lstFolder.DataSource = source;   
+            displayFile(listfolder[0]);
         }
         //Hiển thị folder lên từ database cho ListBox lstFolder(Hùng)
         private void displayFolder()
         {
-            List<ClassFolder> lstfolders = FolderController.getListFolder();
+            List<ClassFolder> lstfolders = listfolder;
             foreach (ClassFolder folder in lstfolders)
             {
-                this.lstFolder.Items.Add(folder);
+                this.lstFolder.Items.Add(folder.namefolder);
             }
         }
         private void displayFile(ClassFolder folder)
         {
+            lstFileName.Items.Clear();
             foreach (ClassFile file in folder.listfile)
             {
                 ListViewItem item = new ListViewItem(file.namefile);
@@ -47,14 +52,11 @@ namespace KindleTeam8.Views
         // Thêm tên Folder
         private void btnAddFolder_Click(object sender, EventArgs e)
         {
-            if (txtNameFolder.Text != "" && FolderController.getListFolder().Where(x=> x.namefolder == txtNameFolder.Text).Count()<1)
+            if (txtNameFolder.Text != "" && listfolder.Where(x=> x.namefolder == txtNameFolder.Text).Count()<1)
             {                
                 ClassFolder folder = new ClassFolder();
                 folder.namefolder = txtNameFolder.Text;
                 FolderController.AddFolder(folder);
-                BindingSource source = new BindingSource();
-                source.DataSource = FolderController.getListFolder();
-                this.lstFolder.DataSource = source;
             }
             else
             {
@@ -79,16 +81,18 @@ namespace KindleTeam8.Views
                 {
                     filename = ChooseFile.FileName;
                 }
-
                 if (lstFolder.SelectedItem != null)
                 {
                     txtNameFolder.Text = lstFolder.SelectedItem.ToString();
-                    ClassFolder folder = FolderController.getFolder(txtNameFolder.Text);
+                    ClassFolder folder = new ClassFolder();
+                    folder = listfolder.Where(x => x.namefolder == txtNameFolder.Text).Single();
                     if (folder.listfile != null)
                     {
                         if (folder.listfile.ToList<ClassFile>().Where(x => x.namefile == filename).Count() < 1)
                         {
                             AddFileItem(folder, ChooseFile.FileName);
+                            displayFile(folder);
+
                         }
                         else
                         {
@@ -98,6 +102,7 @@ namespace KindleTeam8.Views
                     else
                     {
                         AddFileItem(folder, ChooseFile.FileName);
+                        displayFile(folder);
                     }
                 }
                 else
@@ -114,19 +119,17 @@ namespace KindleTeam8.Views
             file.path = iffile.DirectoryName;
             file.size = Math.Ceiling(iffile.Length / 1024f).ToString("0 KB");
             FileController.AddFile(file);
-            FolderController.AddFile(folder, file);
+            folder.listfile.Add(file);
+            FolderController.UpdateFolder(folder);
             //FolderController.AddFolder();
             //Hiển thị lên listview
         }
         //Mở File
         private void lstFileName_DoubleClick(object sender, EventArgs e)
         {
-            int indexfolder = FolderController.getListFolder().FindIndex(x => x.namefolder == txtNameFolder.Text);
-            List<ClassFile> files = new List<ClassFile>();
-            files = FolderController.getListFolder()[indexfolder].listfile.ToList<ClassFile>();
-            int index = files.FindIndex(x => x.namefile == lstFileName.SelectedItems[0].SubItems[1].Text + "\\"
-            + lstFileName.SelectedItems[0].SubItems[0].Text);
-            ReadPDF = new ReadPDF(files[index], FolderController.getListFolder()[indexfolder]);
+            ClassFile files = new ClassFile();
+            files = FileController.getFile(lstFileName.SelectedItems[0].SubItems[0].Text);
+            ReadPDF = new ReadPDF(files, listfolder[0]);
             ReadPDF.Show();
         }
 
@@ -136,12 +139,9 @@ namespace KindleTeam8.Views
             {
                 return;
             }
-
-            ClassFolder f = FolderController.getFolder(lstFolder.Items[lstFolder.SelectedIndex].ToString());
+            ClassFolder f = new ClassFolder();
+            f = listfolder.Where(x => x.namefolder == txtNameFolder.Text).Single();
             FolderController.DeleteFolder(f);
-            BindingSource source = new BindingSource();
-            source.DataSource = FolderController.getListFolder();
-            this.lstFolder.DataSource = source;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -154,9 +154,6 @@ namespace KindleTeam8.Views
             FolderController.UpdateFolder(f);
             //lstFolder.Items[lstFolder.SelectedIndex] = txtNameFolder.Text.Trim();
             //hiển thị lại FolderController.getListFolder()
-            BindingSource source = new BindingSource();
-            source.DataSource = FolderController.getListFolder();
-            this.lstFolder.DataSource = source;
         }
 
         private void lstFolder_Click(object sender, EventArgs e)
@@ -164,19 +161,9 @@ namespace KindleTeam8.Views
             if (lstFolder.SelectedItem != null)
             {
                 txtNameFolder.Text = lstFolder.SelectedItem.ToString();
-                ClassFolder folder = FolderController.getFolder(txtNameFolder.Text);
-                if (folder.listfile != null)
-                {
-                    lstFileName.Items.Clear();
-                    foreach (ClassFile name in folder.listfile)
-                    {
-                        AddFileItem(folder, name.namefile);
-                    }
-                }
-                else
-                {
-                    return;
-                }
+                ClassFolder folder = new ClassFolder();
+                folder.listfile = FolderController.getListFile(txtNameFolder.Text);
+                displayFile(folder);
                 return;
             }
         }

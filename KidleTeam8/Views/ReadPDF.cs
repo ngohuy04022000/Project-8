@@ -25,7 +25,7 @@ namespace KindleTeam8.Views
             folder = new ClassFolder();
             folder = folders;
             this.Files = files;
-            AdobeReadPDF.src = Files.namefile;
+            AdobeReadPDF.src = this.Files.path + "\\" + Files.namefile;
             if(Files.note != null)
             {
                 txtNote.Text = "Note:" + Files.note;
@@ -33,7 +33,7 @@ namespace KindleTeam8.Views
         }
         private void DetailsPDF_Click(object sender, EventArgs e)
         {
-            FileInfo info = new FileInfo(this.Files.namefile);
+            FileInfo info = new FileInfo(this.Files.path+"\\"+Files.namefile);
             MessageBox.Show("Tên tệp: " + info.Name + Environment.NewLine + "Thời gian tạo: " + info.CreationTime.ToLongTimeString() + Environment.NewLine +
                 "Truy cập lần cuối: " + info.LastWriteTime.ToLongDateString() + Environment.NewLine + "Chỉnh sửa lần cuối: " + info.LastAccessTime.ToLongDateString() +
                 Environment.NewLine + "Kích thước: " + (Convert.ToInt32(info.Length / 1024f)).ToString() + " KB", "Details", MessageBoxButtons.OK);
@@ -86,9 +86,9 @@ namespace KindleTeam8.Views
                 if(xacnhan == DialogResult.OK)
                 {
                     int index = folder.listfile.ToList<ClassFile>().FindIndex(
-                        x => x.namefile == Files.path);
+                        x => x.path == Files.path);
                     Files = folder.listfile.ToList<ClassFile>()[index];
-                    AdobeReadPDF.src = Files.namefile;
+                    AdobeReadPDF.src = Files.path;
                 }    
             }    
         }
@@ -99,7 +99,7 @@ namespace KindleTeam8.Views
                 "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if(xacnhan == DialogResult.Yes)
             {
-                AdobeReadPDF.src = Files.namefile;
+                AdobeReadPDF.src = this.Files.path + "\\" + Files.namefile;
             }    
         }
     }

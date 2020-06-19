@@ -13,7 +13,7 @@ namespace KindleTeam8.Controllers
         //Thêm file vào database
         public static bool AddFile(ClassFile file)
         {
-            //try
+            try
             {
                 using (var _context = new DBFolderContext())
                 {
@@ -22,10 +22,10 @@ namespace KindleTeam8.Controllers
                     return true;
                 }
             }
-            //catch
-            //{
-            //    return false;
-            //}
+            catch
+            {
+                return false;
+            }
         }
         //Lấy file từ tên của nó
         public static ClassFile getFile(string filename)
@@ -50,8 +50,8 @@ namespace KindleTeam8.Controllers
                             select new
                             {
                                 filename = f.namefile,
-                                path = f.path,
-                                size = f.size
+                                f.path,
+                                f.size
                             })
                               .Select(x => new ClassFile
                               {

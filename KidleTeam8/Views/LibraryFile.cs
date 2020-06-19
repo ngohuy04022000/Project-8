@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KindleTeam8.Models;
+using KindleTeam8.Controllers;
 
 namespace KindleTeam8.Views
 {
@@ -33,9 +34,10 @@ namespace KindleTeam8.Views
             backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
             backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
             //ClassFile files = new ClassFile();
-            //folders = new ClassFolder();
-            //folders.namefolder = "Library";
-            //folders.listfile = new List<ClassFile>();
+            folders = new ClassFolder();
+            folders.namefolder = "Library";
+            folders.listfile = new List<ClassFile>();
+            folders.listfile = FolderController.getListFile("Library");
             //folders = folder;
             //ReadPDF = new ReadPDF(files, folders);
             //foreach (Folder f in folders)
@@ -97,16 +99,22 @@ namespace KindleTeam8.Views
             ClassFile filename = new ClassFile();
             filename.namefile = file;
             //int index = folders.FindIndex(x => x.namefolder == cmbFolderName.Text);
-            folders.listfile.Add(filename);
+            //folders.listfile.Add(filename);
             FileInfo fileif = new FileInfo(file);
             lvwSearch.Invoke((Action)(() =>
             {
                 string key = Path.GetExtension(file);
                 if(key == ".pdf")
                 {
+                    filename.namefile = fileif.Name;
+                    filename.path = fileif.DirectoryName;
+                    filename.size = Math.Ceiling(fileif.Length / 1024f).ToString("0 KB");
+                    FileController.AddFile(filename);
                     ListViewItem item = new ListViewItem(fileif.Name, key);
                     item.SubItems.Add(fileif.DirectoryName);
                     item.SubItems.Add(Math.Ceiling(fileif.Length / 1024f).ToString("0 KB"));
+                    folders.listfile.Add(filename);
+                    FolderController.UpdateFolder(folders);
                     lvwSearch.BeginUpdate();
                     lvwSearch.Items.Add(item);
                     lvwSearch.EndUpdate();
@@ -169,12 +177,9 @@ namespace KindleTeam8.Views
 
         private void lvwSearch_DoubleClick(object sender, EventArgs e)
         {
-            List<ClassFile> files = new List<ClassFile>();
-            //int indexfd = folders.FindIndex(x => x.namefolder == cmbFolderName.Text);
-            files = folders.listfile.ToList<ClassFile>();
-            int index = files.FindIndex(x => x.namefile == lvwSearch.SelectedItems[0].SubItems[1].Text + "\\"
-            + lvwSearch.SelectedItems[0].SubItems[0].Text);
-            ReadPDF = new ReadPDF(files[index], folders);
+            ClassFile files = new ClassFile();
+            files = FileController.getFile(lvwSearch.SelectedItems[0].SubItems[0].Text);
+            ReadPDF = new ReadPDF(files, folders);
             ReadPDF.Show();
         }
     }
