@@ -45,6 +45,7 @@
             this.sctLibrary = new System.Windows.Forms.SplitContainer();
             this.cmbFolderName = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.cID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             cName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             cPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             cSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -56,16 +57,19 @@
             // 
             // cName
             // 
+            cName.DisplayIndex = 1;
             cName.Text = "Tên file";
             cName.Width = 237;
             // 
             // cPath
             // 
+            cPath.DisplayIndex = 2;
             cPath.Text = "Đường dẫn";
             cPath.Width = 435;
             // 
             // cSize
             // 
+            cSize.DisplayIndex = 3;
             cSize.Text = "Dung lượng";
             cSize.Width = 124;
             // 
@@ -118,7 +122,8 @@
             this.lvwSearch.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             cName,
             cPath,
-            cSize});
+            cSize,
+            this.cID});
             this.lvwSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvwSearch.GridLines = true;
             this.lvwSearch.HideSelection = false;
@@ -203,6 +208,11 @@
             this.label1.Text = "Tên List";
             this.label1.Visible = false;
             // 
+            // cID
+            // 
+            this.cID.DisplayIndex = 0;
+            this.cID.Text = "ID";
+            // 
             // LibraryFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -237,6 +247,7 @@
         private System.Windows.Forms.SplitContainer sctLibrary;
         private System.Windows.Forms.ComboBox cmbFolderName;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ColumnHeader cID;
     }
 }
 

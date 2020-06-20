@@ -32,7 +32,6 @@ namespace KindleTeam8.Controllers
                 return true;
             }
         }
-
         /*Hiển thị list folder khi mở lại form(Hùng)
         *(Cái này là lấy giá trị từ Cơ sở dữ liệu)
         */
@@ -74,8 +73,8 @@ namespace KindleTeam8.Controllers
                     return null;
             }
         }      
-                //Thay đổi tên của folder trong database
-                public static bool UpdateFolder(ClassFolder folder)
+        //Thay đổi tên của folder trong database
+        public static bool UpdateFolder(ClassFolder folder)
         {
             using (var _context = new DBFolderContext())
             {
@@ -85,7 +84,7 @@ namespace KindleTeam8.Controllers
                 foreach (var file in folder.listfile)
                 {
                     var dbFile = (from x in _context.tbFiles
-                                  where x.namefile == file.namefile
+                                  where x.ID == file.ID
                                   select x).Single();
                     dbFile.folder.Add(dbFolder);
                 }
@@ -117,6 +116,50 @@ namespace KindleTeam8.Controllers
                 _context.tbFolders.Remove(dbfolder);
                 _context.SaveChanges();
                 return true;
+            }
+        }
+        //Xóa file trong folder trên database
+        public static bool DeleteFile(string namefolder, int ID)
+        {
+            using (var _context = new DBFolderContext())
+            {
+                var dbFolder = (from f in _context.tbFolders
+                                where f.namefolder == namefolder
+                                select f).Single();
+                dbFolder.listfile = (from lf in _context.tbFolders
+                                     where lf.namefolder == namefolder
+                                     select lf.listfile).Single().ToList();
+                var file = (from f in _context.tbFiles
+                            where f.ID == ID
+                            select f).Single();
+                file.folder = (from f in _context.tbFiles
+                                 where f.ID == ID
+                                 select f.folder).Single().ToList();
+                file.folder.Remove(dbFolder);
+                dbFolder.listfile.Clear();
+                _context.tbFolders.AddOrUpdate(dbFolder);
+                _context.SaveChanges();
+                return true;
+            }
+        }
+        public static ClassFolder getFolder(string namefolder)
+        {
+            using (var _context = new DBFolderContext())
+            {
+                var dbFolder = (from f in _context.tbFolders
+                                where f.namefolder == namefolder
+                                select f).Single();
+                dbFolder.listfile = (from lf in _context.tbFolders
+                                     where lf.namefolder == namefolder
+                                     select lf.listfile).Single().ToList();
+                if (dbFolder.listfile == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return dbFolder;
+                }
             }
         }
         //Thêm file vào folder trong database

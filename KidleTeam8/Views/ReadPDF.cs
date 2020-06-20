@@ -1,6 +1,8 @@
 ﻿using KindleTeam8;
+using KindleTeam8.Controllers;
 using KindleTeam8.Models;
 using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,6 +28,7 @@ namespace KindleTeam8.Views
             folder = folders;
             this.Files = files;
             AdobeReadPDF.src = this.Files.path + "\\" + Files.namefile;
+            this.Text = this.Files.namefile;
             if(Files.note != null)
             {
                 txtNote.Text = "Note:" + Files.note;
@@ -40,6 +43,7 @@ namespace KindleTeam8.Views
         }
         private void ExitPDF_Click(object sender, EventArgs e)
         {
+            //FileController.UpdateFile(Files);
             this.Close();
         }
         private void OpenPDF_Click(object sender, EventArgs e)
@@ -49,6 +53,7 @@ namespace KindleTeam8.Views
         private void mSaveNote_Click(object sender, EventArgs e)
         {
             Files.note = txtNote.Text;
+            FileController.UpdateFile(Files);
             txtNote.Enabled = false;
         }
         private void mFixNote_Click(object sender, EventArgs e)

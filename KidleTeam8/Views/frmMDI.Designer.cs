@@ -58,28 +58,28 @@
             this.mFind,
             this.mCreateFolder});
             this.tsmEdit.Name = "tsmEdit";
-            this.tsmEdit.Size = new System.Drawing.Size(39, 22);
-            this.tsmEdit.Text = "Edit";
+            this.tsmEdit.Size = new System.Drawing.Size(77, 22);
+            this.tsmEdit.Text = "Chức năng";
             // 
             // mFind
             // 
             this.mFind.Name = "mFind";
-            this.mFind.Size = new System.Drawing.Size(133, 22);
-            this.mFind.Text = "Find Folder";
+            this.mFind.Size = new System.Drawing.Size(181, 22);
+            this.mFind.Text = "Tìm kiếm trong máy";
             this.mFind.Click += new System.EventHandler(this.mFind_Click);
             // 
             // mCreateFolder
             // 
             this.mCreateFolder.Name = "mCreateFolder";
-            this.mCreateFolder.Size = new System.Drawing.Size(133, 22);
-            this.mCreateFolder.Text = "Create List";
+            this.mCreateFolder.Size = new System.Drawing.Size(181, 22);
+            this.mCreateFolder.Text = "Tạo danh sách";
             this.mCreateFolder.Click += new System.EventHandler(this.mCreateFolder_Click);
             // 
             // mViews
             // 
             this.mViews.Name = "mViews";
-            this.mViews.Size = new System.Drawing.Size(49, 22);
-            this.mViews.Text = "Views";
+            this.mViews.Size = new System.Drawing.Size(62, 22);
+            this.mViews.Text = "Trợ giúp";
             this.mViews.Click += new System.EventHandler(this.mViews_Click);
             // 
             // mCreateDB

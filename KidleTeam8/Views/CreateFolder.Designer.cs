@@ -31,6 +31,7 @@
             System.Windows.Forms.ColumnHeader cName;
             System.Windows.Forms.ColumnHeader cPath;
             System.Windows.Forms.ColumnHeader cSize;
+            System.Windows.Forms.ColumnHeader cID;
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btnRename = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -43,6 +44,7 @@
             cName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             cPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             cSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            cID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -51,16 +53,19 @@
             // 
             // cName
             // 
+            cName.DisplayIndex = 1;
             cName.Text = "Tên file";
             cName.Width = 233;
             // 
             // cPath
             // 
+            cPath.DisplayIndex = 2;
             cPath.Text = "Đường dẫn";
             cPath.Width = 435;
             // 
             // cSize
             // 
+            cSize.DisplayIndex = 3;
             cSize.Text = "Dung lượng";
             cSize.Width = 124;
             // 
@@ -95,6 +100,7 @@
             this.btnRename.TabIndex = 1;
             this.btnRename.Text = "Rename";
             this.btnRename.UseVisualStyleBackColor = true;
+            this.btnRename.Visible = false;
             this.btnRename.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnDelete
@@ -149,7 +155,8 @@
             this.lstFileName.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             cName,
             cPath,
-            cSize});
+            cSize,
+            cID});
             this.lstFileName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstFileName.GridLines = true;
             this.lstFileName.HideSelection = false;
@@ -160,6 +167,11 @@
             this.lstFileName.UseCompatibleStateImageBehavior = false;
             this.lstFileName.View = System.Windows.Forms.View.Details;
             this.lstFileName.DoubleClick += new System.EventHandler(this.lstFileName_DoubleClick);
+            // 
+            // cID
+            // 
+            cID.DisplayIndex = 0;
+            cID.Text = "ID";
             // 
             // CreateFolder
             // 

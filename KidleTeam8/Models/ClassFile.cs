@@ -12,6 +12,7 @@ namespace KindleTeam8.Models
     public class ClassFile
     {
         [Key]
+        public int ID { get; set; }//Liên kết bằng ID
         public string namefile { get; set; }
         public string path { get; set; }
         public string size { get; set; }

@@ -89,7 +89,14 @@ namespace KindleTeam8.Views
         //Hiện hướng dẫn sử dụng
         private void mViews_Click(object sender, EventArgs e)
         {
-            //DBTestController.initializeDB();
+            MessageBox.Show(
+            "3 chức năng" + Environment.NewLine
+                + "Tìm kiếm trong máy" + Environment.NewLine
+                + "Tạo các folder để phân nhóm PDF:" + Environment.NewLine
+                        + "- Thêm folder" + Environment.NewLine
+                        + "- Xóa Folder" + Environment.NewLine
+                        + "- Thêm File cho Folder" + Environment.NewLine
+                + "Đọc File PDF");
         }
         //Tạo database
         private void mCreateDB_Click(object sender, EventArgs e)

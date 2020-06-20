@@ -10,6 +10,27 @@ namespace KindleTeam8.Controllers
 {
     public class FileController
     {
+        public static int getIDfromDB()
+        {
+            using(var _context = new DBFolderContext())
+            {
+                var id = (from f in _context.tbFiles
+                          select f.ID).ToList();
+                if(id.Count<= 0) { return 1; }
+                else 
+                {
+                    int i;
+                    for(i=1;i<=id.Max();i++)
+                    {
+                        if(id.Contains(i) == false)
+                        {
+                            break;
+                        }    
+                    }
+                    return i;
+                }
+            }    
+        }
         //Thêm file vào database
         public static bool AddFile(ClassFile file)
         {
@@ -27,13 +48,42 @@ namespace KindleTeam8.Controllers
                 return false;
             }
         }
+        public static bool UpdateFile(ClassFile filename)
+        {
+            using (var _context = new DBFolderContext())
+            {
+                var dbFile = (from f in _context.tbFiles
+                              where f.ID == filename.ID
+                              select f).SingleOrDefault();
+                foreach (var fol in filename.folder)
+                {
+                    var dbFolder = (from u in _context.tbFolders
+                                  where u.namefolder == fol.namefolder
+                                  select u).SingleOrDefault();
+                    dbFolder.listfile.Add(dbFile);
+                }
+                filename.folder.Clear();
+                _context.tbFiles.AddOrUpdate(filename);
+                _context.SaveChanges();
+                return true;
+            }
+        }
+        public static bool DeleteFile(ClassFile file)
+        {
+            using (var _context = new DBFolderContext())
+            {
+                _context.tbFiles.Remove(file);
+                _context.SaveChanges();
+                return true;
+            }
+        }
         //Lấy file từ tên của nó
-        public static ClassFile getFile(string filename)
+        public static ClassFile getFile(int ID)
         {
             using (var _context = new DBFolderContext())
             {
                 var file = (from f in _context.tbFiles
-                            where (f.namefile == filename)
+                            where (f.ID == ID)
                             select f).ToList();
                 if (file.Count == 1)
                     return file[0];
@@ -49,16 +99,18 @@ namespace KindleTeam8.Controllers
                 var file = (from f in _context.tbFiles.AsEnumerable()
                             select new
                             {
+                                ID = f.ID,
                                 filename = f.namefile,
-                                f.path,
+                                path = f.path,
                                 f.size
                             })
                               .Select(x => new ClassFile
-                              {
-                                  namefile = x.filename,
-                                  path = x.path,
-                                  size = x.size
-                              }).ToList();
+                               {
+                                   ID = x.ID,
+                                   namefile = x.filename,
+                                   path = x.path,
+                                   size = x.size
+                               }).ToList();
                 return file;
             }
         }

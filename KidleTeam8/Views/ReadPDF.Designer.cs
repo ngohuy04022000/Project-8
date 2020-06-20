@@ -70,7 +70,7 @@
             // mFileLinked
             // 
             this.mFileLinked.Name = "mFileLinked";
-            this.mFileLinked.Size = new System.Drawing.Size(180, 22);
+            this.mFileLinked.Size = new System.Drawing.Size(130, 22);
             this.mFileLinked.Text = "File Linked";
             this.mFileLinked.Click += new System.EventHandler(this.mFileLinked_Click);
             // 
@@ -80,7 +80,7 @@
             this.mSaveNote,
             this.mFixNote});
             this.mNote.Name = "mNote";
-            this.mNote.Size = new System.Drawing.Size(180, 22);
+            this.mNote.Size = new System.Drawing.Size(130, 22);
             this.mNote.Text = "Note";
             // 
             // mSaveNote
@@ -145,7 +145,6 @@
             this.Controls.Add(this.mnsReadPDF);
             this.MainMenuStrip = this.mnsReadPDF;
             this.Name = "ReadPDF";
-            this.Text = "Read";
             this.Load += new System.EventHandler(this.ReadPDF_Load);
             this.mnsReadPDF.ResumeLayout(false);
             this.mnsReadPDF.PerformLayout();
