@@ -27,7 +27,7 @@ namespace KindleTeam8.Views
             folder = new ClassFolder();
             folder = folders;
             this.Files = files;
-            AdobeReadPDF.src = this.Files.path + "\\" + Files.namefile;
+            AdobeReadPDF.src = Files.path + "\\" + Files.namefile;
             this.Text = this.Files.namefile;
             if(Files.note != null)
             {

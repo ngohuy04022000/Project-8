@@ -68,6 +68,21 @@ namespace KindleTeam8.Controllers
                 return true;
             }
         }
+        public static bool getContain(ClassFile file)
+        {
+            using (var _context = new DBFolderContext())
+            {
+                var dbFile = (from f in _context.tbFiles
+                              where f.namefile == file.namefile
+                              select f.size).FirstOrDefault();
+                if(dbFile == file.size)
+                {
+                    return true;
+                }    
+                else
+                { return false; }    
+            }
+        }
         public static bool DeleteFile(ClassFile file)
         {
             using (var _context = new DBFolderContext())

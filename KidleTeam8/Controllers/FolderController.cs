@@ -162,6 +162,17 @@ namespace KindleTeam8.Controllers
                 }
             }
         }
+        //Lấy folder với từ khóa
+        //public static ClassFolder GetFolderKey(string txtname)
+        //{
+        //    using (var _context = new DBFolderContext())
+        //    {
+        //        var dbFolder = (from f in _context.tbFiles.Include("folder")
+        //                        where f.namefile.Contains(txtname)
+        //                        select f).ToList();
+        //        return ;
+        //    }
+        //}
         //Thêm file vào folder trong database
         public static bool AddFile(ClassFolder folder, ClassFile file)
         {

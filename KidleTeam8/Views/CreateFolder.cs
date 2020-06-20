@@ -56,8 +56,8 @@ namespace KindleTeam8.Views
         // Thêm tên Folder
         private void btnAddFolder_Click(object sender, EventArgs e)
         {
-            if (txtNameFolder.Text != "" && listfolder.Where(x=> x.namefolder == txtNameFolder.Text).Count()<1)
-            {                
+            if (txtNameFolder.Text != "" && listfolder.Where(x => x.namefolder == txtNameFolder.Text).Count() < 1)
+            {
                 ClassFolder folder = new ClassFolder();
                 folder.namefolder = txtNameFolder.Text;
                 FolderController.AddFolder(folder);
@@ -91,10 +91,11 @@ namespace KindleTeam8.Views
 
                     txtNameFolder.Text = lstFolder.SelectedItem.ToString();
                     ClassFolder folder = new ClassFolder();
+                    FileInfo iffile = new FileInfo(filename);
                     folder = FolderController.getFolder(txtNameFolder.Text);
                     if (folder.listfile != null)
                     {
-                        if (folder.listfile.ToList<ClassFile>().Count(x => x.namefile == filename) < 1)
+                        if (folder.listfile.ToList<ClassFile>().Count(x => x.namefile == iffile.Name) < 1)
                         {
                             AddFileItem(folder, ChooseFile.FileName);
                             folder = FolderController.getFolder(txtNameFolder.Text);
@@ -147,11 +148,11 @@ namespace KindleTeam8.Views
             else
             {
 
-                FolderController.DeleteFile(txtNameFolder.Text, int.Parse(lstFileName.SelectedItems[0].SubItems[3].Text)); 
+                FolderController.DeleteFile(txtNameFolder.Text, int.Parse(lstFileName.SelectedItems[0].SubItems[3].Text));
                 ClassFolder folder = new ClassFolder();
                 folder = FolderController.getFolder(txtNameFolder.Text);
                 displayFile(folder);
-            }    
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -187,6 +188,22 @@ namespace KindleTeam8.Views
                 folder.listfile = FolderController.getListFile(txtNameFolder.Text);
                 displayFile(folder);
                 return;
+            }
+        }
+        //Tìm file trên Folder
+        private void txtSearchFile_TextChanged(object sender, EventArgs e)
+        {
+            ClassFolder folder = new ClassFolder();
+            folder = FolderController.getFolder(txtNameFolder.Text);
+            List<ClassFile> files = folder.listfile.ToList<ClassFile>().Where(x => x.namefile.Contains(txtSearchFile.Text)).ToList();
+            lstFileName.Items.Clear();
+            foreach (ClassFile file in files)
+            {
+                ListViewItem item = new ListViewItem(file.namefile);
+                item.SubItems.Add(file.path);
+                item.SubItems.Add(file.size);
+                item.SubItems.Add(file.ID.ToString());
+                lstFileName.Items.Add(item);
             }
         }
     }
