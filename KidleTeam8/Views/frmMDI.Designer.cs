@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMDI));
             this.mnsMDI = new System.Windows.Forms.MenuStrip();
             this.tsmEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mFind = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,6 +41,9 @@
             // 
             // mnsMDI
             // 
+            this.mnsMDI.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.mnsMDI.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mnsMDI.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.mnsMDI.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.mnsMDI.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmEdit,
@@ -47,8 +51,8 @@
             this.mCreateDB});
             this.mnsMDI.Location = new System.Drawing.Point(0, 0);
             this.mnsMDI.Name = "mnsMDI";
-            this.mnsMDI.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.mnsMDI.Size = new System.Drawing.Size(632, 24);
+            this.mnsMDI.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
+            this.mnsMDI.Size = new System.Drawing.Size(948, 42);
             this.mnsMDI.TabIndex = 1;
             this.mnsMDI.Text = "mnsMDI";
             // 
@@ -58,57 +62,60 @@
             this.mFind,
             this.mCreateFolder});
             this.tsmEdit.Name = "tsmEdit";
-            this.tsmEdit.Size = new System.Drawing.Size(77, 22);
+            this.tsmEdit.Size = new System.Drawing.Size(160, 38);
             this.tsmEdit.Text = "Chức năng";
             // 
             // mFind
             // 
             this.mFind.Name = "mFind";
-            this.mFind.Size = new System.Drawing.Size(181, 22);
+            this.mFind.Size = new System.Drawing.Size(363, 42);
             this.mFind.Text = "Tìm kiếm trong máy";
             this.mFind.Click += new System.EventHandler(this.mFind_Click);
             // 
             // mCreateFolder
             // 
             this.mCreateFolder.Name = "mCreateFolder";
-            this.mCreateFolder.Size = new System.Drawing.Size(181, 22);
+            this.mCreateFolder.Size = new System.Drawing.Size(363, 42);
             this.mCreateFolder.Text = "Tạo danh sách";
             this.mCreateFolder.Click += new System.EventHandler(this.mCreateFolder_Click);
             // 
             // mViews
             // 
             this.mViews.Name = "mViews";
-            this.mViews.Size = new System.Drawing.Size(62, 22);
+            this.mViews.Size = new System.Drawing.Size(134, 38);
             this.mViews.Text = "Trợ giúp";
             this.mViews.Click += new System.EventHandler(this.mViews_Click);
             // 
             // mCreateDB
             // 
             this.mCreateDB.Name = "mCreateDB";
-            this.mCreateDB.Size = new System.Drawing.Size(68, 22);
+            this.mCreateDB.Size = new System.Drawing.Size(150, 38);
             this.mCreateDB.Text = "CreateDB";
             this.mCreateDB.Click += new System.EventHandler(this.mCreateDB_Click);
             // 
             // tabMain
             // 
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabMain.Location = new System.Drawing.Point(0, 24);
-            this.tabMain.Margin = new System.Windows.Forms.Padding(2);
+            this.tabMain.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabMain.Location = new System.Drawing.Point(0, 42);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(632, 24);
+            this.tabMain.Size = new System.Drawing.Size(948, 41);
             this.tabMain.TabIndex = 2;
             this.tabMain.SelectedIndexChanged += new System.EventHandler(this.tabMain_SelectedIndexChanged);
             // 
             // frmMDI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 453);
+            this.ClientSize = new System.Drawing.Size(948, 662);
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.mnsMDI);
+            this.Font = new System.Drawing.Font("Times New Roman", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mnsMDI;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmMDI";
             this.Text = "Màn Hình Chính";
             this.MdiChildActivate += new System.EventHandler(this.frmMDI_MdiChildActivate);
