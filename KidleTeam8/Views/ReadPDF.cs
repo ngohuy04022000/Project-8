@@ -107,5 +107,10 @@ namespace KindleTeam8.Views
                 AdobeReadPDF.src = this.Files.path + "\\" + Files.namefile;
             }    
         }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

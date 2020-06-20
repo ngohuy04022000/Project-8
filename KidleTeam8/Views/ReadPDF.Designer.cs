@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReadPDF));
-            this.mnsReadPDF = new System.Windows.Forms.MenuStrip();
+            this.txtNote = new System.Windows.Forms.TextBox();
+            this.AdobeReadPDF = new AxAcroPDFLib.AxAcroPDF();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.OpenPDF = new System.Windows.Forms.ToolStripMenuItem();
             this.mFileLinked = new System.Windows.Forms.ToolStripMenuItem();
             this.mNote = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,27 +39,57 @@
             this.mFixNote = new System.Windows.Forms.ToolStripMenuItem();
             this.DetailsPDF = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitPDF = new System.Windows.Forms.ToolStripMenuItem();
-            this.txtNote = new System.Windows.Forms.TextBox();
-            this.AdobeReadPDF = new AxAcroPDFLib.AxAcroPDF();
-            this.mnsReadPDF.SuspendLayout();
+            this.mnsReadPDF = new System.Windows.Forms.MenuStrip();
             ((System.ComponentModel.ISupportInitialize)(this.AdobeReadPDF)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.mnsReadPDF.SuspendLayout();
             this.SuspendLayout();
             // 
-            // mnsReadPDF
+            // txtNote
             // 
-            this.mnsReadPDF.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mnsReadPDF.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
-            this.mnsReadPDF.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.mnsReadPDF.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OpenPDF,
-            this.DetailsPDF,
-            this.ExitPDF});
-            this.mnsReadPDF.Location = new System.Drawing.Point(0, 0);
-            this.mnsReadPDF.Name = "mnsReadPDF";
-            this.mnsReadPDF.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
-            this.mnsReadPDF.Size = new System.Drawing.Size(696, 30);
-            this.mnsReadPDF.TabIndex = 1;
-            this.mnsReadPDF.Text = "mnsReadPDF";
+            this.txtNote.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtNote.Enabled = false;
+            this.txtNote.Location = new System.Drawing.Point(0, 0);
+            this.txtNote.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtNote.Multiline = true;
+            this.txtNote.Name = "txtNote";
+            this.txtNote.Size = new System.Drawing.Size(696, 44);
+            this.txtNote.TabIndex = 2;
+            this.txtNote.Text = "Note: ";
+            this.txtNote.TextChanged += new System.EventHandler(this.txtNote_TextChanged);
+            // 
+            // AdobeReadPDF
+            // 
+            this.AdobeReadPDF.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AdobeReadPDF.Enabled = true;
+            this.AdobeReadPDF.Location = new System.Drawing.Point(0, 0);
+            this.AdobeReadPDF.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.AdobeReadPDF.Name = "AdobeReadPDF";
+            this.AdobeReadPDF.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("AdobeReadPDF.OcxState")));
+            this.AdobeReadPDF.Size = new System.Drawing.Size(696, 329);
+            this.AdobeReadPDF.TabIndex = 0;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 30);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.txtNote);
+            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.AdobeReadPDF);
+            this.splitContainer1.Size = new System.Drawing.Size(696, 377);
+            this.splitContainer1.SplitterDistance = 44;
+            this.splitContainer1.TabIndex = 3;
             // 
             // OpenPDF
             // 
@@ -114,48 +146,41 @@
             this.ExitPDF.Text = "Exit";
             this.ExitPDF.Click += new System.EventHandler(this.ExitPDF_Click);
             // 
-            // txtNote
+            // mnsReadPDF
             // 
-            this.txtNote.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtNote.Enabled = false;
-            this.txtNote.Location = new System.Drawing.Point(0, 30);
-            this.txtNote.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtNote.Multiline = true;
-            this.txtNote.Name = "txtNote";
-            this.txtNote.Size = new System.Drawing.Size(696, 20);
-            this.txtNote.TabIndex = 2;
-            this.txtNote.Text = "Note: ";
-            this.txtNote.TextChanged += new System.EventHandler(this.txtNote_TextChanged);
-            // 
-            // AdobeReadPDF
-            // 
-            this.AdobeReadPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AdobeReadPDF.Enabled = true;
-            this.AdobeReadPDF.Location = new System.Drawing.Point(0, 24);
-            this.AdobeReadPDF.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.AdobeReadPDF.Name = "AdobeReadPDF";
-            this.AdobeReadPDF.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("AdobeReadPDF.OcxState")));
-            this.AdobeReadPDF.Size = new System.Drawing.Size(288, 288);
-            this.AdobeReadPDF.TabIndex = 0;
+            this.mnsReadPDF.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mnsReadPDF.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.mnsReadPDF.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.mnsReadPDF.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpenPDF,
+            this.DetailsPDF,
+            this.ExitPDF});
+            this.mnsReadPDF.Location = new System.Drawing.Point(0, 0);
+            this.mnsReadPDF.Name = "mnsReadPDF";
+            this.mnsReadPDF.Size = new System.Drawing.Size(696, 30);
+            this.mnsReadPDF.TabIndex = 1;
+            this.mnsReadPDF.Text = "mnsReadPDF";
             // 
             // ReadPDF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(696, 397);
-            this.Controls.Add(this.txtNote);
-            this.Controls.Add(this.AdobeReadPDF);
+            this.ClientSize = new System.Drawing.Size(696, 407);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.mnsReadPDF);
             this.MainMenuStrip = this.mnsReadPDF;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ReadPDF";
             this.Load += new System.EventHandler(this.ReadPDF_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.AdobeReadPDF)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.mnsReadPDF.ResumeLayout(false);
             this.mnsReadPDF.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AdobeReadPDF)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -164,14 +189,15 @@
         #endregion
 
         private AxAcroPDFLib.AxAcroPDF AdobeReadPDF;
-        private System.Windows.Forms.MenuStrip mnsReadPDF;
-        private System.Windows.Forms.ToolStripMenuItem OpenPDF;
-        private System.Windows.Forms.ToolStripMenuItem DetailsPDF;
-        private System.Windows.Forms.ToolStripMenuItem ExitPDF;
-        private System.Windows.Forms.ToolStripMenuItem mFileLinked;
         private System.Windows.Forms.TextBox txtNote;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.ToolStripMenuItem OpenPDF;
+        private System.Windows.Forms.ToolStripMenuItem mFileLinked;
         private System.Windows.Forms.ToolStripMenuItem mNote;
         private System.Windows.Forms.ToolStripMenuItem mSaveNote;
         private System.Windows.Forms.ToolStripMenuItem mFixNote;
+        private System.Windows.Forms.ToolStripMenuItem DetailsPDF;
+        private System.Windows.Forms.ToolStripMenuItem ExitPDF;
+        private System.Windows.Forms.MenuStrip mnsReadPDF;
     }
 }

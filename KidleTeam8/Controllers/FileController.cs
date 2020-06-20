@@ -55,14 +55,14 @@ namespace KindleTeam8.Controllers
                 var dbFile = (from f in _context.tbFiles
                               where f.ID == filename.ID
                               select f).SingleOrDefault();
-                foreach (var fol in filename.folder)
+                foreach (var fol in dbFile.folder)
                 {
                     var dbFolder = (from u in _context.tbFolders
-                                  where u.namefolder == fol.namefolder
-                                  select u).SingleOrDefault();
+                                    where u.namefolder == fol.namefolder
+                                    select u).SingleOrDefault();
                     dbFolder.listfile.Add(dbFile);
                 }
-                filename.folder.Clear();
+                //filename.folder.Clear();
                 _context.tbFiles.AddOrUpdate(filename);
                 _context.SaveChanges();
                 return true;
@@ -115,14 +115,17 @@ namespace KindleTeam8.Controllers
                                 ID = f.ID,
                                 filename = f.namefile,
                                 path = f.path,
-                                f.size
+                                size=f.size,
+                                note=f.note
+
                             })
                               .Select(x => new ClassFile
                                {
                                    ID = x.ID,
                                    namefile = x.filename,
                                    path = x.path,
-                                   size = x.size
+                                   size = x.size,
+                                   note=x.note
                                }).ToList();
                 return file;
             }
