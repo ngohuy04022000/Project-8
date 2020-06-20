@@ -33,6 +33,7 @@
             System.Windows.Forms.ColumnHeader cSize;
             System.Windows.Forms.ColumnHeader cID;
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.txtSearchFile = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAddFile = new System.Windows.Forms.Button();
@@ -41,7 +42,7 @@
             this.btnAddFolder = new System.Windows.Forms.Button();
             this.lstFileName = new System.Windows.Forms.ListView();
             this.fbdChooseFile = new System.Windows.Forms.FolderBrowserDialog();
-            this.txtSearchFile = new System.Windows.Forms.TextBox();
+            this.btnDeleteFile = new System.Windows.Forms.Button();
             cName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             cPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             cSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -87,6 +88,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.Silver;
+            this.splitContainer1.Panel1.Controls.Add(this.btnDeleteFile);
             this.splitContainer1.Panel1.Controls.Add(this.txtSearchFile);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.btnDelete);
@@ -102,11 +104,19 @@
             this.splitContainer1.SplitterDistance = 177;
             this.splitContainer1.TabIndex = 0;
             // 
+            // txtSearchFile
+            // 
+            this.txtSearchFile.Location = new System.Drawing.Point(12, 214);
+            this.txtSearchFile.Name = "txtSearchFile";
+            this.txtSearchFile.Size = new System.Drawing.Size(143, 20);
+            this.txtSearchFile.TabIndex = 7;
+            this.txtSearchFile.TextChanged += new System.EventHandler(this.txtSearchFile_TextChanged);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 71);
+            this.label1.Location = new System.Drawing.Point(11, 74);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 13);
@@ -119,7 +129,7 @@
             this.btnDelete.FlatAppearance.BorderSize = 3;
             this.btnDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnDelete.Location = new System.Drawing.Point(13, 287);
+            this.btnDelete.Location = new System.Drawing.Point(13, 306);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(143, 27);
             this.btnDelete.TabIndex = 5;
@@ -133,12 +143,13 @@
             this.btnAddFile.FlatAppearance.BorderSize = 3;
             this.btnAddFile.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btnAddFile.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnAddFile.Location = new System.Drawing.Point(12, 254);
+            this.btnAddFile.Location = new System.Drawing.Point(12, 240);
             this.btnAddFile.Name = "btnAddFile";
             this.btnAddFile.Size = new System.Drawing.Size(143, 27);
             this.btnAddFile.TabIndex = 3;
             this.btnAddFile.Text = "Add File";
             this.btnAddFile.UseVisualStyleBackColor = false;
+            this.btnAddFile.Visible = false;
             this.btnAddFile.Click += new System.EventHandler(this.btnAddFile_Click);
             // 
             // lstFolder
@@ -146,7 +157,7 @@
             this.lstFolder.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstFolder.FormattingEnabled = true;
             this.lstFolder.ItemHeight = 19;
-            this.lstFolder.Location = new System.Drawing.Point(13, 90);
+            this.lstFolder.Location = new System.Drawing.Point(12, 90);
             this.lstFolder.Name = "lstFolder";
             this.lstFolder.Size = new System.Drawing.Size(143, 118);
             this.lstFolder.TabIndex = 2;
@@ -194,15 +205,23 @@
             this.lstFileName.TabIndex = 7;
             this.lstFileName.UseCompatibleStateImageBehavior = false;
             this.lstFileName.View = System.Windows.Forms.View.Details;
+            this.lstFileName.Click += new System.EventHandler(this.lstFileName_Click);
             this.lstFileName.DoubleClick += new System.EventHandler(this.lstFileName_DoubleClick);
             // 
-            // txtSearchFile
+            // btnDeleteFile
             // 
-            this.txtSearchFile.Location = new System.Drawing.Point(12, 214);
-            this.txtSearchFile.Name = "txtSearchFile";
-            this.txtSearchFile.Size = new System.Drawing.Size(143, 20);
-            this.txtSearchFile.TabIndex = 7;
-            this.txtSearchFile.TextChanged += new System.EventHandler(this.txtSearchFile_TextChanged);
+            this.btnDeleteFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnDeleteFile.FlatAppearance.BorderSize = 3;
+            this.btnDeleteFile.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnDeleteFile.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnDeleteFile.Location = new System.Drawing.Point(13, 273);
+            this.btnDeleteFile.Name = "btnDeleteFile";
+            this.btnDeleteFile.Size = new System.Drawing.Size(143, 27);
+            this.btnDeleteFile.TabIndex = 8;
+            this.btnDeleteFile.Text = "Delete File";
+            this.btnDeleteFile.UseVisualStyleBackColor = false;
+            this.btnDeleteFile.Visible = false;
+            this.btnDeleteFile.Click += new System.EventHandler(this.btnDeleteFile_Click);
             // 
             // CreateFolder
             // 
@@ -233,6 +252,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtSearchFile;
+        private System.Windows.Forms.Button btnDeleteFile;
     }
 }
 

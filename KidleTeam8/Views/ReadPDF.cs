@@ -67,6 +67,7 @@ namespace KindleTeam8.Views
         }
         private void mFileLinked_Click(object sender, EventArgs e)
         {
+            /*
             if(Files.path == null)
             {
                 DialogResult xacnhan = MessageBox.Show(
@@ -95,7 +96,7 @@ namespace KindleTeam8.Views
                     Files = folder.listfile.ToList<ClassFile>()[index];
                     AdobeReadPDF.src = Files.path;
                 }    
-            }    
+            }*/   
         }
         //Đọc File
         private void ReadPDF_Load(object sender, EventArgs e)
@@ -105,6 +106,10 @@ namespace KindleTeam8.Views
             if(xacnhan == DialogResult.Yes)
             {
                 AdobeReadPDF.src = this.Files.path + "\\" + Files.namefile;
+            }
+            else
+            {
+                this.Close(); 
             }    
         }
 

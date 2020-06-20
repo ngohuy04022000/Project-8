@@ -136,25 +136,16 @@ namespace KindleTeam8.Views
         //Mở File
         private void lstFileName_DoubleClick(object sender, EventArgs e)
         {
-            DialogResult xacnhan = MessageBox.Show("Chon Yes để mở và chọn No để xóa", "Thông Bao",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             ClassFile files = new ClassFile();
             files = FileController.getFile(int.Parse(lstFileName.SelectedItems[0].SubItems[3].Text));
-            if (xacnhan == DialogResult.Yes)
-            {
-                ReadPDF = new ReadPDF(files, listfolder[0]);
-                ReadPDF.Show();
-            }
-            else
-            {
-
-                FolderController.DeleteFile(txtNameFolder.Text, int.Parse(lstFileName.SelectedItems[0].SubItems[3].Text));
-                ClassFolder folder = new ClassFolder();
-                folder = FolderController.getFolder(txtNameFolder.Text);
-                displayFile(folder);
-            }
+            ReadPDF = new ReadPDF(files, listfolder[0]);
+            ReadPDF.Show();
         }
-
+        private void lstFileName_Click(object sender, EventArgs e)
+        {
+            btnAddFile.Visible = true;
+            btnDeleteFile.Visible = true;
+        }
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (this.lstFolder.SelectedItems.Count <= 0)
@@ -183,6 +174,7 @@ namespace KindleTeam8.Views
         {
             if (lstFolder.SelectedItem != null)
             {
+                btnAddFile.Visible = true;
                 txtNameFolder.Text = lstFolder.SelectedItem.ToString();
                 ClassFolder folder = new ClassFolder();
                 folder.listfile = FolderController.getListFile(txtNameFolder.Text);
@@ -206,5 +198,30 @@ namespace KindleTeam8.Views
                 lstFileName.Items.Add(item);
             }
         }
+
+        private void btnDeleteFile_Click(object sender, EventArgs e)
+        {
+            {
+                DialogResult xacnhan = MessageBox.Show("Bạn có muốn xóa File đã chọn không?", "Thông Báo",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                ClassFile files = new ClassFile();
+                files = FileController.getFile(int.Parse(lstFileName.SelectedItems[0].SubItems[3].Text));
+                if (xacnhan == DialogResult.Yes)
+                {
+                    FolderController.DeleteFile(txtNameFolder.Text, int.Parse(lstFileName.SelectedItems[0].SubItems[3].Text));
+                    ClassFolder folder = new ClassFolder();
+                    folder = FolderController.getFolder(txtNameFolder.Text);
+                    displayFile(folder);
+                    btnAddFile.Visible = false;
+                    btnDeleteFile.Visible = false;
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
+
+
     }
 }
