@@ -106,6 +106,7 @@ namespace KindleTeam8.Views
                 string key = Path.GetExtension(file);
                 if(key == ".pdf")
                 {
+                    filename.ID = FileController.getIDfromDB();
                     filename.namefile = fileif.Name;
                     filename.path = fileif.DirectoryName;
                     filename.size = Math.Ceiling(fileif.Length / 1024f).ToString("0 KB");
@@ -113,6 +114,7 @@ namespace KindleTeam8.Views
                     ListViewItem item = new ListViewItem(fileif.Name, key);
                     item.SubItems.Add(fileif.DirectoryName);
                     item.SubItems.Add(Math.Ceiling(fileif.Length / 1024f).ToString("0 KB"));
+                    item.SubItems.Add(filename.ID.ToString());
                     folders.listfile.Add(filename);
                     FolderController.UpdateFolder(folders);
                     lvwSearch.BeginUpdate();
