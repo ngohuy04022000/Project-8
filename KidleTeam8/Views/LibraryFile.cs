@@ -180,7 +180,7 @@ namespace KindleTeam8.Views
         private void lvwSearch_DoubleClick(object sender, EventArgs e)
         {
             ClassFile files = new ClassFile();
-            files = FileController.getFile(int.Parse(lvwSearch.SelectedItems[0].SubItems[0].Text));//lấy ID
+            files = FileController.getFile(int.Parse(lvwSearch.SelectedItems[0].SubItems[3].Text));//lấy ID
             ReadPDF = new ReadPDF(files, folders);
             ReadPDF.Show();
         }
