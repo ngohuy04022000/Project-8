@@ -127,11 +127,10 @@ namespace KindleTeam8.Views
             file.namefile = iffile.Name;
             file.path = iffile.DirectoryName;
             file.size = Math.Ceiling(iffile.Length / 1024f).ToString("0 KB");
-            FileController.UpdateFile(file);
             folder.listfile.Add(file);
+            file.folder.Add(folder);
+            FileController.UpdateFile(file);
             FolderController.UpdateFolder(folder);
-            //FolderController.AddFolder();
-            //Hiển thị lên listview
         }
         //Mở File
         private void lstFileName_DoubleClick(object sender, EventArgs e)

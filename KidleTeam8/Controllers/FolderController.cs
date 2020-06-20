@@ -80,12 +80,12 @@ namespace KindleTeam8.Controllers
             {
                 var dbFolder = (from f in _context.tbFolders
                                 where f.namefolder == folder.namefolder
-                                select f).Single();
+                                select f).SingleOrDefault();
                 foreach (var file in folder.listfile)
                 {
                     var dbFile = (from x in _context.tbFiles
                                   where x.ID == file.ID
-                                  select x).Single();
+                                  select x).SingleOrDefault();
                     dbFile.folder.Add(dbFolder);
                 }
                 folder.listfile.Clear();
