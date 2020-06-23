@@ -127,9 +127,9 @@ namespace KindleTeam8.Views
             file.namefile = iffile.Name;
             file.path = iffile.DirectoryName;
             file.size = Math.Ceiling(iffile.Length / 1024f).ToString("0 KB");
+            //file.folder.Add(folder);
+            FileController.AddFile(file);
             folder.listfile.Add(file);
-            file.folder.Add(folder);
-            FileController.UpdateFile(file);
             FolderController.UpdateFolder(folder);
         }
         //Mở File
@@ -152,23 +152,16 @@ namespace KindleTeam8.Views
                 return;
             }
             ClassFolder f = new ClassFolder();
+
             f = listfolder.Where(x => x.namefolder == txtNameFolder.Text).Single();
-            FolderController.DeleteFolder(f);
-            displayFolder();
+            for (int i = 0; i < lstFileName.Items.Count; i++)
+            {
+                FolderController.DeleteFile(txtNameFolder.Text, int.Parse(lstFileName.Items[i].SubItems[3].Text));
+                FileController.DeleteFile(int.Parse(lstFileName.Items[i].SubItems[3].Text));
+            }
+                FolderController.DeleteFolder(f);
+                displayFolder();
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            // cập nhật lại folder đang chọn vào database
-
-            //!! VẤN ĐỀ: định đổi tên folder mà lại tạo ra folder mới
-            ClassFolder f = new ClassFolder();
-            f.namefolder = txtNameFolder.Text.Trim();
-            FolderController.UpdateFolder(f);
-            //lstFolder.Items[lstFolder.SelectedIndex] = txtNameFolder.Text.Trim();
-            //hiển thị lại FolderController.getListFolder()
-        }
-
         private void lstFolder_Click(object sender, EventArgs e)
         {
             if (lstFolder.SelectedItem != null)
@@ -208,6 +201,7 @@ namespace KindleTeam8.Views
                 if (xacnhan == DialogResult.Yes)
                 {
                     FolderController.DeleteFile(txtNameFolder.Text, int.Parse(lstFileName.SelectedItems[0].SubItems[3].Text));
+                    FileController.DeleteFile(int.Parse(lstFileName.SelectedItems[0].SubItems[3].Text));
                     ClassFolder folder = new ClassFolder();
                     folder = FolderController.getFolder(txtNameFolder.Text);
                     displayFile(folder);
@@ -220,7 +214,5 @@ namespace KindleTeam8.Views
                 }
             }
         }
-
-
     }
 }

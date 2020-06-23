@@ -46,19 +46,16 @@ namespace KindleTeam8.Views
             //FileController.UpdateFile(Files);
             this.Close();
         }
-        private void OpenPDF_Click(object sender, EventArgs e)
-        {
-            //AdobeReadPDF.src = Files.namefile;
-        }
         private void mSaveNote_Click(object sender, EventArgs e)
         {
             Files.note = txtNote.Text;
+            txtNote.Text = "Note:" + Files.note;
             FileController.UpdateFile(Files);
-            txtNote.Enabled = false;
+            txtNote.Visible = false;
         }
         private void mFixNote_Click(object sender, EventArgs e)
         {
-            txtNote.Enabled = true;
+            txtNote.Visible = true;
             txtNote.Focus();
         }
         private void txtNote_TextChanged(object sender, EventArgs e)
@@ -67,8 +64,7 @@ namespace KindleTeam8.Views
         }
         private void mFileLinked_Click(object sender, EventArgs e)
         {
-            /*
-            if(Files.path == null)
+            if(Files.linkedfile == null)
             {
                 DialogResult xacnhan = MessageBox.Show(
                     "Chưa có File liên Kết, bạn có muốn tạo không?", "Thông Báo",
@@ -79,24 +75,24 @@ namespace KindleTeam8.Views
                     ChooseFile.Filter = "PDF|*.pdf";
                     if (ChooseFile.ShowDialog() == DialogResult.OK)
                     {
-                        Files.path = ChooseFile.FileName;
-                        AdobeReadPDF.src = Files.path;
+                        AddFileItem(folder, ChooseFile.FileName);
                     }
                 }    
             }
             else
             {
                 DialogResult xacnhan = MessageBox.Show(
-                      "File liên Kết: "+Files.path+", bạn có muốn mở không?", "Thông Báo",
+                      "File liên Kết: "+Files.linkedfile.namefile+", bạn có muốn mở không?", "Thông Báo",
                       MessageBoxButtons.OKCancel);
                 if(xacnhan == DialogResult.OK)
                 {
+                    folder = FolderController.getFolder(folder.namefolder);
                     int index = folder.listfile.ToList<ClassFile>().FindIndex(
-                        x => x.path == Files.path);
+                        x => x.namefile == Files.linkedfile.namefile);
                     Files = folder.listfile.ToList<ClassFile>()[index];
-                    AdobeReadPDF.src = Files.path;
-                }    
-            }*/   
+                    AdobeReadPDF.src = Files.path + "\\" + Files.namefile;
+                }
+            }
         }
         //Đọc File
         private void ReadPDF_Load(object sender, EventArgs e)
@@ -105,17 +101,27 @@ namespace KindleTeam8.Views
                 "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if(xacnhan == DialogResult.Yes)
             {
-                AdobeReadPDF.src = this.Files.path + "\\" + Files.namefile;
+                AdobeReadPDF.src = Files.path + "\\" + Files.namefile;
             }
             else
             {
                 this.Close(); 
             }    
         }
-
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        //Thêm file vào database và folder
+        public void AddFileItem(ClassFolder folder, string filename)
         {
-
+            FileInfo iffile = new FileInfo(filename);
+            ClassFile file = new ClassFile();
+            file.ID = FileController.getIDfromDB();
+            file.namefile = iffile.Name;
+            file.path = iffile.DirectoryName;
+            file.size = Math.Ceiling(iffile.Length / 1024f).ToString("0 KB");
+            Files.linkedfile = file;
+            FileController.AddFile(file);
+            FileController.UpdateFile(Files);
+            folder.listfile.Add(file);
+            FolderController.UpdateFolder(folder);
         }
     }
 }

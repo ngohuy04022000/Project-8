@@ -89,7 +89,7 @@ namespace KindleTeam8.Controllers
                     dbFile.folder.Add(dbFolder);
                 }
                 folder.listfile.Clear();
-                _context.tbFolders.AddOrUpdate(folder);
+                _context.tbFolders.AddOrUpdate(dbFolder);
                 _context.SaveChanges();
                 return true;
             }
@@ -104,11 +104,11 @@ namespace KindleTeam8.Controllers
                                 select u).SingleOrDefault();
                 foreach (var file in dbfolder.listfile)
                 {
-                    foreach (var u in file.folder)
+                    foreach (var f in file.folder)
                     {
-                        if (u.namefolder == folder.namefolder)
+                        if (f.namefolder == folder.namefolder)
                         {
-                            file.folder.Remove(u);
+                            file.folder.Remove(f);
                             break;
                         }
                     }
@@ -142,6 +142,7 @@ namespace KindleTeam8.Controllers
                 return true;
             }
         }
+        //Lấy folder với tên folder
         public static ClassFolder getFolder(string namefolder)
         {
             using (var _context = new DBFolderContext())
@@ -162,18 +163,6 @@ namespace KindleTeam8.Controllers
                 }
             }
         }
-        //Lấy folder với từ khóa
-        //public static ClassFolder GetFolderKey(string txtname)
-        //{
-        //    using (var _context = new DBFolderContext())
-        //    {
-        //        var dbFolder = (from f in _context.tbFiles.Include("folder")
-        //                        where f.namefile.Contains(txtname)
-        //                        select f).ToList();
-        //        return ;
-        //    }
-        //}
-        //Thêm file vào folder trong database
         public static bool AddFile(ClassFolder folder, ClassFile file)
         {
             using (var _context = new DBFolderContext())

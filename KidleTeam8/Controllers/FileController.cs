@@ -48,21 +48,22 @@ namespace KindleTeam8.Controllers
                 return false;
             }
         }
+        //Cập nhật file
         public static bool UpdateFile(ClassFile filename)
         {
             using (var _context = new DBFolderContext())
             {
-                var dbFile = (from f in _context.tbFiles
-                              where f.ID == filename.ID
-                              select f).SingleOrDefault();
-                foreach (var fol in filename.folder)
+                if (filename.linkedfile != null)
                 {
-                    var dbFolder = (from u in _context.tbFolders
-                                    where u.namefolder == fol.namefolder
-                                    select u).SingleOrDefault();
-                    dbFolder.listfile.Add(dbFile);
+                    var dbFile = (from f in _context.tbFiles
+                                  where f.ID == filename.ID
+                                  select f).SingleOrDefault();
+                    dbFile.linkedfile = filename.linkedfile;
+                    _context.tbFiles.AddOrUpdate(filename);
+                    _context.SaveChanges();
+                    return true;
                 }
-                filename.folder.Clear();
+                //filename.folder.Clear();
                 _context.tbFiles.AddOrUpdate(filename);
                 _context.SaveChanges();
                 return true;
@@ -83,11 +84,25 @@ namespace KindleTeam8.Controllers
                 { return false; }    
             }
         }
-        public static bool DeleteFile(ClassFile file)
+        public static bool DeleteFile(int ID)
         {
             using (var _context = new DBFolderContext())
             {
-                _context.tbFiles.Remove(file);
+                var dbFile = (from f in _context.tbFiles
+                                where f.ID == ID
+                                select f).SingleOrDefault();
+                foreach (var fol in dbFile.folder)
+                {
+                    foreach (var file in fol.listfile)
+                    {
+                        if (file.ID == ID)
+                        {
+                            fol.listfile.Remove(file);
+                            break;
+                        }
+                    }
+                }
+                _context.tbFiles.Remove(dbFile);
                 _context.SaveChanges();
                 return true;
             }
@@ -131,7 +146,8 @@ namespace KindleTeam8.Controllers
                                 filename = f.namefile,
                                 path = f.path,
                                 size=f.size,
-                                note=f.note
+                                note=f.note,
+                                linkedfile=f.linkedfile
 
                             })
                               .Select(x => new ClassFile
@@ -140,7 +156,8 @@ namespace KindleTeam8.Controllers
                                    namefile = x.filename,
                                    path = x.path,
                                    size = x.size,
-                                   note=x.note
+                                   note=x.note,
+                                   linkedfile =x.linkedfile
                                }).ToList();
                 return file;
             }

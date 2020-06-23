@@ -12,11 +12,13 @@ namespace KindleTeam8.Models
     public class ClassFile
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }//Liên kết bằng ID
         public string namefile { get; set; }
         public string path { get; set; }
         public string size { get; set; }
         public string note { get; set; }
+        public ClassFile linkedfile { get; set; }
         public virtual ICollection<ClassFolder> folder { get; set; }
 
         public ClassFile()
