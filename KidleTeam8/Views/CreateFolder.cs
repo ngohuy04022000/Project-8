@@ -128,10 +128,18 @@ namespace KindleTeam8.Views
             file.namefile = iffile.Name;
             file.path = iffile.DirectoryName;
             file.size = Math.Ceiling(iffile.Length / 1024f).ToString("0 KB");
-            //file.folder.Add(folder);
-            FileController.AddFile(file);
-            folder.listfile.Add(file);
-            FolderController.UpdateFolder(folder);
+            if (FileController.getContain(file))
+            {
+                file = FileController.getFile(file.namefile);
+            }
+            else
+            {
+                //file.folder.Add(folder);
+                FileController.AddFile(file);
+            }
+                folder.listfile.Add(file);
+                FolderController.UpdateFolder(folder);
+ 
         }
         //Mở File
         private void lstFileName_DoubleClick(object sender, EventArgs e)
@@ -146,6 +154,7 @@ namespace KindleTeam8.Views
             btnAddFile.Visible = true;
             btnDeleteFile.Visible = true;
         }
+        //Xóa folder trên database
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (this.lstFolder.SelectedItems.Count <= 0)
@@ -158,11 +167,15 @@ namespace KindleTeam8.Views
             for (int i = 0; i < lstFileName.Items.Count; i++)
             {
                 FolderController.DeleteFile(txtNameFolder.Text, int.Parse(lstFileName.Items[i].SubItems[3].Text));
-                FileController.DeleteFile(int.Parse(lstFileName.Items[i].SubItems[3].Text));
+                if (!(FolderController.Containfif(FileController.getFile(int.Parse(lstFileName.Items[i].SubItems[3].Text)))))
+                {
+                    FileController.DeleteFile(int.Parse(lstFileName.Items[i].SubItems[3].Text));
+                }
             }
                 FolderController.DeleteFolder(f);
                 displayFolder();
         }
+        //Chọn danh sách hiển thị trên listview
         private void lstFolder_Click(object sender, EventArgs e)
         {
             if (lstFolder.SelectedItem != null)
@@ -202,7 +215,10 @@ namespace KindleTeam8.Views
                 if (xacnhan == DialogResult.Yes)
                 {
                     FolderController.DeleteFile(txtNameFolder.Text, int.Parse(lstFileName.SelectedItems[0].SubItems[3].Text));
-                    FileController.DeleteFile(int.Parse(lstFileName.SelectedItems[0].SubItems[3].Text));
+                    if (!(FolderController.Containfif(FileController.getFile(int.Parse(lstFileName.SelectedItems[0].SubItems[3].Text)))))
+                    {
+                        FileController.DeleteFile(int.Parse(lstFileName.SelectedItems[0].SubItems[3].Text));
+                    }
                     ClassFolder folder = new ClassFolder();
                     folder = FolderController.getFolder(txtNameFolder.Text);
                     displayFile(folder);

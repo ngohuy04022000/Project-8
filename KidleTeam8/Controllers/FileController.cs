@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,18 +54,19 @@ namespace KindleTeam8.Controllers
         {
             using (var _context = new DBFolderContext())
             {
-                if (filename.linkedfile != null)
-                {
+                //if (filename.linkedfile != null)
+                //{
                     //var dbFile = (from f in _context.tbFiles
                     //              where f.ID == filename.ID
                     //              select f).SingleOrDefault();
                     //dbFile.linkedfile = filename.linkedfile;
                     //_context.tbFiles.AddOrUpdate(dbFile);
-                    _context.tbFiles.SqlQuery("linkedfile_ID");
-
+                    //_context.tbFiles.SqlQuery("Select * from Files where ID=@id", new  SqlParameter("@id",filename.ID)).FirstOrDefault();
+                    //_context.Database.ExecuteSqlCommand("Update Files set linkedfile =@iid where ID=@id",
+                    //    new SqlParameter("@id", filename.ID), new SqlParameter("@iid", filename.linkedfile));
                     //_context.SaveChanges();
-                    return true;
-                }
+                    //return true;
+                //}
                 //filename.folder.Clear();
                 _context.tbFiles.AddOrUpdate(filename);
                 _context.SaveChanges();
@@ -86,6 +88,7 @@ namespace KindleTeam8.Controllers
                 { return false; }    
             }
         }
+        //Xóa file ra khỏi database
         public static bool DeleteFile(int ID)
         {
             using (var _context = new DBFolderContext())
@@ -149,8 +152,6 @@ namespace KindleTeam8.Controllers
                                 path = f.path,
                                 size=f.size,
                                 note=f.note,
-                                linkedfile=f.linkedfile
-
                             })
                               .Select(x => new ClassFile
                                {
@@ -159,7 +160,6 @@ namespace KindleTeam8.Controllers
                                    path = x.path,
                                    size = x.size,
                                    note=x.note,
-                                   linkedfile =x.linkedfile
                                }).ToList();
                 return file;
             }

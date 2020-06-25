@@ -29,14 +29,14 @@ namespace KindleTeam8.Views
             this.Files = files;
             AdobeReadPDF.src = Files.path + "\\" + Files.namefile;
             this.Text = this.Files.namefile;
-            if(Files.note != null)
+            if (Files.note != null)
             {
                 txtNote.Text = "Note:" + Files.note;
-            }    
+            }
         }
         private void DetailsPDF_Click(object sender, EventArgs e)
         {
-            FileInfo info = new FileInfo(this.Files.path+"\\"+Files.namefile);
+            FileInfo info = new FileInfo(this.Files.path + "\\" + Files.namefile);
             MessageBox.Show("Tên tệp: " + info.Name + Environment.NewLine + "Thời gian tạo: " + info.CreationTime.ToLongTimeString() + Environment.NewLine +
                 "Truy cập lần cuối: " + info.LastWriteTime.ToLongDateString() + Environment.NewLine + "Chỉnh sửa lần cuối: " + info.LastAccessTime.ToLongDateString() +
                 Environment.NewLine + "Kích thước: " + (Convert.ToInt32(info.Length / 1024f)).ToString() + " KB", "Details", MessageBoxButtons.OK);
@@ -64,35 +64,35 @@ namespace KindleTeam8.Views
         }
         private void mFileLinked_Click(object sender, EventArgs e)
         {
-            if(Files.linkedfile == null)
-            {
-                DialogResult xacnhan = MessageBox.Show(
-                    "Chưa có File liên Kết, bạn có muốn tạo không?", "Thông Báo",
-                    MessageBoxButtons.OKCancel);
-                if(xacnhan == DialogResult.OK)
-                {
-                    OpenFileDialog ChooseFile = new OpenFileDialog();
-                    ChooseFile.Filter = "PDF|*.pdf";
-                    if (ChooseFile.ShowDialog() == DialogResult.OK)
-                    {
-                        AddFileItem(folder, ChooseFile.FileName);
-                    }
-                }    
-            }
-            else
-            {
-                DialogResult xacnhan = MessageBox.Show(
-                      "File liên Kết: "+Files.linkedfile.namefile+", bạn có muốn mở không?", "Thông Báo",
-                      MessageBoxButtons.OKCancel);
-                if(xacnhan == DialogResult.OK)
-                {
-                    folder = FolderController.getFolder(folder.namefolder);
-                    int index = folder.listfile.ToList<ClassFile>().FindIndex(
-                        x => x.namefile == Files.linkedfile.namefile);
-                    Files = folder.listfile.ToList<ClassFile>()[index];
-                    AdobeReadPDF.src = Files.path + "\\" + Files.namefile;
-                }
-            }
+            //if (Files.linkedfile == null)
+            //{
+            //    DialogResult xacnhan = MessageBox.Show(
+            //        "Chưa có File liên Kết, bạn có muốn tạo không?", "Thông Báo",
+            //        MessageBoxButtons.OKCancel);
+            //    if (xacnhan == DialogResult.OK)
+            //    {
+            //        OpenFileDialog ChooseFile = new OpenFileDialog();
+            //        ChooseFile.Filter = "PDF|*.pdf";
+            //        if (ChooseFile.ShowDialog() == DialogResult.OK)
+            //        {
+            //            AddFileItem(folder, ChooseFile.FileName);
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    DialogResult xacnhan = MessageBox.Show(
+            //          "File liên Kết: " + Files.linkedfile.namefile + ", bạn có muốn mở không?", "Thông Báo",
+            //          MessageBoxButtons.OKCancel);
+            //    if (xacnhan == DialogResult.OK)
+            //    {
+            //        folder = FolderController.getFolder(folder.namefolder);
+            //        int index = folder.listfile.ToList<ClassFile>().FindIndex(
+            //            x => x.namefile == Files.linkedfile.namefile);
+            //        Files = folder.listfile.ToList<ClassFile>()[index];
+            //        AdobeReadPDF.src = Files.path + "\\" + Files.namefile;
+            //    }
+            //}
         }
         //Đọc File
         private void ReadPDF_Load(object sender, EventArgs e)
@@ -117,7 +117,7 @@ namespace KindleTeam8.Views
             file.namefile = iffile.Name;
             file.path = iffile.DirectoryName;
             file.size = Math.Ceiling(iffile.Length / 1024f).ToString("0 KB");
-            Files.linkedfile = file;
+            //Files.linkedfile = file;
             FileController.AddFile(file);
             FileController.UpdateFile(Files);
             folder.listfile.Add(file);

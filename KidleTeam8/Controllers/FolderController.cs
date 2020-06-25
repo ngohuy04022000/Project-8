@@ -72,7 +72,37 @@ namespace KindleTeam8.Controllers
                 else
                     return null;
             }
-        }      
+        }
+        public static bool Containfif(ClassFile file)
+        {
+            using (var _context = new DBFolderContext())
+            {
+                var dbFolder = (from f in _context.tbFolders.Include("listfile").AsEnumerable()
+                                select new
+                                {
+                                    foldername = f.namefolder,
+                                    listfiles = f.listfile
+                                })
+                                .Select(x => new ClassFolder
+                                {
+                                    namefolder = x.foldername,
+                                    listfile = x.listfiles
+                                }).ToList();
+                int i = 0;
+                foreach (ClassFolder folder in dbFolder)
+                {
+                    i = i + folder.listfile.Where(x => x.ID == file.ID).Count();
+                }
+                if(i>=1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }    
+            }
+        }
         //Thay đổi tên của folder trong database
         public static bool UpdateFolder(ClassFolder folder)
         {

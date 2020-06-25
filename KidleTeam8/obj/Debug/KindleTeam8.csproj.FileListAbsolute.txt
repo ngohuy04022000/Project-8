@@ -230,4 +230,3 @@ C:\Users\nguye\Source\Repos\Project-8\KidleTeam8\obj\Debug\KindleTeam8.Views.frm
 C:\Users\nguye\Source\Repos\Project-8\KidleTeam8\obj\Debug\KindleTeam8.Views.LibraryFile.resources
 C:\Users\nguye\Source\Repos\Project-8\KidleTeam8\obj\Debug\KindleTeam8.Views.CreateFolder.resources
 C:\Users\nguye\Source\Repos\Project-8\KidleTeam8\obj\Debug\KindleTeam8.Views.ReadPDF.resources
-C:\Users\as\Documents\Project-8\KidleTeam8\obj\Debug\KindleTeam8.csprojAssemblyReference.cache

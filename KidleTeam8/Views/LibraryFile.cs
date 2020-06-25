@@ -94,32 +94,40 @@ namespace KindleTeam8.Views
                 return;
             }
         }
-        public void AddToListView(string file)
+        public void AddToListView(string filename)
         {
-            ClassFile filename = new ClassFile();
-            filename.namefile = file;
+            ClassFile file = new ClassFile();
+            file.namefile = filename;
             //int index = folders.FindIndex(x => x.namefolder == cmbFolderName.Text);
             //folders.listfile.Add(filename);
-            FileInfo fileif = new FileInfo(file);
+            FileInfo fileif = new FileInfo(filename);
             lvwSearch.Invoke((Action)(() =>
             {
-                string key = Path.GetExtension(file);
-                if(key == ".pdf")
+                string key = Path.GetExtension(filename);
+                if (key == ".pdf")
                 {
-                    filename.ID = FileController.getIDfromDB();
-                    filename.namefile = fileif.Name;
-                    filename.path = fileif.DirectoryName;
-                    filename.size = Math.Ceiling(fileif.Length / 1024f).ToString("0 KB");
-                    FileController.AddFile(filename);
-                    ListViewItem item = new ListViewItem(fileif.Name, key);
-                    item.SubItems.Add(fileif.DirectoryName);
-                    item.SubItems.Add(Math.Ceiling(fileif.Length / 1024f).ToString("0 KB"));
-                    item.SubItems.Add(filename.ID.ToString());
-                    folders.listfile.Add(filename);
+                    file.ID = FileController.getIDfromDB();
+                    file.namefile = fileif.Name;
+                    file.path = fileif.DirectoryName;
+                    file.size = Math.Ceiling(fileif.Length / 1024f).ToString("0 KB");
+                    if (FileController.getContain(file))
+                    {
+                        file = FileController.getFile(file.namefile);
+                    }
+                    else
+                    {
+                        FileController.AddFile(file);
+
+                        ListViewItem item = new ListViewItem(fileif.Name, key);
+                        item.SubItems.Add(fileif.DirectoryName);
+                        item.SubItems.Add(Math.Ceiling(fileif.Length / 1024f).ToString("0 KB"));
+                        item.SubItems.Add(file.ID.ToString());
+                        lvwSearch.BeginUpdate();
+                        lvwSearch.Items.Add(item);
+                        lvwSearch.EndUpdate();
+                    }
+                    folders.listfile.Add(file);
                     FolderController.UpdateFolder(folders);
-                    lvwSearch.BeginUpdate();
-                    lvwSearch.Items.Add(item);
-                    lvwSearch.EndUpdate();
                 }               
             }));
         }

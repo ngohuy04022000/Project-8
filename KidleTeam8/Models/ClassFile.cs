@@ -18,7 +18,6 @@ namespace KindleTeam8.Models
         public string path { get; set; }
         public string size { get; set; }
         public string note { get; set; }
-        public virtual ClassFile linkedfile { get; set; }
         public virtual ICollection<ClassFolder> folder { get; set; }
         public ClassFile()
         {
