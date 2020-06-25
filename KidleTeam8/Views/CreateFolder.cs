@@ -41,6 +41,7 @@ namespace KindleTeam8.Views
                 this.lstFolder.Items.Add(folder.namefolder);
             }
         }
+        //Hiển thị file của folder lên listview (Huy)
         private void displayFile(ClassFolder folder)
         {
             lstFileName.Items.Clear();
@@ -53,7 +54,7 @@ namespace KindleTeam8.Views
                 lstFileName.Items.Add(item);
             }
         }
-        // Thêm tên Folder
+        // Thêm Folder vào database(Huy)
         private void btnAddFolder_Click(object sender, EventArgs e)
         {
             if (txtNameFolder.Text != "" && listfolder.Where(x => x.namefolder == txtNameFolder.Text).Count() < 1)

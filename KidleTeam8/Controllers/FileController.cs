@@ -55,12 +55,14 @@ namespace KindleTeam8.Controllers
             {
                 if (filename.linkedfile != null)
                 {
-                    var dbFile = (from f in _context.tbFiles
-                                  where f.ID == filename.ID
-                                  select f).SingleOrDefault();
-                    dbFile.linkedfile = filename.linkedfile;
-                    _context.tbFiles.AddOrUpdate(filename);
-                    _context.SaveChanges();
+                    //var dbFile = (from f in _context.tbFiles
+                    //              where f.ID == filename.ID
+                    //              select f).SingleOrDefault();
+                    //dbFile.linkedfile = filename.linkedfile;
+                    //_context.tbFiles.AddOrUpdate(dbFile);
+                    _context.tbFiles.SqlQuery("linkedfile_ID");
+
+                    //_context.SaveChanges();
                     return true;
                 }
                 //filename.folder.Clear();

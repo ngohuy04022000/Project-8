@@ -18,12 +18,12 @@ namespace KindleTeam8.Models
         public string path { get; set; }
         public string size { get; set; }
         public string note { get; set; }
-        public ClassFile linkedfile { get; set; }
+        public virtual ClassFile linkedfile { get; set; }
         public virtual ICollection<ClassFolder> folder { get; set; }
-
         public ClassFile()
         {
             folder = new HashSet<ClassFolder>();
+            //linkedfile = new ClassFile();
         }
         public override string ToString()
         {

@@ -51,12 +51,13 @@
             // txtNote
             // 
             this.txtNote.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtNote.Enabled = false;
             this.txtNote.Location = new System.Drawing.Point(0, 0);
+            this.txtNote.Multiline = true;
             this.txtNote.Name = "txtNote";
-            this.txtNote.Size = new System.Drawing.Size(464, 20);
+            this.txtNote.Size = new System.Drawing.Size(464, 25);
             this.txtNote.TabIndex = 2;
             this.txtNote.Text = "Note: ";
-            this.txtNote.Visible = false;
             this.txtNote.TextChanged += new System.EventHandler(this.txtNote_TextChanged);
             // 
             // AdobeReadPDF
@@ -73,14 +74,14 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 24);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.txtNote);
-            this.splitContainer1.Panel1.Enabled = false;
+            this.splitContainer1.Panel1.Enabled = this.Enabled;
             // 
             // splitContainer1.Panel2
             // 
@@ -102,7 +103,7 @@
             // mFileLinked
             // 
             this.mFileLinked.Name = "mFileLinked";
-            this.mFileLinked.Size = new System.Drawing.Size(180, 22);
+            this.mFileLinked.Size = new System.Drawing.Size(138, 22);
             this.mFileLinked.Text = "File Linked";
             this.mFileLinked.Click += new System.EventHandler(this.mFileLinked_Click);
             // 
@@ -112,7 +113,7 @@
             this.mSaveNote,
             this.mFixNote});
             this.mNote.Name = "mNote";
-            this.mNote.Size = new System.Drawing.Size(180, 22);
+            this.mNote.Size = new System.Drawing.Size(138, 22);
             this.mNote.Text = "Note";
             // 
             // mSaveNote

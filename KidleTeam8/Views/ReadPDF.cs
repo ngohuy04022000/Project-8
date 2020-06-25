@@ -51,11 +51,11 @@ namespace KindleTeam8.Views
             Files.note = txtNote.Text;
             txtNote.Text = "Note:" + Files.note;
             FileController.UpdateFile(Files);
-            txtNote.Visible = false;
+            txtNote.Enabled = false;
         }
         private void mFixNote_Click(object sender, EventArgs e)
         {
-            txtNote.Visible = true;
+            txtNote.Enabled = true;
             txtNote.Focus();
         }
         private void txtNote_TextChanged(object sender, EventArgs e)
