@@ -64,35 +64,7 @@ namespace KindleTeam8.Views
         }
         private void mFileLinked_Click(object sender, EventArgs e)
         {
-            //if (Files.linkedfile == null)
-            //{
-            //    DialogResult xacnhan = MessageBox.Show(
-            //        "Chưa có File liên Kết, bạn có muốn tạo không?", "Thông Báo",
-            //        MessageBoxButtons.OKCancel);
-            //    if (xacnhan == DialogResult.OK)
-            //    {
-            //        OpenFileDialog ChooseFile = new OpenFileDialog();
-            //        ChooseFile.Filter = "PDF|*.pdf";
-            //        if (ChooseFile.ShowDialog() == DialogResult.OK)
-            //        {
-            //            AddFileItem(folder, ChooseFile.FileName);
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    DialogResult xacnhan = MessageBox.Show(
-            //          "File liên Kết: " + Files.linkedfile.namefile + ", bạn có muốn mở không?", "Thông Báo",
-            //          MessageBoxButtons.OKCancel);
-            //    if (xacnhan == DialogResult.OK)
-            //    {
-            //        folder = FolderController.getFolder(folder.namefolder);
-            //        int index = folder.listfile.ToList<ClassFile>().FindIndex(
-            //            x => x.namefile == Files.linkedfile.namefile);
-            //        Files = folder.listfile.ToList<ClassFile>()[index];
-            //        AdobeReadPDF.src = Files.path + "\\" + Files.namefile;
-            //    }
-            //}
+            //DialogResult xacnhan = MessageBox.Show
         }
         //Đọc File
         private void ReadPDF_Load(object sender, EventArgs e)

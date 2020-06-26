@@ -72,6 +72,12 @@
     <Compile Include="Models\ClassFile.cs" />
     <Compile Include="Models\ClassFolder.cs" />
     <Compile Include="Models\DBFolderContextForm.cs" />
+    <Compile Include="Views\ChosseFileinDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ChosseFileinDB.Designer.cs">
+      <DependentUpon>ChosseFileinDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmMDI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     <Compile Include="Views\ReadPDF.Designer.cs">
       <DependentUpon>ReadPDF.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\ChosseFileinDB.resx">
+      <DependentUpon>ChosseFileinDB.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\frmMDI.resx">
       <DependentUpon>frmMDI.cs</DependentUpon>
     </EmbeddedResource>

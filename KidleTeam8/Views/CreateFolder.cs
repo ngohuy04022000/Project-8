@@ -18,6 +18,7 @@ namespace KindleTeam8.Views
         private List<ClassFolder> listfolder;
         //private List<string> listfilename;
         ReadPDF ReadPDF;
+        ChosseFileinDB ChosseFileinDB;
         public CreateFolder()
         {
             InitializeComponent();
@@ -94,24 +95,15 @@ namespace KindleTeam8.Views
                     ClassFolder folder = new ClassFolder();
                     FileInfo iffile = new FileInfo(filename);
                     folder = FolderController.getFolder(txtNameFolder.Text);
-                    if (folder.listfile != null)
-                    {
-                        if (folder.listfile.ToList<ClassFile>().Count(x => x.namefile == iffile.Name) < 1)
-                        {
-                            AddFileItem(folder, ChooseFile.FileName);
-                            folder = FolderController.getFolder(txtNameFolder.Text);
-                            displayFile(folder);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Đã có File này trong danh sách", "Thông Báo");
-                        }
-                    }
-                    else
+                    if (folder.listfile == null || folder.listfile.ToList<ClassFile>().Count(x => x.namefile == iffile.Name) < 1)
                     {
                         AddFileItem(folder, ChooseFile.FileName);
                         folder = FolderController.getFolder(txtNameFolder.Text);
                         displayFile(folder);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Đã có File này trong danh sách", "Thông Báo");
                     }
                 }
                 else
@@ -181,6 +173,7 @@ namespace KindleTeam8.Views
             if (lstFolder.SelectedItem != null)
             {
                 btnAddFile.Visible = true;
+                btnAddFileDB.Visible = true;
                 txtNameFolder.Text = lstFolder.SelectedItem.ToString();
                 ClassFolder folder = new ClassFolder();
                 folder.listfile = FolderController.getListFile(txtNameFolder.Text);
@@ -210,8 +203,6 @@ namespace KindleTeam8.Views
             {
                 DialogResult xacnhan = MessageBox.Show("Bạn có muốn xóa File đã chọn không?", "Thông Báo",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                ClassFile files = new ClassFile();
-                files = FileController.getFile(int.Parse(lstFileName.SelectedItems[0].SubItems[3].Text));
                 if (xacnhan == DialogResult.Yes)
                 {
                     FolderController.DeleteFile(txtNameFolder.Text, int.Parse(lstFileName.SelectedItems[0].SubItems[3].Text));
@@ -228,6 +219,33 @@ namespace KindleTeam8.Views
                 else
                 {
                     return;
+                }
+            }
+        }
+        //Mở cửa sổ thêm file
+        private void btnAddFileDB_Click(object sender, EventArgs e)
+        {
+            if (txtNameFolder.Text == "")
+            {
+                MessageBox.Show("Chưa chọn folder", "Thông Báo");
+                return;
+            }
+            else
+            {
+                if (lstFolder.SelectedItem != null)
+                {
+                    ClassFile file = new ClassFile();
+                    txtNameFolder.Text = lstFolder.SelectedItem.ToString();
+                    ClassFolder folder = new ClassFolder();
+                    folder = FolderController.getFolder(txtNameFolder.Text);
+                    ChosseFileinDB = new ChosseFileinDB(file, folder);
+                    ChosseFileinDB.Show();
+                    folder = FolderController.getFolder(txtNameFolder.Text);
+                    displayFile(folder);
+                }
+                else
+                {
+                    MessageBox.Show("Chưa chọn folder", "Thông Báo");
                 }
             }
         }

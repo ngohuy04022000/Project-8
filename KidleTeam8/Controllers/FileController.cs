@@ -152,6 +152,8 @@ namespace KindleTeam8.Controllers
                                 path = f.path,
                                 size=f.size,
                                 note=f.note,
+                                linkedfilein = f.linkedfilein,
+                                linkedfileout = f.linkedfileout
                             })
                               .Select(x => new ClassFile
                                {
@@ -160,6 +162,8 @@ namespace KindleTeam8.Controllers
                                    path = x.path,
                                    size = x.size,
                                    note=x.note,
+                                   linkedfilein = x.linkedfilein,
+                                   linkedfileout =x.linkedfileout
                                }).ToList();
                 return file;
             }

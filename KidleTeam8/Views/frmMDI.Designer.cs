@@ -43,7 +43,6 @@
             // 
             this.mnsMDI.BackColor = System.Drawing.Color.MediumTurquoise;
             this.mnsMDI.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mnsMDI.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.mnsMDI.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.mnsMDI.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmEdit,
@@ -51,8 +50,7 @@
             this.mCreateDB});
             this.mnsMDI.Location = new System.Drawing.Point(0, 0);
             this.mnsMDI.Name = "mnsMDI";
-            this.mnsMDI.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
-            this.mnsMDI.Size = new System.Drawing.Size(948, 42);
+            this.mnsMDI.Size = new System.Drawing.Size(948, 30);
             this.mnsMDI.TabIndex = 1;
             this.mnsMDI.Text = "mnsMDI";
             // 
@@ -62,34 +60,34 @@
             this.mFind,
             this.mCreateFolder});
             this.tsmEdit.Name = "tsmEdit";
-            this.tsmEdit.Size = new System.Drawing.Size(160, 38);
+            this.tsmEdit.Size = new System.Drawing.Size(105, 26);
             this.tsmEdit.Text = "Chức năng";
             // 
             // mFind
             // 
             this.mFind.Name = "mFind";
-            this.mFind.Size = new System.Drawing.Size(363, 42);
+            this.mFind.Size = new System.Drawing.Size(237, 26);
             this.mFind.Text = "Tìm kiếm trong máy";
             this.mFind.Click += new System.EventHandler(this.mFind_Click);
             // 
             // mCreateFolder
             // 
             this.mCreateFolder.Name = "mCreateFolder";
-            this.mCreateFolder.Size = new System.Drawing.Size(363, 42);
-            this.mCreateFolder.Text = "Tạo danh sách";
+            this.mCreateFolder.Size = new System.Drawing.Size(237, 26);
+            this.mCreateFolder.Text = "Danh sách";
             this.mCreateFolder.Click += new System.EventHandler(this.mCreateFolder_Click);
             // 
             // mViews
             // 
             this.mViews.Name = "mViews";
-            this.mViews.Size = new System.Drawing.Size(134, 38);
+            this.mViews.Size = new System.Drawing.Size(91, 26);
             this.mViews.Text = "Trợ giúp";
             this.mViews.Click += new System.EventHandler(this.mViews_Click);
             // 
             // mCreateDB
             // 
             this.mCreateDB.Name = "mCreateDB";
-            this.mCreateDB.Size = new System.Drawing.Size(150, 38);
+            this.mCreateDB.Size = new System.Drawing.Size(101, 26);
             this.mCreateDB.Text = "CreateDB";
             this.mCreateDB.Click += new System.EventHandler(this.mCreateDB_Click);
             // 
@@ -97,7 +95,7 @@
             // 
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabMain.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabMain.Location = new System.Drawing.Point(0, 42);
+            this.tabMain.Location = new System.Drawing.Point(0, 30);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
             this.tabMain.Size = new System.Drawing.Size(948, 41);
@@ -106,7 +104,7 @@
             // 
             // frmMDI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(948, 662);
             this.Controls.Add(this.tabMain);
