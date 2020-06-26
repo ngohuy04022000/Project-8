@@ -40,6 +40,8 @@
             this.DetailsPDF = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitPDF = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsReadPDF = new System.Windows.Forms.MenuStrip();
+            this.mAfter = new System.Windows.Forms.ToolStripMenuItem();
+            this.mBefore = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.AdobeReadPDF)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -102,10 +104,12 @@
             // 
             // mFileLinked
             // 
+            this.mFileLinked.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mAfter,
+            this.mBefore});
             this.mFileLinked.Name = "mFileLinked";
-            this.mFileLinked.Size = new System.Drawing.Size(138, 22);
+            this.mFileLinked.Size = new System.Drawing.Size(180, 22);
             this.mFileLinked.Text = "File Linked";
-            this.mFileLinked.Click += new System.EventHandler(this.mFileLinked_Click);
             // 
             // mNote
             // 
@@ -113,7 +117,7 @@
             this.mSaveNote,
             this.mFixNote});
             this.mNote.Name = "mNote";
-            this.mNote.Size = new System.Drawing.Size(138, 22);
+            this.mNote.Size = new System.Drawing.Size(180, 22);
             this.mNote.Text = "Note";
             // 
             // mSaveNote
@@ -160,6 +164,20 @@
             this.mnsReadPDF.TabIndex = 1;
             this.mnsReadPDF.Text = "mnsReadPDF";
             // 
+            // mAfter
+            // 
+            this.mAfter.Name = "mAfter";
+            this.mAfter.Size = new System.Drawing.Size(180, 22);
+            this.mAfter.Text = "After";
+            this.mAfter.Click += new System.EventHandler(this.mAfter_Click);
+            // 
+            // mBefore
+            // 
+            this.mBefore.Name = "mBefore";
+            this.mBefore.Size = new System.Drawing.Size(180, 22);
+            this.mBefore.Text = "Before";
+            this.mBefore.Click += new System.EventHandler(this.mBefore_Click);
+            // 
             // ReadPDF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -197,5 +215,7 @@
         private System.Windows.Forms.ToolStripMenuItem DetailsPDF;
         private System.Windows.Forms.ToolStripMenuItem ExitPDF;
         private System.Windows.Forms.MenuStrip mnsReadPDF;
+        private System.Windows.Forms.ToolStripMenuItem mAfter;
+        private System.Windows.Forms.ToolStripMenuItem mBefore;
     }
 }

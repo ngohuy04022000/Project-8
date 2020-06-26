@@ -21,12 +21,18 @@ namespace KindleTeam8.Views
         //private string s;
         private ClassFile Files;
         private ClassFolder folder;
+        private ChosseFileinDB FileinDB;
         public ReadPDF(ClassFile files, ClassFolder folders)
         {
             InitializeComponent();
             folder = new ClassFolder();
             folder = folders;
             this.Files = files;
+            Display();
+        }
+        //Hiển thị 
+        private void Display()
+        {
             AdobeReadPDF.src = Files.path + "\\" + Files.namefile;
             this.Text = this.Files.namefile;
             if (Files.note != null)
@@ -62,10 +68,6 @@ namespace KindleTeam8.Views
         {
             mSaveNote.Enabled = true;
         }
-        private void mFileLinked_Click(object sender, EventArgs e)
-        {
-            //DialogResult xacnhan = MessageBox.Show
-        }
         //Đọc File
         private void ReadPDF_Load(object sender, EventArgs e)
         {
@@ -80,20 +82,46 @@ namespace KindleTeam8.Views
                 this.Close(); 
             }    
         }
-        //Thêm file vào database và folder
-        public void AddFileItem(ClassFolder folder, string filename)
+        private void mAfter_Click(object sender, EventArgs e)
         {
-            FileInfo iffile = new FileInfo(filename);
-            ClassFile file = new ClassFile();
-            file.ID = FileController.getIDfromDB();
-            file.namefile = iffile.Name;
-            file.path = iffile.DirectoryName;
-            file.size = Math.Ceiling(iffile.Length / 1024f).ToString("0 KB");
-            //Files.linkedfile = file;
-            FileController.AddFile(file);
-            FileController.UpdateFile(Files);
-            folder.listfile.Add(file);
-            FolderController.UpdateFolder(folder);
+            if (Files.linkedfileout < 1)
+            {
+                DialogResult xacnhan = MessageBox.Show("Bạn chưa có tập tiếp theo! Chọn tập tiếp theo?",
+                    "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (xacnhan == DialogResult.Yes)
+                {
+                    FileinDB = new ChosseFileinDB(Files, folder, 2);
+                    FileinDB.Show();
+                }
+            }
+            else
+            {
+                ClassFile file = new ClassFile();
+                file = FileController.getFile(Files.linkedfileout);
+                Files = file;
+                Display();
+            }    
+        }
+
+        private void mBefore_Click(object sender, EventArgs e)
+        {
+            if (Files.linkedfilein < 1)
+            {
+                DialogResult xacnhan = MessageBox.Show("Bạn chưa có tập trước! Chọn tập trước?",
+                        "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (xacnhan == DialogResult.Yes)
+                {
+                    FileinDB = new ChosseFileinDB(Files, folder, 1);
+                    FileinDB.Show();
+                }
+            }
+            else
+            {
+                ClassFile file = new ClassFile();
+                file = FileController.getFile(Files.linkedfilein);
+                Files = file;
+                Display();
+            }
         }
     }
 }

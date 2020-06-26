@@ -32,31 +32,31 @@ namespace KindleTeam8.Controllers
                 return true;
             }
         }
-        /*Hiển thị list folder khi mở lại form(Hùng)
-        *(Cái này là lấy giá trị từ Cơ sở dữ liệu)
-        */
-        public static List<ClassFolder> getListFolder()
-        {
-            using (var _context = new DBFolderContext())
-            {
-                var folder = (from f in _context.tbFolders.AsEnumerable()
-                              select new
-                              {
-                                  foldername = f.namefolder,
-                                  listfiles = f.listfile
-                              })
-                              .Select(x => new ClassFolder
-                              {
-                                  namefolder = x.foldername,
-                                  listfile = x.listfiles
-                              }).ToList();
-                if(folder.Count()==0)
-                {
-                    folder = new List<ClassFolder>();
-                }
-                return folder;
-            }
-        }
+        //Bỏ hàm này
+        //Hiển thị list folder khi mở lại form(Hùng)
+        //(Cái này là lấy giá trị từ Cơ sở dữ liệu)
+        //public static List<ClassFolder> getListFolder()
+        //{
+        //    using (var _context = new DBFolderContext())
+        //    {
+        //        var folder = (from f in _context.tbFolders.AsEnumerable()
+        //                      select new
+        //                      {
+        //                          foldername = f.namefolder,
+        //                          listfiles = f.listfile
+        //                      })
+        //                      .Select(x => new ClassFolder
+        //                      {
+        //                          namefolder = x.foldername,
+        //                          listfile = x.listfiles
+        //                      }).ToList();
+        //        if(folder.Count()==0)
+        //        {
+        //            folder = new List<ClassFolder>();
+        //        }
+        //        return folder;
+        //    }
+        //}
         //Lấy listfile trong database dựa vào tên
         public static List<ClassFile> getListFile(string namefolder)
         {

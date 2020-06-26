@@ -36,8 +36,7 @@ namespace KindleTeam8.Views
         {
             lstFolder.Items.Clear();
             listfolder = FolderController.GetAllFolder();
-            List<ClassFolder> lstfolders = listfolder;
-            foreach (ClassFolder folder in lstfolders)
+            foreach (ClassFolder folder in listfolder)
             {
                 this.lstFolder.Items.Add(folder.namefolder);
             }
@@ -138,7 +137,9 @@ namespace KindleTeam8.Views
         {
             ClassFile files = new ClassFile();
             files = FileController.getFile(int.Parse(lstFileName.SelectedItems[0].SubItems[3].Text));
-            ReadPDF = new ReadPDF(files, listfolder[0]);
+            ClassFolder folder = new ClassFolder();
+            folder = FolderController.getFolder(txtNameFolder.Text);
+            ReadPDF = new ReadPDF(files, folder);
             ReadPDF.Show();
         }
         private void lstFileName_Click(object sender, EventArgs e)
@@ -238,10 +239,8 @@ namespace KindleTeam8.Views
                     txtNameFolder.Text = lstFolder.SelectedItem.ToString();
                     ClassFolder folder = new ClassFolder();
                     folder = FolderController.getFolder(txtNameFolder.Text);
-                    ChosseFileinDB = new ChosseFileinDB(file, folder);
+                    ChosseFileinDB = new ChosseFileinDB(file, folder, 0);
                     ChosseFileinDB.Show();
-                    folder = FolderController.getFolder(txtNameFolder.Text);
-                    displayFile(folder);
                 }
                 else
                 {
