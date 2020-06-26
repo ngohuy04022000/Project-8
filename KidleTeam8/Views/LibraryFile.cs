@@ -1,8 +1,4 @@
-﻿//Nhóm 8
-//Nguyễn Quang Hùng - 18133016
-//Ngô Trí Huy - 18133015
-//Võ Thị Thanh Ngân - 18133033
-using KindleTeam8;
+﻿using KindleTeam8;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,26 +29,6 @@ namespace KindleTeam8.Views
             backgroundWorker.DoWork += BackgroundWorker_DoWork;
             backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
             backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
-            //ClassFile files = new ClassFile();
-            folders = new ClassFolder();
-            folders.namefolder = "Library";
-            folders.listfile = new List<ClassFile>();
-            folders.listfile = FolderController.getListFile("Library");
-            //folders = folder;
-            //ReadPDF = new ReadPDF(files, folders);
-            //foreach (Folder f in folders)
-            //{
-            //    cmbFolderName.Items.Add(f.namefolder);
-            //}
-            //if (cmbFolderName.Items != null)
-            //{
-            //    cmbFolderName.Text = cmbFolderName.Items[0].ToString();
-            //}
-            //else
-            //{
-            //    cmbFolderName.Text = "Library";
-            //    cmbFolderName.Items.Add("Library");
-            //}    
         }
         #region Xử lý phần tìm file với đuôi .pdf
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -98,8 +74,6 @@ namespace KindleTeam8.Views
         {
             ClassFile file = new ClassFile();
             file.namefile = filename;
-            //int index = folders.FindIndex(x => x.namefolder == cmbFolderName.Text);
-            //folders.listfile.Add(filename);
             FileInfo fileif = new FileInfo(filename);
             lvwSearch.Invoke((Action)(() =>
             {
@@ -159,14 +133,7 @@ namespace KindleTeam8.Views
             }
         }
         private void btnFind_Click(object sender, EventArgs e)
-        {
-            //if(folders.Where(x=>x.namefolder == cmbFolderName.Text).Count()<1)
-            //{
-            //    Folder f = new Folder();
-            //    f.namefolder = cmbFolderName.Text;
-            //    f.filename = new List<Files>();
-            //    folders.Add(f);
-            //}    
+        { 
             if(backgroundWorker.IsBusy || txtSearch.Text == null)
             {
                 backgroundWorker.CancelAsync();
