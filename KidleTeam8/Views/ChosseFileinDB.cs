@@ -95,5 +95,43 @@ namespace KindleTeam8.Views
             }
             this.Close();
         }
+        //Tìm kiếm file bằng từ khóa(Huy)
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {         
+            allfile = FileController.getListFiles();
+            List<ClassFile> files = allfile.ToList<ClassFile>().Where(x => x.namefile.Contains(txtSearch.Text)).ToList();
+            lstFile.Items.Clear();
+            foreach (ClassFile file in files)
+            {
+                ListViewItem item = new ListViewItem(file.namefile);
+                List<ClassFolder> lstfolders = FolderController.GetAllFolder();
+                string s = "";
+                foreach (ClassFolder folder in lstfolders)
+                {
+                    if (folder.listfile.Where(x => x.ID == file.ID).Count() > 0)
+                    {
+                        s = s + " " + folder.namefolder;
+                    }
+                }
+                item.SubItems.Add(s);
+                if (file.linkedfileout > 0)
+                {
+                    item.SubItems.Add(FileController.getFile(file.linkedfileout).namefile);
+                }
+                else
+                {
+                    item.SubItems.Add("Chưa có tập sau");
+                }
+                if (file.linkedfilein > 0)
+                {
+                    item.SubItems.Add(FileController.getFile(file.linkedfilein).namefile);
+                }
+                else
+                {
+                    item.SubItems.Add("Chưa có tập trước");
+                }
+                lstFile.Items.Add(item);
+            }
+        }
     }
 }

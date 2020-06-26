@@ -13,12 +13,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 //ngân cute vl
-
 namespace KindleTeam8.Views
 {
     public partial class ReadPDF : Form
     {
-        //private string s;
         private ClassFile Files;
         private ClassFolder folder;
         private ChosseFileinDB FileinDB;
@@ -40,6 +38,7 @@ namespace KindleTeam8.Views
                 txtNote.Text = "Note:" + Files.note;
             }
         }
+        //Hiển thị thông tin cơ bản
         private void DetailsPDF_Click(object sender, EventArgs e)
         {
             FileInfo info = new FileInfo(this.Files.path + "\\" + Files.namefile);
@@ -47,11 +46,13 @@ namespace KindleTeam8.Views
                 "Truy cập lần cuối: " + info.LastWriteTime.ToLongDateString() + Environment.NewLine + "Chỉnh sửa lần cuối: " + info.LastAccessTime.ToLongDateString() +
                 Environment.NewLine + "Kích thước: " + (Convert.ToInt32(info.Length / 1024f)).ToString() + " KB", "Details", MessageBoxButtons.OK);
         }
+        //Đóng form ReadPDF
         private void ExitPDF_Click(object sender, EventArgs e)
         {
             //FileController.UpdateFile(Files);
             this.Close();
         }
+        //Cập nhật ghi chú vào database 
         private void mSaveNote_Click(object sender, EventArgs e)
         {
             Files.note = txtNote.Text;
@@ -59,16 +60,18 @@ namespace KindleTeam8.Views
             FileController.UpdateFile(Files);
             txtNote.Enabled = false;
         }
+        //Cho phép gõ và thay đổi ghi chú
         private void mFixNote_Click(object sender, EventArgs e)
         {
             txtNote.Enabled = true;
             txtNote.Focus();
         }
+        //Khi ghi chú thay đổi, cho phép nhấn lưu note
         private void txtNote_TextChanged(object sender, EventArgs e)
         {
             mSaveNote.Enabled = true;
         }
-        //Đọc File
+        //Đưa ra lựa chọn mở file pdf
         private void ReadPDF_Load(object sender, EventArgs e)
         {
             DialogResult xacnhan = MessageBox.Show("Bạn có muốn mở file được chọn không",
@@ -82,6 +85,7 @@ namespace KindleTeam8.Views
                 this.Close(); 
             }    
         }
+        //Thêm liên kết file cho file mở hiện tại. (Hiển thị tiếp theo file hiện tại)
         private void mAfter_Click(object sender, EventArgs e)
         {
             if (Files.linkedfileout < 1)
@@ -102,7 +106,7 @@ namespace KindleTeam8.Views
                 Display();
             }    
         }
-
+        //thêm liên kết file cho file mở hiện tại. (Hiển thị trước file hiện tại)
         private void mBefore_Click(object sender, EventArgs e)
         {
             if (Files.linkedfilein < 1)

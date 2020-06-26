@@ -112,7 +112,7 @@ namespace KindleTeam8.Controllers
                 return true;
             }
         }
-        //Lấy file từ tên của nó
+        //Lấy file từ ID của nó
         public static ClassFile getFile(int ID)
         {
             using (var _context = new DBFolderContext())
@@ -126,6 +126,7 @@ namespace KindleTeam8.Controllers
                     return null;
             }
         }
+	//Lấy file dựa theo tên của nó
         public static ClassFile getFile(string name)
         {
             using (var _context = new DBFolderContext())
