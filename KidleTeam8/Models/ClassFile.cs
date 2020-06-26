@@ -24,7 +24,6 @@ namespace KindleTeam8.Models
         public ClassFile()
         {
             folder = new HashSet<ClassFolder>();
-            //linkedfile = new ClassFile();
         }
         public override string ToString()
         {

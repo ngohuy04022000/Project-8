@@ -10,15 +10,13 @@ namespace KindleTeam8.Controllers
 {
     public class FolderController
     {
-        //Thêm 1 folder vào database(Hùng)
+        //Thêm 1 folder vào database
         public static bool AddFolder(ClassFolder folder)
-        {  using (var _context = new DBFolderContext())
+        {  
+            using (var _context = new DBFolderContext())
             {
                 foreach (var file in folder.listfile)
                 {
-                    //var dbUser = (from u in _context.tbUsers
-                    //              where u.username == user.username
-                    //              select u).Single();
                     var dbFile = _context.tbFiles.Single(x => x.namefile == file.namefile);
                     if (dbFile.folder is null)
                     {
@@ -32,32 +30,7 @@ namespace KindleTeam8.Controllers
                 return true;
             }
         }
-        //Bỏ hàm này
-        //Hiển thị list folder khi mở lại form(Hùng)
-        //(Cái này là lấy giá trị từ Cơ sở dữ liệu)
-        //public static List<ClassFolder> getListFolder()
-        //{
-        //    using (var _context = new DBFolderContext())
-        //    {
-        //        var folder = (from f in _context.tbFolders.AsEnumerable()
-        //                      select new
-        //                      {
-        //                          foldername = f.namefolder,
-        //                          listfiles = f.listfile
-        //                      })
-        //                      .Select(x => new ClassFolder
-        //                      {
-        //                          namefolder = x.foldername,
-        //                          listfile = x.listfiles
-        //                      }).ToList();
-        //        if(folder.Count()==0)
-        //        {
-        //            folder = new List<ClassFolder>();
-        //        }
-        //        return folder;
-        //    }
-        //}
-        //Lấy listfile trong database dựa vào tên
+        //Lấy listfile trong database dựa vào tên folder
         public static List<ClassFile> getListFile(string namefolder)
         {
             using (var _context = new DBFolderContext())
@@ -73,6 +46,7 @@ namespace KindleTeam8.Controllers
                     return null;
             }
         }
+        //Kiểm tra xem có file nào được lưu trong folder hay không
         public static bool Containfif(ClassFile file)
         {
             using (var _context = new DBFolderContext())
@@ -193,6 +167,7 @@ namespace KindleTeam8.Controllers
                 }
             }
         }
+        //Thêm file vào folder
         public static bool AddFile(ClassFolder folder, ClassFile file)
         {
             using (var _context = new DBFolderContext())
@@ -203,6 +178,7 @@ namespace KindleTeam8.Controllers
                 return true;
             }
         }
+        //Lấy tất cả folder từ database
         public static List<ClassFolder> GetAllFolder()
         {
             using (var _context = new DBFolderContext())

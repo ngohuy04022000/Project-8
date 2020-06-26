@@ -11,13 +11,17 @@ namespace KindleTeam8.Controllers
 {
     public class FileController
     {
+        //Lấy ID của file từ database
         public static int getIDfromDB()
         {
             using(var _context = new DBFolderContext())
             {
                 var id = (from f in _context.tbFiles
                           select f.ID).ToList();
-                if(id.Count<= 0) { return 1; }
+                if(id.Count<= 0) 
+                { 
+                    return 1; 
+                }
                 else 
                 {
                     int i;
@@ -54,25 +58,12 @@ namespace KindleTeam8.Controllers
         {
             using (var _context = new DBFolderContext())
             {
-                //if (filename.linkedfile != null)
-                //{
-                    //var dbFile = (from f in _context.tbFiles
-                    //              where f.ID == filename.ID
-                    //              select f).SingleOrDefault();
-                    //dbFile.linkedfile = filename.linkedfile;
-                    //_context.tbFiles.AddOrUpdate(dbFile);
-                    //_context.tbFiles.SqlQuery("Select * from Files where ID=@id", new  SqlParameter("@id",filename.ID)).FirstOrDefault();
-                    //_context.Database.ExecuteSqlCommand("Update Files set linkedfile =@iid where ID=@id",
-                    //    new SqlParameter("@id", filename.ID), new SqlParameter("@iid", filename.linkedfile));
-                    //_context.SaveChanges();
-                    //return true;
-                //}
-                //filename.folder.Clear();
                 _context.tbFiles.AddOrUpdate(filename);
                 _context.SaveChanges();
                 return true;
             }
         }
+        //Kiểm tra file có trong database không
         public static bool getContain(ClassFile file)
         {
             using (var _context = new DBFolderContext())
