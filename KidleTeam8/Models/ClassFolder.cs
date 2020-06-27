@@ -24,15 +24,5 @@ namespace KindleTeam8.Models
         {
             return this.namefolder;
         }
-        //public List<Files> files { get; set; }
-        //public List<Files> Returnlist()
-        //{
-        //    List<Files> file = new List<Files>();
-        //    foreach(Files f in this.filename)
-        //    {
-        //        file.Add(f);
-        //    }
-        //    return file;
-        //}    
     }
 }

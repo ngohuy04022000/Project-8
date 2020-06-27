@@ -17,15 +17,9 @@ namespace KindleTeam8.Views
     {
         private LibraryFile libraryFile;
         private CreateFolder createFolder;
-        //private List<ClassFolder> folders;
         public frmMDI()
         {
             InitializeComponent();
-            //Library = new ClassFolder();
-            //Library.namefolder = "Library";
-            //Library.listfile = new List<ClassFile>();
-            //folders = new List<ClassFolder>();
-            //folders.Add(Library);
         }
 
         private void frmMDI_MdiChildActivate(object sender, EventArgs e)
