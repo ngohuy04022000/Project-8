@@ -232,3 +232,4 @@ C:\Users\nguye\Source\Repos\Project-8\KidleTeam8\obj\Debug\KindleTeam8.Views.Cre
 C:\Users\nguye\Source\Repos\Project-8\KidleTeam8\obj\Debug\KindleTeam8.Views.ReadPDF.resources
 C:\Users\as\Documents\Project-8\KidleTeam8\obj\Debug\KindleTeam8.Views.ChosseFileinDB.resources
 C:\Users\as\Documents\Project-8\KidleTeam8\obj\Debug\KindleTeam8.csprojAssemblyReference.cache
+C:\Users\ADMIN\Documents\GitHub\Project-8\KidleTeam8\obj\Debug\KindleTeam8.Views.ChosseFileinDB.resources
