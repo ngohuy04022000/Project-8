@@ -107,7 +107,7 @@ namespace KindleTeam8.Views
                 }
             }
         }
-	    //Hàm thêm file lên database và hiển thị lên listview(lstFileName)
+        //Hàm thêm file lên database và hiển thị lên listview(lstFileName)
         public void AddFileItem(ClassFolder folder, string filename)
         {
             FileInfo iffile = new FileInfo(filename);
@@ -125,7 +125,7 @@ namespace KindleTeam8.Views
                 FileController.AddFile(file);
             }
             folder.listfile.Add(file);
-            FolderController.UpdateFolder(folder); 
+            FolderController.UpdateFolder(folder);
         }
         //Nháy chuột 2 lần mở File
         private void lstFileName_DoubleClick(object sender, EventArgs e)
@@ -137,7 +137,7 @@ namespace KindleTeam8.Views
             ReadPDF = new ReadPDF(files, folder);
             ReadPDF.Show();
         }
-	    //Chọn file trên listview
+        //Chọn file trên listview
         private void lstFileName_Click(object sender, EventArgs e)
         {
             btnAddFile.Visible = true;
@@ -161,9 +161,10 @@ namespace KindleTeam8.Views
                     FileController.DeleteFile(int.Parse(lstFileName.Items[i].SubItems[3].Text));
                 }
             }
-                FolderController.DeleteFolder(f);
-                displayFolder();
-        }
+            FolderController.DeleteFolder(f);
+            displayFolder();
+            lstFileName.Items.Clear();
+        } 
         //Chọn folder, và hiển thị tất cả các file của folder trên listview(lstFileName)
         private void lstFolder_Click(object sender, EventArgs e)
         {

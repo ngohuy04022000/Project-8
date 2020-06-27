@@ -29,6 +29,9 @@ namespace KindleTeam8.Views
             backgroundWorker.DoWork += BackgroundWorker_DoWork;
             backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
             backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
+            folders = new ClassFolder();
+            folders.namefolder = "Library";
+            folders.listfile = new List<ClassFile>();
         }
         #region Xử lý phần tìm file với đuôi .pdf
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

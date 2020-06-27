@@ -69,13 +69,20 @@ namespace KindleTeam8.Views
         //Chọn file
         private void lstFile_DoubleClick(object sender, EventArgs e)
         {
-            if(Result == 0)
+            if (Result == 0)
             {
                 File = allfile.Where(x => x.namefile == lstFile.SelectedItems[0].SubItems[0].Text).Single();
-                Folder.listfile.Add(File);
-                FolderController.UpdateFolder(Folder);
-            }
-            else if(Result == 1)
+                if (Folder.listfile.Where(x => x.namefile == File.namefile).Count() >= 1)
+                {
+                    MessageBox.Show("Đã có File này trong danh sách", "Thông Báo");
+                }
+                else
+                {
+                    Folder.listfile.Add(File);
+                    FolderController.UpdateFolder(Folder);
+                }
+            } 
+            else if (Result == 1)
             {
                 ClassFile file = new ClassFile();
                 file = allfile.Where(x => x.namefile == lstFile.SelectedItems[0].SubItems[0].Text).Single();
@@ -133,5 +140,10 @@ namespace KindleTeam8.Views
                 lstFile.Items.Add(item);
             }
         }
+        public bool Display()
+        {
+            return true;
+        }
     }
+
 }

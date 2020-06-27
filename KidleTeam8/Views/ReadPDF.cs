@@ -100,10 +100,20 @@ namespace KindleTeam8.Views
             }
             else
             {
-                ClassFile file = new ClassFile();
-                file = FileController.getFile(Files.linkedfileout);
-                Files = file;
-                Display();
+                DialogResult nhan = MessageBox.Show("Bạn có muốn thay đổi tập tiếp theo?",
+                            "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (nhan == DialogResult.No)
+                {
+                    ClassFile file = new ClassFile();
+                    file = FileController.getFile(Files.linkedfileout);
+                    Files = file;
+                    Display();
+                }
+                else
+                {
+                    FileinDB = new ChosseFileinDB(Files, folder, 2);
+                    FileinDB.Show();
+                }    
             }    
         }
         //thêm liên kết file cho file mở hiện tại. (Hiển thị trước file hiện tại)
@@ -112,7 +122,7 @@ namespace KindleTeam8.Views
             if (Files.linkedfilein < 1)
             {
                 DialogResult xacnhan = MessageBox.Show("Bạn chưa có tập trước! Chọn tập trước?",
-                        "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (xacnhan == DialogResult.Yes)
                 {
                     FileinDB = new ChosseFileinDB(Files, folder, 1);
@@ -121,10 +131,20 @@ namespace KindleTeam8.Views
             }
             else
             {
-                ClassFile file = new ClassFile();
+                DialogResult nhan = MessageBox.Show("Bạn có muốn thay đổi tập trước?",
+                            "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (nhan == DialogResult.No)
+                {
+                    ClassFile file = new ClassFile();
                 file = FileController.getFile(Files.linkedfilein);
                 Files = file;
                 Display();
+                }
+                else
+                {
+                    FileinDB = new ChosseFileinDB(Files, folder, 2);
+                    FileinDB.Show();
+                }
             }
         }
     }
